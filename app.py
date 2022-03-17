@@ -11,7 +11,7 @@ definitions = {
         "start": "MM/DD/YYYY",
         "end": "MM/DD/YYYY"
     },
-    "items": {
+    "titems": {
         "ticketid": "2613496"
     }
 }
@@ -23,13 +23,14 @@ class Schedule(BaseModel):
     start: str
     end: str
 
-class Items(BaseModel):
+class TicketItems(BaseModel):
     ticketid: int
 
 
 @app.get("/")
 def read_root():
     return definitions
+
 
 @app.post("/schedule/")
 async def get_schedule(schedule: Schedule):
@@ -40,7 +41,14 @@ async def get_schedule(schedule: Schedule):
     data = schedule[1]
     return {"count": count, "data": data}
 
-@app.get("/test")
+
+@app.post("/titems/")
+async def get_items(items: TicketItems):
+    ticketid = items.ticketid
+    return {"ticketid": ticketid}
+
+
+@app.get("/scheduletest")
 async def scheduleTest():
     start = "03/17/2022"
     end = "03/17/2022"

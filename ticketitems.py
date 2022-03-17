@@ -8,10 +8,16 @@ import requests  # For making HTTP requests
 from common import findPages, fixTime, gridDataUrl, startIndex, toJSON, headers
 from tcr_py import gridCondition, gridSort
 
+# import login.getCookie as gc
+# with open("login/cookies.json") as f:
+#     cookies = json.load(f)
+# headers = gc.setHeaders(cookies)
 
-def SchedulePayload(StartIndex, PageSize, Start=None, End=None):
+
+
+def TicketPayload(StartIndex, PageSize, Start=None, End=None):
     """
-    This function creates the payload for the Schedule API call.
+    This function creates the payload for the Ticket API call.
 
         Status:
             ALL: None
@@ -20,21 +26,21 @@ def SchedulePayload(StartIndex, PageSize, Start=None, End=None):
             On Hold: "H"
             Pre-Pay: "P"
     Parameters:
-        Status (str): The status of the Schedule.
-        StartIndex (int): The starting index of the Schedule.
-        PageSize (int): The number of Schedules to return.
+        Status (str): The status of the Ticket.
+        StartIndex (int): The starting index of the Ticket.
+        PageSize (int): The number of Tickets to return.
 
     Returns:
-        payload (dict): The payload for the Schedule API call.
+        payload (dict): The payload for the Ticket API call.
 
     """
     attributes = [
-        "ScheduleID",
-        "ScheduleType",
+        "TicketID",
+        "TicketType",
         "TicketID",
         "DriverName",
         "TruckCode",
-        "ScheduleDate",
+        "TicketDate",
         "ClockIn",
         "TimeNeeded",
         "TimeSetBy",
@@ -94,19 +100,19 @@ def SchedulePayload(StartIndex, PageSize, Start=None, End=None):
     return payload
 
 
-def getScheduleData(StartIndex, PageSize, Start, End):
+def getTicketData(StartIndex, PageSize, Start, End):
     """
-    This function gets the Schedule data from the API.
+    This function gets the Ticket data from the API.
     Parameters:
-        startIndex (int): The starting index of the Schedule.
-        pagesize (int): The number of Schedules to return.
-        status (str): The status of the Schedule.
+        startIndex (int): The starting index of the Ticket.
+        pagesize (int): The number of Tickets to return.
+        status (str): The status of the Ticket.
 
     Returns:
-        count (int): The total number of Schedules.
-        data (list): The list of Schedules.
+        count (int): The total number of Tickets.
+        data (list): The list of Tickets.
     """
-    payload = json.dumps(SchedulePayload(StartIndex, PageSize, Start, End))
+    payload = json.dumps(TicketPayload(StartIndex, PageSize, Start, End))
     response = requests.post(gridDataUrl, headers=headers, data=payload)
     # Loaded The D > Response From TCR
     resultjson = json.loads(json.loads(response.text)["d"]["Result"])
@@ -115,21 +121,21 @@ def getScheduleData(StartIndex, PageSize, Start, End):
     return count, data
 
 
-def getSchedules(Count, PageSize, Status):
+def getTickets(Count, PageSize, Status):
     """
-    This function gets all the Schedules from the API.
+    This function gets all the Tickets from the API.
     Parameters:
-        count (int): The total number of Schedules.
-        status (str): The status of the Schedule.
-        pagesize (int): The number of Schedule to return.
+        count (int): The total number of Tickets.
+        status (str): The status of the Ticket.
+        pagesize (int): The number of Ticket to return.
 
     Returns:
-        data (list): The list of Schedule.
+        data (list): The list of Ticket.
     """
     data = []
     for i in range(1, findPages(Count, PageSize) + 1):
         print("Page: " + str(i) + " of " + str(findPages(Count, PageSize)))
-        post = getScheduleData(startIndex(i, PageSize), PageSize, Status)
+        post = getTicketData(startIndex(i, PageSize), PageSize, Status)
         data.extend(post[1])
     return data
 
