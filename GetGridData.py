@@ -23,7 +23,7 @@ class Query(BaseModel):
     StartIndex: conint(ge=1)
     Attributes: list[str]
     Sort: list[Sort]
-    CustomSort: list[Sort]
+    CustomSort: None
 
 
 class Root(BaseModel):
