@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from driverschedule import getScheduleData
+from driverschedule import scheduleOBJ
+from ticket_items import tItemsOBJ
 
 app = FastAPI()
 
@@ -8,16 +9,21 @@ app = FastAPI()
 definitions = {
     "Purpose": "Each Endpoint Shown Below is a Function of the API with the data needed",
     "schedule": {
-        "start": "MM/DD/YYYY",
-        "end": "MM/DD/YYYY"
+        "type": "post",
+        "url": "/schedule/",
+        "parameters": {
+            "start": "MM/DD/YYYY",
+            "end": "MM/DD/YYYY"
+        },
     },
-    "titems": {
-        "ticketid": "2613496"
+    "ticket_items": {
+        "type": "post",
+        "url": "/titems/",
+        "parameters": {
+            "ticketid": "2613496"
+        },
     }
 }
-
-def getSchedule(start, end):
-    return getScheduleData(1, 100, start, end)
 
 class Schedule(BaseModel):
     start: str
@@ -36,7 +42,8 @@ def read_root():
 async def get_schedule(schedule: Schedule):
     start = schedule.start
     end = schedule.end
-    schedule = getSchedule(start, end)
+    # schedule = getSchedule(start, end)
+    schedule = scheduleOBJ().getSchedule(start, end)
     count = schedule[0]
     data = schedule[1]
     return {"count": count, "data": data}
@@ -45,14 +52,7 @@ async def get_schedule(schedule: Schedule):
 @app.post("/titems/")
 async def get_items(items: TicketItems):
     ticketid = items.ticketid
-    return {"ticketid": ticketid}
-
-
-@app.get("/scheduletest")
-async def scheduleTest():
-    start = "03/17/2022"
-    end = "03/17/2022"
-    schedule = getSchedule(start, end)
-    count = schedule[0]
-    data = schedule[1]
+    response = tItemsOBJ().getTicketItems(ticketID=ticketid)
+    count = response[0]
+    data = response[1]
     return {"count": count, "data": data}
