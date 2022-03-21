@@ -1,4 +1,3 @@
-from turtle import setheading
 from bs4 import BeautifulSoup
 import requests
 import json
