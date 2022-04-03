@@ -11,8 +11,12 @@ load_dotenv()
 email = os.getenv("email")
 password = os.getenv("password")
 
-with open("./tcr_login/cookies.json") as f:
-    cookies = json.load(f)
+try:
+    with open("./tcr_login/cookies.json") as f:
+        cookies = json.load(f)
+except FileNotFoundError:
+    cookies = gc.getTCRAuth(email, password)[0]
+    gc.saveCookies(cookies)
 headers = gc.setHeaders(cookies, email, password)
 
 

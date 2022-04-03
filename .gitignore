@@ -1,7 +1,7 @@
 # Project
 .old/
 .vscode/
-./tcr_login/cookies.json
+cookies.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
