@@ -3,6 +3,7 @@ TCR API middleman using FastAPI
 
 ## To-Do:
 - [ ] Cleanup Login / CookieGetter
+- [ ] Add Status Filter to Customers & Jobs
 - [ ] Add Descript Error Messages
 - [ ] Add Authentication
 

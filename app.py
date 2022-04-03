@@ -4,6 +4,7 @@ from pydantic import BaseModel
 from typing import Any, Optional
 
 from tcr_data_calls.Customers import customersClass
+from tcr_data_calls.Jobs import jobsClass
 from tcr_data_calls.CustomerContacts import customerContactsClass
 from tcr_data_calls.CustomerInvoices import customerInvoicesClass
 from tcr_data_calls.CustomerJobs import customerJobsClass
@@ -103,6 +104,14 @@ definitions = {
             "include_count": False
         },
     },
+    "jobs": {
+        "type": "post",
+        "url": "/jobs/",
+        "parameters": {
+            "search": "",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -139,6 +148,10 @@ class CustomerContacts(BaseModel):
     include_count: bool = False
 
 class Customers(BaseModel):
+    search: Optional[str]
+    include_count: bool = False
+
+class Jobs(BaseModel):
     search: Optional[str]
     include_count: bool = False
 
@@ -226,10 +239,22 @@ async def get_ccontacts(ccontacts: CustomerContacts):
 async def get_customers(customers: Customers):
     cCustomersClass = customersClass()
     if customers.search:
-        searchFilter = cCustomersClass.searchCustomers(customers.search)
+        searchFilter = cCustomersClass.search(customers.search)
         cCustomersClass.filterConditions = searchFilter
     request = getGridData(cCustomersClass.gridID, cCustomersClass.filterConditions)
     if customers.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/jobs/")
+async def get_jobs(jobs: Jobs):
+    jJobsClass = jobsClass()
+    if jobs.search:
+        searchFilter = jJobsClass.search(jobs.search)
+        jJobsClass.filterConditions = searchFilter
+    request = getGridData(jJobsClass.gridID, jJobsClass.filterConditions)
+    if jobs.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]

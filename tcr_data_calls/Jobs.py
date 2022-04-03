@@ -2,11 +2,10 @@ from tcr_interactions.get_grid import getGridDataFields
 from tcr_interactions.get_user_settings import getGridSortSettings
 from tcr_interactions.post_models import ConditionsModel, FilterModel, FilterSearchConditionsModel, FilterSearchModel
 
-
-class customersClass:
+class jobsClass:
     def __init__(self):
-        self.gridID = 1
-        self.gridName = "CUSTOMERS"
+        self.gridID = 8
+        self.gridName = "JOBS"
         self.Attributes = getGridDataFields(self.gridID)
         self.gridCustomSort = getGridSortSettings(self.gridID)
         self.filterConditions = FilterModel(
@@ -15,14 +14,19 @@ class customersClass:
 
     def search(self, SearchQuery):
         AttributeList = [
-            "CustomerCode",
             "CustomerName",
-            "Address1",
+            "BranchName",
+            "JobNumber",
+            "JobReferenceNumber",
+            "JobType",
+            "Name",
+            "JobAddress1",
             "City",
-            "ZipCode",
-            "Contact",
-            "SalespersonName",
-            "PriceListDescription",
+            "State",
+            "CustomerJobNumber",
+            "PONumber",
+            "ForemanName",
+            "ForemanPhone"
         ]
         Conditions = []
         for Attribute in AttributeList:
