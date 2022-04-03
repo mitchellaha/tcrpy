@@ -78,3 +78,11 @@ async def get_items(items: TicketItems):
     count = response[0]
     data = response[1]
     return {"count": count, "data": data}
+
+@app.post("/cjobs/")
+async def get_cjobs(cjobs: TicketItems):
+    customerid = cjobs.customerid
+    response = tItemsOBJ().getCustomerJobs(customerID=customerid)
+    count = response[0]
+    data = response[1]
+    return {"count": count, "data": data}
