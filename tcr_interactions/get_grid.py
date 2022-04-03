@@ -1,6 +1,7 @@
-from tcr_interactions.post_models import GetGridModel, GetGridByIDModel
-from common import headers
 import requests
+from common import headers
+
+from tcr_interactions.post_models import GetGridByIDModel, GetGridModel
 
 getGridURL = "https://apps.tcrsoftware.com/tcr_2/webservices/config.asmx/GetGrid"
 getGridByIDURL = "https://apps.tcrsoftware.com/tcr_2/webservices/config.asmx/GetGridByID"

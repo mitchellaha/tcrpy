@@ -5,18 +5,15 @@ import os
 
 from dotenv import load_dotenv  # for Loading the .env Secrets
 
-import login.getCookie as gc
+import tcr_login.getCookie as gc
 
 load_dotenv()
 email = os.getenv("email")
 password = os.getenv("password")
 
-with open("login/cookies.json") as f:
+with open("./tcr_login/cookies.json") as f:
     cookies = json.load(f)
 headers = gc.setHeaders(cookies, email, password)
-
-
-gridDataUrl = "http://apps.tcrsoftware.com/tcr_2/webservices/data.asmx/GetGridData"
 
 
 def findPages(recordCount, pageSize):
@@ -61,7 +58,3 @@ def fixTime(timeString):
     splitString = timeString.split(".", 1)[0]
     fixedTime = datetime.datetime.strptime(splitString, '%Y-%m-%dT%H:%M:%S')
     return fixedTime
-
-
-if __name__ == "__main__":
-    print(headers)

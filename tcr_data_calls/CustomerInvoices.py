@@ -1,6 +1,7 @@
-from tcr_interactions.get_user_settings import getGridSortSettings
 from tcr_interactions.get_grid import getGridDataFields
-from tcr_interactions.post_models import FilterModel, ConditionsModel
+from tcr_interactions.get_user_settings import getGridSortSettings
+from tcr_interactions.post_models import ConditionsModel, FilterModel
+
 
 class customerInvoicesClass:
     def __init__(self, CustomerID):

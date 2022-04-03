@@ -1,11 +1,13 @@
-from ast import Not
-from tcr_interactions.get_user_settings import getGridSortSettings
-from tcr_interactions.get_grid import getGrid, getGridDataFields
-from tcr_interactions.post_models import GetGridDataModelRoot, GetGridDataModel, SortModel, FilterModel, ConditionsModel
-from common import headers, gridDataUrl
-import requests
 import json
 
+import requests
+from common import headers
+
+from tcr_interactions.get_grid import getGrid, getGridDataFields
+from tcr_interactions.get_user_settings import getGridSortSettings
+from tcr_interactions.post_models import GetGridDataModel, GetGridDataModelRoot
+
+gridDataUrl = "http://apps.tcrsoftware.com/tcr_2/webservices/data.asmx/GetGridData"
 
 def getGridData(Grid, FilterConditions, StartIndex=1, RecordCount=250):
     getGridInfo = getGrid(Grid)

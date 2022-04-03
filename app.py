@@ -2,11 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from tcr_data_calls.CustomerJobs import customerJobsClass
-from tcr_data_calls.CustomerInvoices import customerInvoicesClass
 from tcr_data_calls.CustomerContacts import customerContactsClass
-from tcr_data_calls.InvoiceDetails import invoiceDetailsClass
+from tcr_data_calls.CustomerInvoices import customerInvoicesClass
+from tcr_data_calls.CustomerJobs import customerJobsClass
 from tcr_data_calls.DriverSchedule import driverScheduleClass
+from tcr_data_calls.InvoiceDetails import invoiceDetailsClass
 from tcr_data_calls.TicketItems import ticketItemsClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
@@ -99,7 +99,6 @@ definitions = {
 class GetGrid(BaseModel):
     grid: int
 
-
 class GetGridSettings(BaseModel):
     grid: int
 
@@ -108,7 +107,6 @@ class Schedule(BaseModel):
     start: str
     end: str
     include_count: bool = False
-
 
 class TicketItems(BaseModel):
     ticketid: int

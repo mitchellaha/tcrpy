@@ -1,11 +1,12 @@
-from tcr_interactions.post_models import GetUserSettingModel, SortModel
-from tcr_interactions.get_grid import getGrid, getGridByID
-from common import headers
-import requests
 import json
 
-getUserSettingsURL = "https://apps.tcrsoftware.com/tcr_2/webservices/UserSettings.asmx/GetUserSetting"
+import requests
+from common import headers
 
+from tcr_interactions.get_grid import getGrid, getGridByID
+from tcr_interactions.post_models import GetUserSettingModel, SortModel
+
+getUserSettingsURL = "https://apps.tcrsoftware.com/tcr_2/webservices/UserSettings.asmx/GetUserSetting"
 
 def getUserSettings(settingName):
     """

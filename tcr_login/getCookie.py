@@ -1,6 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
 import json
+
+import requests
+from bs4 import BeautifulSoup
+
 
 def getTCRAuth(email, password):
     """
@@ -59,15 +61,6 @@ def getTCRAuth(email, password):
                 TCRAuthExpires = cookie.expires  # ! RETURNS EPOCH TIME
                 # print("TCRAuth Expires: " + str(TCRAuthExpires))
                 expire["TCRAuth"] = TCRAuthExpires
-
-        # if __name__ == "__main__":  # ? Not Needed But Didnt Want To Remove Yet (For Testing)
-        #     cookies_dictionary = page.cookies.get_dict()
-        #     sessionID = cookies_dictionary["ASP.NET_SessionId"]
-        #     print("Session ID: " + str(sessionID))
-        #     print("")
-        #     print("Cookies: " + str(cookies))
-        #     print("")
-
     return cookies, expire
 
 
@@ -91,7 +84,6 @@ def cookieCheck(cookieDict):
     """
     Checks to See if the Saved Cookies Work Still
     """
-
     headers = appendHeader(cookieDict)
     data = {
         "includeBilling": True
@@ -133,31 +125,7 @@ def setHeaders(cookieDict, email, password):
         login = getTCRAuth(email, password)[0]
         saveCookies(login)
         headers = appendHeader(login)
-        # headers["Cookie"] = cookie
         return headers
     if cookieTest is True:  # ? If the cookies are still valid, use them
         headers = appendHeader(cookieDict)
-        # headers["Cookie"] = cookie
         return headers
-
-
-
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    import os
-    load_dotenv()
-
-    email = os.getenv("email")
-    password = os.getenv("password")
-    
-    # x = getTCRAuth(email, password)
-    # saveCookies(x[0])
-    # print(x[0])
-
-
-    with open("login/cookies.json") as f:
-        savedCookies = json.load(f)
-    # cookieCheck(savedCookies)
-    print(setHeaders(savedCookies, email, password))
-
-    # cookieCheck()
