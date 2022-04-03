@@ -1,4 +1,5 @@
-from typing import Any
+from multiprocessing import Condition
+from typing import Any, Dict
 
 from pydantic import BaseModel, conint
 
@@ -20,6 +21,14 @@ class ConditionsModel(BaseModel):
 class FilterModel(BaseModel):
     Conditions: list[ConditionsModel]
 
+class FilterSearchConditionsModel(BaseModel):  # ! Used For Customer Search
+    Conditions: list
+    GroupOperator: int
+
+class FilterSearchModel(BaseModel):  # ! Used For Customer Search
+    Conditions: list
+    Filter: FilterSearchConditionsModel
+
 class SortModel(BaseModel):
     Attribute: str
     Order: int
@@ -27,7 +36,7 @@ class SortModel(BaseModel):
 class GetGridDataModel(BaseModel):
     GridID: int
     RecordCount: conint(ge=50)
-    Filter: FilterModel
+    Filter: Any
     StartIndex: conint(ge=1)
     Attributes: list[str]
     Sort: list[SortModel]

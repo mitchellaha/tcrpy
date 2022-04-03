@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import Any, Optional
 
+from tcr_data_calls.Customers import customersClass
 from tcr_data_calls.CustomerContacts import customerContactsClass
 from tcr_data_calls.CustomerInvoices import customerInvoicesClass
 from tcr_data_calls.CustomerJobs import customerJobsClass
@@ -30,6 +32,20 @@ app.add_middleware(
 # Directory and Functions of API as a Dictionary to be Served to Root
 definitions = {
     "Purpose": "Each Endpoint Shown Below is a Function of the API with the data needed",
+    "get_Grid": {
+        "type": "post",
+        "url": "/getgrid/",
+        "parameters": {
+            "grid": 1
+        },
+    },
+    "get_grid_settings": {
+        "type": "post",
+        "url": "/getgridsettings/",
+        "parameters": {
+            "grid": 1
+        },
+    },
     "schedule": {
         "type": "post",
         "url": "/schedule/",
@@ -45,20 +61,6 @@ definitions = {
         "parameters": {
             "ticketid": "2613496",
             "include_count": False
-        },
-    },
-    "get_Grid": {
-        "type": "post",
-        "url": "/getgrid/",
-        "parameters": {
-            "grid": 1
-        },
-    },
-    "get_grid_settings": {
-        "type": "post",
-        "url": "/getgridsettings/",
-        "parameters": {
-            "grid": 1
         },
     },
     "customer_jobs": {
@@ -90,6 +92,14 @@ definitions = {
         "url": "/ccontacts/",
         "parameters": {
             "customerid": "2613496",
+            "include_count": False
+        },
+    },
+    "customers": {
+        "type": "post",
+        "url": "/customers/",
+        "parameters": {
+            "search": "",
             "include_count": False
         },
     },
@@ -126,6 +136,10 @@ class InvoiceDetails(BaseModel):
 
 class CustomerContacts(BaseModel):
     customerid: int
+    include_count: bool = False
+
+class Customers(BaseModel):
+    search: Optional[str]
     include_count: bool = False
 
 
@@ -204,6 +218,18 @@ async def get_ccontacts(ccontacts: CustomerContacts):
     cContactsClass = customerContactsClass(ccontacts.customerid)
     request = getGridData(cContactsClass.gridID, cContactsClass.filterConditions)
     if ccontacts.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/customers/")
+async def get_customers(customers: Customers):
+    cCustomersClass = customersClass()
+    if customers.search:
+        searchFilter = cCustomersClass.searchCustomers(customers.search)
+        cCustomersClass.filterConditions = searchFilter
+    request = getGridData(cCustomersClass.gridID, cCustomersClass.filterConditions)
+    if customers.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
