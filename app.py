@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from driverschedule import scheduleOBJ
-from ticket_items import tItemsOBJ
+from tcr_interactions import post_models, get_grid, get_user_settings
+from tcr_data_calls.GetGridData import getGridData
+from tcr_data_calls.DriverSchedule import driverScheduleClass
+from tcr_data_calls.TicketItems import ticketItemsClass
+from tcr_data_calls.CustomerJobs import customerJobsClass
 
 app = FastAPI()
 
@@ -28,61 +31,112 @@ definitions = {
         "url": "/schedule/",
         "parameters": {
             "start": "MM/DD/YYYY",
-            "end": "MM/DD/YYYY"
+            "end": "MM/DD/YYYY",
+            "include_count": True
         },
     },
     "ticket_items": {
         "type": "post",
         "url": "/titems/",
         "parameters": {
-            "ticketid": "2613496"
+            "ticketid": "2613496",
+            "include_count": False
+        },
+    },
+    "get_Grid": {
+        "type": "post",
+        "url": "/getgrid/",
+        "parameters": {
+            "grid": 1
+        },
+    },
+    "get_grid_settings": {
+        "type": "post",
+        "url": "/getgridsettings/",
+        "parameters": {
+            "grid": 1
         },
     },
     "customer_jobs": {  # !TODO: Add this to the API
         "type": "post",
         "url": "/cjobs/",
         "parameters": {
-            "customerid": "2613496"
+            "customerid": "2613496",
+            "include_count": False
         },
     },
 }
 
+
+class GetGrid(BaseModel):
+    grid: int
+
+
+class GetGridSettings(BaseModel):
+    grid: int
+
+
 class Schedule(BaseModel):
     start: str
     end: str
+    include_count: bool = False
+
 
 class TicketItems(BaseModel):
     ticketid: int
+    include_count: bool = False
+
+class CustomerJobs(BaseModel):
+    customerid: int
+    include_count: bool = False
 
 
-@app.get("/")
+# ! Basic Info Function
+@ app.get("/")
 def read_root():
     return definitions
 
+# ! Basic Info Function
+@ app.post("/getgrid/")  # ? Returns the Full GetGrid Post of TCR
+async def get_gridPost(grid: GetGrid):
+    grid = grid.grid
+    response = get_grid.getGrid(grid)
+    return response
 
-@app.post("/schedule/")
+# ! Basic Info Function
+@ app.post("/getgridsettings/")  # ? Returns the Full GetGridSettings Post of TCR
+async def get_gridSettingsPost(grid: GetGridSettings):
+    grid = grid.grid
+    response = get_user_settings.getGridSettings(grid)
+    return response
+
+
+
+@ app.post("/schedule/")
 async def get_schedule(schedule: Schedule):
-    start = schedule.start
-    end = schedule.end
-    # schedule = getSchedule(start, end)
-    schedule = scheduleOBJ().getSchedule(start, end)
-    count = schedule[0]
-    data = schedule[1]
-    return {"count": count, "data": data}
+    scheduleClass = driverScheduleClass(schedule.start, schedule.end)
+    request = getGridData(scheduleClass.gridID, scheduleClass.filterConditions)
+    if schedule.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
 
 
-@app.post("/titems/")
+@ app.post("/titems/")  # ? Returns the Items for the Provided Ticket
 async def get_items(items: TicketItems):
-    ticketid = items.ticketid
-    response = tItemsOBJ().getTicketItems(ticketID=ticketid)
-    count = response[0]
-    data = response[1]
-    return {"count": count, "data": data}
+    tItemsClass = ticketItemsClass(items.ticketid)
+    request = getGridData(tItemsClass.gridID, tItemsClass.filterConditions)
+    if items.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
 
-@app.post("/cjobs/")
-async def get_cjobs(cjobs: TicketItems):
-    customerid = cjobs.customerid
-    response = tItemsOBJ().getCustomerJobs(customerID=customerid)
-    count = response[0]
-    data = response[1]
-    return {"count": count, "data": data}
+
+@ app.post("/cjobs/")
+async def get_cjobs(cjobs: CustomerJobs):
+    cJobsClass = customerJobsClass(cjobs.customerid)
+    request = getGridData(cJobsClass.gridID, cJobsClass.filterConditions)
+    if cjobs.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]

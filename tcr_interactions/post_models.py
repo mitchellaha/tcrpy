@@ -2,39 +2,39 @@ from pydantic import BaseModel, conint
 from typing import Any
 
 # ! Get Grid Below
-class GetGrid(BaseModel):
+class GetGridModel(BaseModel):
     gridName: str
 
-class GetGridByID(BaseModel):
+class GetGridByIDModel(BaseModel):
     gridID: int
 
 
 # ! Get Grid Data Below
-class Conditions(BaseModel):
+class ConditionsModel(BaseModel):
     Attribute: str
     Values: list
     Operator: int
 
-class Filter(BaseModel):
-    Conditions: list[Conditions]
+class FilterModel(BaseModel):
+    Conditions: list[ConditionsModel]
 
-class Sort(BaseModel):
+class SortModel(BaseModel):
     Attribute: str
     Order: int
 
-class GetGridData(BaseModel):
+class GetGridDataModel(BaseModel):
     GridID: int
     RecordCount: conint(ge=50)
-    Filter: Filter
+    Filter: FilterModel
     StartIndex: conint(ge=1)
     Attributes: list[str]
-    Sort: list[Sort]
+    Sort: list[SortModel]
     CustomSort: Any
 
-class GetGridDataRoot(BaseModel):
-    query: GetGridData
+class GetGridDataModelRoot(BaseModel):
+    query: GetGridDataModel
 
 
 # ! Get User Settings Below
-class GetUserSetting(BaseModel):
+class GetUserSettingModel(BaseModel):
     settingName: str

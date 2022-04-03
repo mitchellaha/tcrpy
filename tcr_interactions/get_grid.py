@@ -1,4 +1,4 @@
-from tcr_interactions.post_models import GetGrid, GetGridByID
+from tcr_interactions.post_models import GetGridModel, GetGridByIDModel
 from common import headers
 import requests
 
@@ -12,9 +12,10 @@ def getGrid(gridName):
     """
     if isinstance(gridName, int):
         gridName = gridNameID(gridName)
-    grid = GetGrid(gridName=gridName)
+    grid = GetGridModel(gridName=gridName)
     response = requests.post(getGridURL, headers=headers, data=grid.json()).json()
-    return response
+    data = response["d"]
+    return data
 
 def getGridByID(gridID):
     """
@@ -23,9 +24,10 @@ def getGridByID(gridID):
     """
     if isinstance(gridID, str):
         gridID = gridNameID(gridID)
-    grid = GetGridByID(gridID=gridID)
+    grid = GetGridByIDModel(gridID=gridID)
     response = requests.post(getGridByIDURL, headers=headers, data=grid.json()).json()
-    return response
+    data = response["d"]
+    return data
 
 def gridNameID(grid):
     """
@@ -34,10 +36,10 @@ def gridNameID(grid):
     """
     if isinstance(grid, str):
         grid = getGrid(grid)
-        gridReturn = grid["d"]["GridID"]
+        gridReturn = grid["GridID"]
     if isinstance(grid, int):
         grid = getGridByID(grid)
-        gridReturn = grid["d"]["GridName"]
+        gridReturn = grid["GridName"]
     return gridReturn
 
 def getGridInfo(grid):
@@ -45,59 +47,41 @@ def getGridInfo(grid):
     Gets The Relevant GridInfo from GridName
         > GridName is required
     """
-    if grid is int:
-        grid = gridNameID(grid)
     gridInfo = {}
     grid = getGrid(grid)
-    gridInfo["GridTitle"] = grid["d"]["GridTitle"]
-    gridInfo["GridName"] = grid["d"]["GridName"]
-    gridInfo["GridID"] = grid["d"]["GridID"]
-    gridInfo["PrimaryKeyField"] = grid["d"]["PrimaryKeyField"]
-    gridInfo["EditURL"] = grid["d"]["EditURL"]
-    gridInfo["FilterFields"] = grid["d"]["FilterFields"]
-    gridInfo["Columns"] = grid["d"]["Columns"]
+    gridInfo["GridTitle"] = grid["GridTitle"]
+    gridInfo["GridName"] = grid["GridName"]
+    gridInfo["GridID"] = grid["GridID"]
+    gridInfo["PrimaryKeyField"] = grid["PrimaryKeyField"]
+    gridInfo["EditURL"] = grid["EditURL"]
+    gridInfo["FilterFields"] = grid["FilterFields"]
+    gridInfo["Columns"] = grid["Columns"]
     return gridInfo
 
 
 def getGridDataFields(grid):
     """
     Gets The Required Field Attributes from the Grid Name
+        > GridName is required
     """
     gridData = getGrid(grid)
     dataFields = []
-    for dField in gridData["d"]["Columns"]:
+    for dField in gridData["Columns"]:
         dataFields.append(dField["DataField"])
     return dataFields
 
 def getGridDataFieldsInfo(grid):
     """
     Gets The Fields with all info from the Grid Name
+        > GridName is required
     """
     gridData = getGrid(grid)
     dataFields = []
-    for dField in gridData["d"]["Columns"]:
+    for dField in gridData["Columns"]:
         dataFields.append(dField)
     return dataFields
 
 if __name__ == "__main__":
-    # gridID = getGridByID(gridID=1)
-    # print(gridID)
-
-    # grid = getGrid("DRIVERSCHEDULE")
-    # print(grid)
-
-    # gridDataFields = getGridDataFields(54)
-    # print(gridDataFields)
-
-
-    # print(gridNameID(54))
-    # print(gridNameID("DRIVERSCHEDULE"))
-
-    # print(getGridName(54))
-    # gridInfo = getGridInfo("DRIVERSCHEDULE")
-    # print(gridInfo)
-
-    # gridDataFieldsInfo = getGridDataFieldsInfo("DRIVERSCHEDULE")
-    # print(gridDataFieldsInfo)
-
+    print(getGridInfo(54))
+    # print(getGridInfo("DRIVERSCHEDULE"))
     pass
