@@ -7,8 +7,6 @@ from ticket_items import tItemsOBJ
 app = FastAPI()
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
     "http://localhost:3000",
@@ -39,7 +37,14 @@ definitions = {
         "parameters": {
             "ticketid": "2613496"
         },
-    }
+    },
+    "customer_jobs": {  # !TODO: Add this to the API
+        "type": "post",
+        "url": "/cjobs/",
+        "parameters": {
+            "customerid": "2613496"
+        },
+    },
 }
 
 class Schedule(BaseModel):
