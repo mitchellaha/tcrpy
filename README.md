@@ -20,3 +20,45 @@ TCR API middleman using FastAPI
     - ```$ export password=<"password">```
 4. Run the application
     - ```$ uvicorn app:app --reload```
+
+
+## Working TCR Requests
+
+- [x] Customers
+    - [x] Customer Contacts
+    - [x] Customer Invoices
+    - [x] Customer Jobs
+- [x] Jobs
+    - [ ] *Job Tickets*
+    - [ ] *Job Invoices*
+    - [ ] Job TCPs
+    - [ ] Job Photos
+    - [ ] Quanitity On Hand
+- [ ] Labour
+    - [ ] *Ticket Labour*
+    - [ ] Labour Misc Time
+    - [x] Drivers Schedule
+- [ ] Tickets
+    - [x] Ticket Items
+    - [ ] Ticket TCPs
+    - [ ] Ticket Misc Items
+    - [ ] *Ticket Labour*
+    - [ ] *Ticket Signs*
+    - [ ] Ticket Ticket Kits
+- [ ] Invoices
+    - [x] Invoice Details
+- [ ] Quotes
+    - [ ] Quote Items
+    - [ ] Quote Signs
+- [ ] Item Tracking
+- [ ] *Line Items*
+    - [ ] Line Item Price List
+- [ ] Sub Items
+- [ ] Signs
+- [ ] *Drivers*
+- [ ] Equipment
+- [ ] Trucks
+- [ ] Zones
+- [ ] Labels
+- [ ] Price Lists
+- [ ] Quote Extras
