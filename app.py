@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from tcr_interactions import post_models, get_grid, get_user_settings
-from tcr_data_calls.GetGridData import getGridData
+
+from tcr_data_calls.CustomerJobs import customerJobsClass
+from tcr_data_calls.CustomerInvoices import customerInvoicesClass
+from tcr_data_calls.CustomerContacts import customerContactsClass
+from tcr_data_calls.InvoiceDetails import invoiceDetailsClass
 from tcr_data_calls.DriverSchedule import driverScheduleClass
 from tcr_data_calls.TicketItems import ticketItemsClass
-from tcr_data_calls.CustomerJobs import customerJobsClass
+from tcr_interactions import get_grid, get_user_settings
+from tcr_interactions.GetGridData import getGridData
 
 app = FastAPI()
 
@@ -57,9 +61,33 @@ definitions = {
             "grid": 1
         },
     },
-    "customer_jobs": {  # !TODO: Add this to the API
+    "customer_jobs": {
         "type": "post",
         "url": "/cjobs/",
+        "parameters": {
+            "customerid": "2613496",
+            "include_count": False
+        },
+    },
+    "customer_invoices": {
+        "type": "post",
+        "url": "/cinvoices/",
+        "parameters": {
+            "customerid": "2613496",
+            "include_count": False
+        },
+    },
+    "invoice_details": {
+        "type": "post",
+        "url": "/idetails/",
+        "parameters": {
+            "invoiceid": "2613496",
+            "include_count": False
+        },
+    },
+    "customer_contacts": {
+        "type": "post",
+        "url": "/ccontacts/",
         "parameters": {
             "customerid": "2613496",
             "include_count": False
@@ -87,6 +115,18 @@ class TicketItems(BaseModel):
     include_count: bool = False
 
 class CustomerJobs(BaseModel):
+    customerid: int
+    include_count: bool = False
+
+class CustomerInvoices(BaseModel):
+    customerid: int
+    include_count: bool = False
+
+class InvoiceDetails(BaseModel):
+    invoiceid: int
+    include_count: bool = False
+
+class CustomerContacts(BaseModel):
     customerid: int
     include_count: bool = False
 
@@ -137,6 +177,35 @@ async def get_cjobs(cjobs: CustomerJobs):
     cJobsClass = customerJobsClass(cjobs.customerid)
     request = getGridData(cJobsClass.gridID, cJobsClass.filterConditions)
     if cjobs.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+
+@ app.post("/cinvoices/")
+async def get_cinvoices(cinvoices: CustomerInvoices):
+    cInvoicesClass = customerInvoicesClass(cinvoices.customerid)
+    request = getGridData(cInvoicesClass.gridID, cInvoicesClass.filterConditions)
+    if cinvoices.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+
+@ app.post("/idetails/")
+async def get_idetails(idetails: InvoiceDetails):
+    iDetailsClass = invoiceDetailsClass(idetails.invoiceid)
+    request = getGridData(iDetailsClass.gridID, iDetailsClass.filterConditions)
+    if idetails.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/ccontacts/")
+async def get_ccontacts(ccontacts: CustomerContacts):
+    cContactsClass = customerContactsClass(ccontacts.customerid)
+    request = getGridData(cContactsClass.gridID, cContactsClass.filterConditions)
+    if ccontacts.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
