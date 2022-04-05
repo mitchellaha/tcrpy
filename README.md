@@ -45,7 +45,8 @@ TCR API middleman using FastAPI
     - [ ] Ticket TCPs
     - [ ] Ticket Misc Items
     - [x] *Ticket Labor*
-    - [ ] *Ticket Signs*
+    - [x] *Ticket Signs*
+    - [x] *Ticket Return Signs*
     - [ ] Ticket Ticket Kits
 - [ ] Invoices
     - [x] Invoice Details

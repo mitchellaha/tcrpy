@@ -15,6 +15,8 @@ from tcr_data_calls.InvoiceDetails import invoiceDetailsClass
 from tcr_data_calls.TicketItems import ticketItemsClass
 from tcr_data_calls.TicketLabor import ticketLaborClass
 from tcr_data_calls.LaborTickets import laborTicketClass
+from tcr_data_calls.TicketSigns import ticketSignsClass
+from tcr_data_calls.TicketReturnSigns import ticketReturnSignsClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
 
@@ -147,6 +149,22 @@ definitions = {
             "include_count": False
         },
     },
+    "ticket_signs": {
+        "type": "post",
+        "url": "/tsigns/",
+        "parameters": {
+            "ticketid": "int",
+            "include_count": False
+        },
+    },
+    "ticket_return_signs": {
+        "type": "post",
+        "url": "/trsigns/",
+        "parameters": {
+            "ticketid": "int",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -195,6 +213,12 @@ class TicketLabor(GetGridBaseModel):
 
 class LaborTickets(GetGridBaseModel):
     pass
+
+class TicketSigns(GetGridBaseModel):
+    ticketid: int
+
+class TicketReturnSigns(GetGridBaseModel):
+    ticketid: int
 
 
 # ! Basic Info Function
@@ -332,6 +356,24 @@ async def get_labortickets(labortickets: LaborTickets):
     lTicketClass = laborTicketClass()
     request = getGridData(lTicketClass.gridID, lTicketClass.filterConditions)
     if labortickets.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/tsigns/")
+async def get_tsigns(tsigns: TicketSigns):
+    tSignsClass = ticketSignsClass(tsigns.ticketid)
+    request = getGridData(tSignsClass.gridID, tSignsClass.filterConditions)
+    if tsigns.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/trsigns/")
+async def get_trsigns(trsigns: TicketReturnSigns):
+    tRSignsClass = ticketReturnSignsClass(trsigns.ticketid)
+    request = getGridData(tRSignsClass.gridID, tRSignsClass.filterConditions)
+    if trsigns.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
