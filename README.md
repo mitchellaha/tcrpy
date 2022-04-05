@@ -30,7 +30,7 @@ TCR API middleman using FastAPI
     - [x] Customer Invoices
     - [x] Customer Jobs
 - [x] Jobs
-    - [ ] *Job Tickets*
+    - [x] *Job Tickets*
     - [ ] *Job Invoices*
     - [ ] Job TCPs
     - [ ] Job Photos

@@ -5,6 +5,7 @@ from typing import Any, Optional
 
 from tcr_data_calls.Customers import customersClass
 from tcr_data_calls.Jobs import jobsClass
+from tcr_data_calls.JobTickets import jobTicketsClass
 from tcr_data_calls.CustomerContacts import customerContactsClass
 from tcr_data_calls.CustomerInvoices import customerInvoicesClass
 from tcr_data_calls.CustomerJobs import customerJobsClass
@@ -112,6 +113,14 @@ definitions = {
             "include_count": False
         },
     },
+    "job_tickets": {
+        "type": "post",
+        "url": "/jtickets/",
+        "parameters": {
+            "jobid": "2613496",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -121,39 +130,36 @@ class GetGrid(BaseModel):
 class GetGridSettings(BaseModel):
     grid: int
 
+class GetGridBaseModel(BaseModel):
+    include_count: Optional[bool]
 
-class Schedule(BaseModel):
+class Schedule(GetGridBaseModel):
     start: str
     end: str
-    include_count: bool = False
 
-class TicketItems(BaseModel):
+class TicketItems(GetGridBaseModel):
     ticketid: int
-    include_count: bool = False
 
-class CustomerJobs(BaseModel):
+class CustomerJobs(GetGridBaseModel):
     customerid: int
-    include_count: bool = False
 
-class CustomerInvoices(BaseModel):
+class CustomerInvoices(GetGridBaseModel):
     customerid: int
-    include_count: bool = False
 
-class InvoiceDetails(BaseModel):
+class InvoiceDetails(GetGridBaseModel):
     invoiceid: int
-    include_count: bool = False
 
-class CustomerContacts(BaseModel):
+class CustomerContacts(GetGridBaseModel):
     customerid: int
-    include_count: bool = False
 
-class Customers(BaseModel):
+class Customers(GetGridBaseModel):
     search: Optional[str]
-    include_count: bool = False
 
-class Jobs(BaseModel):
+class Jobs(GetGridBaseModel):
     search: Optional[str]
-    include_count: bool = False
+
+class JobTickets(GetGridBaseModel):
+    jobid: int
 
 
 # ! Basic Info Function
@@ -255,6 +261,15 @@ async def get_jobs(jobs: Jobs):
         jJobsClass.filterConditions = searchFilter
     request = getGridData(jJobsClass.gridID, jJobsClass.filterConditions)
     if jobs.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/jtickets/")
+async def get_jtickets(jtickets: JobTickets):
+    jTicketsClass = jobTicketsClass(jtickets.jobid)
+    request = getGridData(jTicketsClass.gridID, jTicketsClass.filterConditions)
+    if jtickets.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
