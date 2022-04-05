@@ -6,6 +6,7 @@ from typing import Any, Optional
 from tcr_data_calls.Customers import customersClass
 from tcr_data_calls.Jobs import jobsClass
 from tcr_data_calls.JobTickets import jobTicketsClass
+from tcr_data_calls.JobInvoices import jobInvoicesClass
 from tcr_data_calls.CustomerContacts import customerContactsClass
 from tcr_data_calls.CustomerInvoices import customerInvoicesClass
 from tcr_data_calls.CustomerJobs import customerJobsClass
@@ -38,14 +39,14 @@ definitions = {
         "type": "post",
         "url": "/getgrid/",
         "parameters": {
-            "grid": 1
+            "grid": "int"
         },
     },
     "get_grid_settings": {
         "type": "post",
         "url": "/getgridsettings/",
         "parameters": {
-            "grid": 1
+            "grid": "int"
         },
     },
     "schedule": {
@@ -61,7 +62,7 @@ definitions = {
         "type": "post",
         "url": "/titems/",
         "parameters": {
-            "ticketid": "2613496",
+            "ticketid": "int",
             "include_count": False
         },
     },
@@ -69,7 +70,7 @@ definitions = {
         "type": "post",
         "url": "/cjobs/",
         "parameters": {
-            "customerid": "2613496",
+            "customerid": "int",
             "include_count": False
         },
     },
@@ -77,7 +78,7 @@ definitions = {
         "type": "post",
         "url": "/cinvoices/",
         "parameters": {
-            "customerid": "2613496",
+            "customerid": "int",
             "include_count": False
         },
     },
@@ -85,7 +86,7 @@ definitions = {
         "type": "post",
         "url": "/idetails/",
         "parameters": {
-            "invoiceid": "2613496",
+            "invoiceid": "int",
             "include_count": False
         },
     },
@@ -93,7 +94,7 @@ definitions = {
         "type": "post",
         "url": "/ccontacts/",
         "parameters": {
-            "customerid": "2613496",
+            "customerid": "int",
             "include_count": False
         },
     },
@@ -101,7 +102,7 @@ definitions = {
         "type": "post",
         "url": "/customers/",
         "parameters": {
-            "search": "",
+            "search": "str",
             "include_count": False
         },
     },
@@ -109,7 +110,7 @@ definitions = {
         "type": "post",
         "url": "/jobs/",
         "parameters": {
-            "search": "",
+            "search": "str",
             "include_count": False
         },
     },
@@ -117,7 +118,15 @@ definitions = {
         "type": "post",
         "url": "/jtickets/",
         "parameters": {
-            "jobid": "2613496",
+            "jobid": "int",
+            "include_count": False
+        },
+    },
+    "job_invoices": {
+        "type": "post",
+        "url": "/jinvoices/",
+        "parameters": {
+            "jobid": "int",
             "include_count": False
         },
     },
@@ -159,6 +168,9 @@ class Jobs(GetGridBaseModel):
     search: Optional[str]
 
 class JobTickets(GetGridBaseModel):
+    jobid: int
+
+class JobInvoices(GetGridBaseModel):
     jobid: int
 
 
@@ -270,6 +282,15 @@ async def get_jtickets(jtickets: JobTickets):
     jTicketsClass = jobTicketsClass(jtickets.jobid)
     request = getGridData(jTicketsClass.gridID, jTicketsClass.filterConditions)
     if jtickets.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/jinvoices/")
+async def get_jinvoices(jinvoices: JobInvoices):
+    jInvoicesClass = jobInvoicesClass(jinvoices.jobid)
+    request = getGridData(jInvoicesClass.gridID, jInvoicesClass.filterConditions)
+    if jinvoices.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
