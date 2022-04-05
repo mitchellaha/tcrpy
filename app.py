@@ -13,6 +13,7 @@ from tcr_data_calls.CustomerJobs import customerJobsClass
 from tcr_data_calls.DriverSchedule import driverScheduleClass
 from tcr_data_calls.InvoiceDetails import invoiceDetailsClass
 from tcr_data_calls.TicketItems import ticketItemsClass
+from tcr_data_calls.TicketLabor import ticketLaborClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
 
@@ -130,6 +131,14 @@ definitions = {
             "include_count": False
         },
     },
+    "ticket_labor": {
+        "type": "post",
+        "url": "/tlabor/",
+        "parameters": {
+            "ticketid": "int",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -172,6 +181,9 @@ class JobTickets(GetGridBaseModel):
 
 class JobInvoices(GetGridBaseModel):
     jobid: int
+
+class TicketLabor(GetGridBaseModel):
+    ticketid: int
 
 
 # ! Basic Info Function
@@ -291,6 +303,15 @@ async def get_jinvoices(jinvoices: JobInvoices):
     jInvoicesClass = jobInvoicesClass(jinvoices.jobid)
     request = getGridData(jInvoicesClass.gridID, jInvoicesClass.filterConditions)
     if jinvoices.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/tlabor/")
+async def get_tlabor(tlabor: TicketLabor):
+    tLaborClass = ticketLaborClass(tlabor.ticketid)
+    request = getGridData(tLaborClass.gridID, tLaborClass.filterConditions)
+    if tlabor.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]

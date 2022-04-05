@@ -31,12 +31,12 @@ TCR API middleman using FastAPI
     - [x] Customer Jobs
 - [x] Jobs
     - [x] *Job Tickets*
-    - [ ] *Job Invoices*
+    - [x] *Job Invoices*
     - [ ] Job TCPs
     - [ ] Job Photos
     - [ ] Quanitity On Hand
 - [ ] Labour
-    - [ ] *Ticket Labour*
+    - [x] *Ticket Labour*
     - [ ] Labour Misc Time
     - [x] Drivers Schedule
 - [ ] Tickets
