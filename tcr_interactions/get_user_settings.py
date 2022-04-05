@@ -46,9 +46,9 @@ def getGridSortSettings(grid):
     response = getGridSettings(grid)
     if response is not None:
         if response["SortDir"] == "sort-asc":
-            sortDirINT = 1
-        if response["SortDir"] == "sort-desc":
             sortDirINT = 0
+        if response["SortDir"] == "sort-desc":
+            sortDirINT = 1
         sort = SortModel(
             Attribute=response["SortCol"],
             Order=sortDirINT
