@@ -53,7 +53,7 @@ definitions = {
         "parameters": {
             "start": "MM/DD/YYYY",
             "end": "MM/DD/YYYY",
-            "include_count": True
+            "include_count": False
         },
     },
     "ticket_items": {
