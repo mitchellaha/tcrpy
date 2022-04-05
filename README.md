@@ -35,15 +35,16 @@ TCR API middleman using FastAPI
     - [ ] Job TCPs
     - [ ] Job Photos
     - [ ] Quanitity On Hand
-- [ ] Labour
-    - [x] *Ticket Labour*
-    - [ ] Labour Misc Time
+- [ ] Labor
+    - [x] *Labor Tickets*?
+        - [ ] Add a search by Certified and Dates
+    - [ ] Labor Misc Time
     - [x] Drivers Schedule
 - [ ] Tickets
     - [x] Ticket Items
     - [ ] Ticket TCPs
     - [ ] Ticket Misc Items
-    - [ ] *Ticket Labour*
+    - [x] *Ticket Labor*
     - [ ] *Ticket Signs*
     - [ ] Ticket Ticket Kits
 - [ ] Invoices
