@@ -56,7 +56,11 @@ def getGridSortSettings(grid):
         return sort
     else:  # ? If there is no sort settings find the default sort settings
         getGridInfo = getGrid(grid)
-        sort = SortModel(
-            Attribute=getGridInfo["DefaultSortColumn"],
-            Order=getGridInfo["DefaultSortOrder"])
-        return sort
+        if getGridInfo is not None and getGridInfo["DefaultSortColumn"] is not None:
+            sort = SortModel(
+                Attribute=getGridInfo["DefaultSortColumn"],
+                Order=getGridInfo["DefaultSortOrder"])
+            return sort
+        else:
+            sort = SortModel()
+            return sort

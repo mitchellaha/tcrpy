@@ -30,8 +30,8 @@ class FilterSearchModel(BaseModel):  # ! Used For Customer Search
     Filter: FilterSearchConditionsModel
 
 class SortModel(BaseModel):
-    Attribute: str
-    Order: int
+    Attribute: str = None
+    Order: int = 0
 
 class GetGridDataModel(BaseModel):
     GridID: int
