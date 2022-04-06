@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Any, Optional
+from typing import Any, Optional, Union, List
 
 from tcr_data_calls.Customers import customersClass
 from tcr_data_calls.Jobs import jobsClass
@@ -107,6 +107,7 @@ definitions = {
         "url": "/customers/",
         "parameters": {
             "search": "str",
+            "status": "str",
             "include_count": False
         },
     },
@@ -198,6 +199,7 @@ class CustomerContacts(GetGridBaseModel):
 
 class Customers(GetGridBaseModel):
     search: Optional[str]
+    status: Optional[Union[str, List[str]]]
 
 class Jobs(GetGridBaseModel):
     search: Optional[str]
@@ -303,6 +305,8 @@ async def get_ccontacts(ccontacts: CustomerContacts):
 @ app.post("/customers/")
 async def get_customers(customers: Customers):
     cCustomersClass = customersClass()
+    if customers.status:
+        cCustomersClass.setStatusFilter(customers.status)
     if customers.search:
         searchFilter = cCustomersClass.search(customers.search)
         cCustomersClass.filterConditions = searchFilter
