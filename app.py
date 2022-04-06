@@ -116,6 +116,7 @@ definitions = {
         "url": "/jobs/",
         "parameters": {
             "search": "str",
+            "status": "str",
             "include_count": False
         },
     },
@@ -203,6 +204,7 @@ class Customers(GetGridBaseModel):
 
 class Jobs(GetGridBaseModel):
     search: Optional[str]
+    status: Optional[Union[str, List[str]]]
 
 class JobTickets(GetGridBaseModel):
     jobid: int
@@ -319,6 +321,8 @@ async def get_customers(customers: Customers):
 @ app.post("/jobs/")
 async def get_jobs(jobs: Jobs):
     jJobsClass = jobsClass()
+    if jobs.status:
+        jJobsClass.setStatusFilter(jobs.status)
     if jobs.search:
         searchFilter = jJobsClass.search(jobs.search)
         jJobsClass.filterConditions = searchFilter
