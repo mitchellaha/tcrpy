@@ -5,7 +5,8 @@ TCR API middleman using FastAPI
 - [ ] Cleanup Login / CookieGetter
 - [ ] Pagination Support
 - [ ] Add Status Filter to Customers & Jobs
-- [ ] Add Descript Error Messages
+- [ ] Serverside Logging
+- [ ] Add Descript Response Error Messages
 - [ ] Add Authentication
 
 
@@ -25,6 +26,7 @@ TCR API middleman using FastAPI
 
 ## Working TCR Requests
 
+#### Get Grid Data
 - [x] Customers
     - [x] Customer Contacts
     - [x] Customer Invoices
@@ -65,3 +67,13 @@ TCR API middleman using FastAPI
 - [ ] Labels
 - [ ] Price Lists
 - [ ] Quote Extras
+
+#### Other
+- [ ] Get Tickets Count
+- [ ] Get Customer Overview
+- [ ] Get Billing History
+- [ ] Get Top 5 Equipment
+- [ ] Get Audit Data
+    - [ ] Customers
+    - [ ] Jobs
+    - [ ] Tickets
