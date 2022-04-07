@@ -1,6 +1,7 @@
-from tcr_interactions.get_grid import getGridDataFields
+from tcr_interactions.get_grid import getGridDataFields, getGridQuickSearchFields
 from tcr_interactions.get_user_settings import getGridSortSettings
 from tcr_interactions.post_models import ConditionsModel, FilterModel, FilterSearchConditionsModel, FilterSearchModel
+
 
 # ? Status: A-Active, P-Pre-Pay, H-On Hold, I-Inactive
 class customersClass:
@@ -20,16 +21,7 @@ class customersClass:
         )
 
     def search(self, SearchQuery):
-        AttributeList = [
-            "CustomerCode",
-            "CustomerName",
-            "Address1",
-            "City",
-            "ZipCode",
-            "Contact",
-            "SalespersonName",
-            "PriceListDescription",
-        ]
+        AttributeList = getGridQuickSearchFields(self.gridID)
         Conditions = []
         for Attribute in AttributeList:
             Conditions.append(

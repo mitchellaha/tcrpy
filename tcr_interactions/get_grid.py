@@ -82,7 +82,14 @@ def getGridDataFieldsInfo(grid):
         dataFields.append(dField)
     return dataFields
 
-if __name__ == "__main__":
-    print(getGridInfo(54))
-    # print(getGridInfo("DRIVERSCHEDULE"))
-    pass
+def getGridQuickSearchFields(grid):
+    """
+    Gets The QuickSearch Fields from the Grid Name
+        > GridName is required
+    """
+    gridFields = getGridDataFieldsInfo(grid)
+    quickSearchFields = []
+    for field in gridFields:
+        if field["QuickSearch"] is True:
+            quickSearchFields.append(field["DataField"])
+    return quickSearchFields
