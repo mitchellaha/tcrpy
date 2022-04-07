@@ -1,9 +1,9 @@
 import json
 
 import requests
-from common import headers
 
-from tcr_interactions.get_grid import getGrid, getGridByID
+from tcr_interactions.get_grid import getGrid
+from tcr_interactions.main import headers
 from tcr_interactions.post_models import GetUserSettingModel, SortModel
 
 getUserSettingsURL = "https://apps.tcrsoftware.com/tcr_2/webservices/UserSettings.asmx/GetUserSetting"

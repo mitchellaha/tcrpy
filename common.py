@@ -1,23 +1,5 @@
 import datetime
-import json
 import math
-import os
-
-from dotenv import load_dotenv  # for Loading the .env Secrets
-
-import tcr_login.getCookie as gc
-
-load_dotenv()
-email = os.getenv("email")
-password = os.getenv("password")
-
-try:
-    with open("./tcr_login/cookies.json") as f:
-        cookies = json.load(f)
-except FileNotFoundError:
-    cookies = gc.getTCRAuth(email, password)[0]
-    gc.saveCookies(cookies)
-headers = gc.setHeaders(cookies, email, password)
 
 
 def findPages(recordCount, pageSize):

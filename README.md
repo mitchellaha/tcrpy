@@ -3,9 +3,11 @@ TCR API middleman using FastAPI
 
 ## To-Do:
 - [x] Add Status Filter to Customers & Jobs
+- [ ] Create More Unified Filter Conditons
+    - [ ] Pull the needed data from the TCR_Menu
 - [ ] Add Ticket Status & Ticket Type Filter
 - [ ] Pagination Support
-- [ ] Cleanup Login / CookieGetter
+- [x] Cleanup Login / CookieGetter
 - [ ] Serverside Logging
 - [ ] Add Descript Response Error Messages
 - [ ] Add Authentication

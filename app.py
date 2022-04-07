@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import Any, Optional, Union, List
+from typing import Optional, Union, List
 
 from tcr_data_calls.Customers import customersClass
 from tcr_data_calls.Jobs import jobsClass
@@ -19,6 +19,7 @@ from tcr_data_calls.TicketSigns import ticketSignsClass
 from tcr_data_calls.TicketReturnSigns import ticketReturnSignsClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
+
 
 app = FastAPI()
 

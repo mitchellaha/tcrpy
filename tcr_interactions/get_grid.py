@@ -1,5 +1,5 @@
 import requests
-from common import headers
+from tcr_interactions.main import headers
 
 from tcr_interactions.post_models import GetGridByIDModel, GetGridModel
 

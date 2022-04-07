@@ -1,7 +1,7 @@
 import json
 
 import requests
-from common import headers
+from tcr_interactions.main import headers
 
 from tcr_interactions.get_grid import getGrid, getGridDataFields
 from tcr_interactions.get_user_settings import getGridSortSettings
