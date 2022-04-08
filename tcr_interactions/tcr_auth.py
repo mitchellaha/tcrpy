@@ -22,6 +22,24 @@ class tcrAuth:
         self.email = email
         self.password = password
 
+    def setCookie(self, cookies: dict):
+        self.cookie = cookies
+
+    def setCookieExpiration(self, expire: dict):
+        self.cookie_expiration = expire
+
+    def setHeaders(self, cookies):
+        headers = {
+            'DNT': '1',
+            'X-Requested-With': 'XMLHttpRequest',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36',
+            'Content-Type': 'application/json; charset=utf-8',
+            'Accept': 'application/json'
+        }
+        cookie = "Email={}; ASP.NET_SessionId={}; TCRAuth={}".format(cookies["Email"], cookies["ASP.NET_SessionId"], cookies["TCRAuth"])
+        headers["Cookie"] = cookie
+        self.headers = headers
+
     def getCookies(self):
         """
         Returns TCR cookies[0] and expiration[1]
@@ -77,26 +95,9 @@ class tcrAuth:
 
         return cookies, expire
 
-    def setCookie(self, cookies):
-        self.cookie = cookies
-
-    def setCookieExpiration(self, expire):
-        self.cookie_expiration = expire
-
-    def setHeaders(self, cookies):
-        headers = {
-            'DNT': '1',
-            'X-Requested-With': 'XMLHttpRequest',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36',
-            'Content-Type': 'application/json; charset=utf-8',
-            'Accept': 'application/json'
-        }
-        cookie = "Email={}; ASP.NET_SessionId={}; TCRAuth={}".format(cookies["Email"], cookies["ASP.NET_SessionId"], cookies["TCRAuth"])
-        headers["Cookie"] = cookie
-        self.headers = headers
-
     def login(self):
         getCookie = self.getCookies()
+        print("Logged Into TCR as: {}".format(self.email))
         self.setCookie(getCookie[0])
         self.setCookieExpiration(getCookie[1])
         self.setHeaders(getCookie[0])
