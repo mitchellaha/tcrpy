@@ -3,22 +3,23 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Union, List
 
-from tcr_data_calls.Customers import customersClass
-from tcr_data_calls.Jobs import jobsClass
-from tcr_data_calls.JobTickets import jobTicketsClass
-from tcr_data_calls.JobInvoices import jobInvoicesClass
-from tcr_data_calls.CustomerContacts import customerContactsClass
-from tcr_data_calls.CustomerInvoices import customerInvoicesClass
-from tcr_data_calls.CustomerJobs import customerJobsClass
-from tcr_data_calls.DriverSchedule import driverScheduleClass
-from tcr_data_calls.InvoiceDetails import invoiceDetailsClass
-from tcr_data_calls.TicketItems import ticketItemsClass
-from tcr_data_calls.TicketLabor import ticketLaborClass
-from tcr_data_calls.LaborTickets import laborTicketClass
-from tcr_data_calls.TicketSigns import ticketSignsClass
-from tcr_data_calls.TicketReturnSigns import ticketReturnSignsClass
-from tcr_data_calls.LineItems import lineItemsClass
-from tcr_data_calls.Drivers import driversClass
+from getgriddata.Customers import customersClass
+from getgriddata.Jobs import jobsClass
+from getgriddata.JobTickets import jobTicketsClass
+from getgriddata.JobInvoices import jobInvoicesClass
+from getgriddata.CustomerContacts import customerContactsClass
+from getgriddata.CustomerInvoices import customerInvoicesClass
+from getgriddata.CustomerJobs import customerJobsClass
+from getgriddata.DriverSchedule import driverScheduleClass
+from getgriddata.InvoiceDetails import invoiceDetailsClass
+from getgriddata.TicketItems import ticketItemsClass
+from getgriddata.TicketLabor import ticketLaborClass
+from getgriddata.LaborTickets import laborTicketClass
+from getgriddata.TicketSigns import ticketSignsClass
+from getgriddata.TicketReturnSigns import ticketReturnSignsClass
+from getgriddata.LineItems import lineItemsClass
+from getgriddata.Drivers import driversClass
+from getgriddata.Invoices import invoicesClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
 
@@ -186,6 +187,14 @@ definitions = {
             "include_count": False
         },
     },
+    "invoices": {
+        "type": "post",
+        "url": "/invoices/",
+        "parameters": {
+            "search": "str",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -247,6 +256,9 @@ class LineItems(GetGridBaseModel):
     search: Optional[str]
 
 class Drivers(GetGridBaseModel):
+    search: Optional[str]
+
+class Invoices(GetGridBaseModel):
     search: Optional[str]
 
 
@@ -431,6 +443,18 @@ async def get_drivers(drivers: Drivers):
         dDriversClass.filterConditions = searchFilter
     request = getGridData(dDriversClass.gridID, dDriversClass.filterConditions)
     if drivers.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/invoices/")
+async def get_invoices(invoices: Invoices):
+    iInvoicesClass = invoicesClass()
+    if invoices.search:
+        searchFilter = iInvoicesClass.search(invoices.search)
+        iInvoicesClass.filterConditions = searchFilter
+    request = getGridData(iInvoicesClass.gridID, iInvoicesClass.filterConditions)
+    if invoices.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]

@@ -2,21 +2,14 @@ from tcr_interactions.get_grid import getGridDataFields, getGridQuickSearchField
 from tcr_interactions.get_user_settings import getGridSortSettings
 from tcr_interactions.post_models import ConditionsModel, FilterModel, FilterSearchConditionsModel, FilterSearchModel
 
-
-class lineItemsClass:
+class invoicesClass:
     def __init__(self):
-        self.gridID = 30
-        self.gridName = "LINEITEMS"
+        self.gridID = 20
+        self.gridName = "INVOICES"
         self.Attributes = getGridDataFields(self.gridID)
         self.gridCustomSort = getGridSortSettings(self.gridID)
         self.filterConditions = FilterModel(
-            Conditions=[
-                ConditionsModel(
-                    Attribute="Status",
-                    Values=["A"],
-                    Operator=12
-                ),
-            ]
+            Conditions=[]
         )
 
     def search(self, SearchQuery):
@@ -33,7 +26,7 @@ class lineItemsClass:
                 )
             )
         respond = FilterSearchModel(
-            Conditions=[self.filterConditions.Conditions[0]],
+            Conditions=self.filterConditions.Conditions,
             Filter=FilterSearchConditionsModel(
                 Conditions=Conditions,
                 GroupOperator=2

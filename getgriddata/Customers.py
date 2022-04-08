@@ -34,7 +34,7 @@ class customersClass:
                 )
             )
         respond = FilterSearchModel(
-            Conditions=[self.filterConditions.Conditions[0]],
+            Conditions=self.filterConditions.Conditions,
             Filter=FilterSearchConditionsModel(
                 Conditions=Conditions,
                 GroupOperator=2

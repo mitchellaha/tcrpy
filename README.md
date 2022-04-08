@@ -53,7 +53,7 @@ TCR API middleman using FastAPI
     - [x] *Ticket Signs*
     - [x] *Ticket Return Signs*
     - [ ] Ticket Ticket Kits
-- [ ] *Invoices*
+- [x] *Invoices*
     - [x] Invoice Details
 - [ ] Quotes
     - [ ] Quote Items
