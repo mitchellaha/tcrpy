@@ -53,7 +53,7 @@ TCR API middleman using FastAPI
     - [x] *Ticket Signs*
     - [x] *Ticket Return Signs*
     - [ ] Ticket Ticket Kits
-- [ ] Invoices
+- [ ] *Invoices*
     - [x] Invoice Details
 - [ ] Quotes
     - [ ] Quote Items
@@ -63,7 +63,7 @@ TCR API middleman using FastAPI
     - [ ] Line Item Price List
 - [ ] Sub Items
 - [ ] Signs
-- [ ] *Drivers*
+- [x] *Drivers*
 - [ ] Equipment
 - [ ] Trucks
 - [ ] Zones
@@ -73,10 +73,11 @@ TCR API middleman using FastAPI
 
 #### Other
 - [ ] *Get Side Menuss*
-- [ ] Get Tickets Count
-- [ ] Get Customer Overview
-- [ ] Get Billing History
-- [ ] Get Top 5 Equipment
+- [ ] Customers Page
+    - [ ] Get Tickets Count
+    - [ ] Get Customer Overview
+    - [ ] Get Billing History
+    - [ ] Get Top 5 Equipment
 - [ ] Get Audit Data
     - [ ] Customers
     - [ ] Jobs

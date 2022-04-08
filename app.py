@@ -18,6 +18,7 @@ from tcr_data_calls.LaborTickets import laborTicketClass
 from tcr_data_calls.TicketSigns import ticketSignsClass
 from tcr_data_calls.TicketReturnSigns import ticketReturnSignsClass
 from tcr_data_calls.LineItems import lineItemsClass
+from tcr_data_calls.Drivers import driversClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
 
@@ -177,6 +178,14 @@ definitions = {
             "include_count": False
         },
     },
+    "drivers": {
+        "type": "post",
+        "url": "/drivers/",
+        "parameters": {
+            "search": "str",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -235,6 +244,9 @@ class TicketReturnSigns(GetGridBaseModel):
     ticketid: int
 
 class LineItems(GetGridBaseModel):
+    search: Optional[str]
+
+class Drivers(GetGridBaseModel):
     search: Optional[str]
 
 
@@ -407,6 +419,18 @@ async def get_lineitems(lineitems: LineItems):
         lItemsClass.filterConditions = searchFilter
     request = getGridData(lItemsClass.gridID, lItemsClass.filterConditions)
     if lineitems.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/drivers/")
+async def get_drivers(drivers: Drivers):
+    dDriversClass = driversClass()
+    if drivers.search:
+        searchFilter = dDriversClass.search(drivers.search)
+        dDriversClass.filterConditions = searchFilter
+    request = getGridData(dDriversClass.gridID, dDriversClass.filterConditions)
+    if drivers.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
