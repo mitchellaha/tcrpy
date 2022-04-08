@@ -59,7 +59,7 @@ TCR API middleman using FastAPI
     - [ ] Quote Items
     - [ ] Quote Signs
 - [ ] Item Tracking
-- [ ] *Line Items*
+- [x] *Line Items*
     - [ ] Line Item Price List
 - [ ] Sub Items
 - [ ] Signs

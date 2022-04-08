@@ -17,6 +17,7 @@ from tcr_data_calls.TicketLabor import ticketLaborClass
 from tcr_data_calls.LaborTickets import laborTicketClass
 from tcr_data_calls.TicketSigns import ticketSignsClass
 from tcr_data_calls.TicketReturnSigns import ticketReturnSignsClass
+from tcr_data_calls.LineItems import lineItemsClass
 from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
 
@@ -168,6 +169,14 @@ definitions = {
             "include_count": False
         },
     },
+    "line_items": {
+        "type": "post",
+        "url": "/lineitems/",
+        "parameters": {
+            "search": "str",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -224,6 +233,9 @@ class TicketSigns(GetGridBaseModel):
 
 class TicketReturnSigns(GetGridBaseModel):
     ticketid: int
+
+class LineItems(GetGridBaseModel):
+    search: Optional[str]
 
 
 # ! Basic Info Function
@@ -383,6 +395,18 @@ async def get_trsigns(trsigns: TicketReturnSigns):
     tRSignsClass = ticketReturnSignsClass(trsigns.ticketid)
     request = getGridData(tRSignsClass.gridID, tRSignsClass.filterConditions)
     if trsigns.include_count is True:
+        return {"count": request[0], "data": request[1]}
+    else:
+        return request[1]
+
+@ app.post("/lineitems/")
+async def get_lineitems(lineitems: LineItems):
+    lItemsClass = lineItemsClass()
+    if lineitems.search:
+        searchFilter = lItemsClass.search(lineitems.search)
+        lItemsClass.filterConditions = searchFilter
+    request = getGridData(lItemsClass.gridID, lItemsClass.filterConditions)
+    if lineitems.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
