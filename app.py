@@ -24,7 +24,10 @@ from tcr_interactions import get_grid, get_user_settings
 from tcr_interactions.GetGridData import getGridData
 
 
-app = FastAPI()
+app = FastAPI(
+    title="TCR-API",
+    description="An API middleware TCR"
+)
 
 origins = [
     "http://localhost",
