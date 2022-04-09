@@ -73,6 +73,7 @@ TCR API middleman using FastAPI
 
 #### Other
 - [ ] *Get Side Menuss*
+- [ ] Get Grid Columns For Advanced Search
 - [ ] Customers Page
     - [ ] Get Tickets Count
     - [ ] Get Customer Overview

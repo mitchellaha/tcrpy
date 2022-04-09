@@ -21,7 +21,7 @@ from getgriddata.LineItems import lineItemsClass
 from getgriddata.Drivers import driversClass
 from getgriddata.Invoices import invoicesClass
 from tcr_interactions import get_grid, get_user_settings
-from tcr_interactions.GetGridData import getGridData
+from tcr_interactions.get_grid_data import getGridData
 
 
 app = FastAPI(
