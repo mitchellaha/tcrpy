@@ -3,26 +3,29 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Union, List
 
+from tcr_interactions.TCR import TCRAPI
 from getgriddata.Customers import customersClass
-from getgriddata.Jobs import jobsClass
-from getgriddata.JobTickets import jobTicketsClass
-from getgriddata.JobInvoices import jobInvoicesClass
-from getgriddata.CustomerContacts import customerContactsClass
-from getgriddata.CustomerInvoices import customerInvoicesClass
-from getgriddata.CustomerJobs import customerJobsClass
-from getgriddata.DriverSchedule import driverScheduleClass
-from getgriddata.InvoiceDetails import invoiceDetailsClass
-from getgriddata.TicketItems import ticketItemsClass
-from getgriddata.TicketLabor import ticketLaborClass
-from getgriddata.LaborTickets import laborTicketClass
-from getgriddata.TicketSigns import ticketSignsClass
-from getgriddata.TicketReturnSigns import ticketReturnSignsClass
-from getgriddata.LineItems import lineItemsClass
-from getgriddata.Drivers import driversClass
-from getgriddata.Invoices import invoicesClass
-from tcr_interactions import get_grid, get_user_settings
-from tcr_interactions.get_grid_data import getGridData
+# from getgriddata.Jobs import jobsClass
+# from getgriddata.JobTickets import jobTicketsClass
+# from getgriddata.JobInvoices import jobInvoicesClass
+# from getgriddata.CustomerContacts import customerContactsClass
+# from getgriddata.CustomerInvoices import customerInvoicesClass
+# from getgriddata.CustomerJobs import customerJobsClass
+# from getgriddata.DriverSchedule import driverScheduleClass
+# from getgriddata.InvoiceDetails import invoiceDetailsClass
+# from getgriddata.TicketItems import ticketItemsClass
+# from getgriddata.TicketLabor import ticketLaborClass
+# from getgriddata.LaborTickets import laborTicketClass
+# from getgriddata.TicketSigns import ticketSignsClass
+# from getgriddata.TicketReturnSigns import ticketReturnSignsClass
+# from getgriddata.LineItems import lineItemsClass
+# from getgriddata.Drivers import driversClass
+# from getgriddata.Invoices import invoicesClass
+# from tcr_interactions import get_grid, get_user_settings
+# from tcr_interactions.get_grid_data import getGridData
 
+
+tcr = TCRAPI()
 
 app = FastAPI(
     title="TCR-API",
@@ -274,75 +277,75 @@ def read_root():
 @ app.post("/getgrid/")  # ? Returns the Full GetGrid Post of TCR
 async def get_gridPost(grid: GetGrid):
     grid = grid.grid
-    response = get_grid.getGrid(grid)
+    response = tcr.getGrid(grid)
     return response
 
 # ! Basic Info Function
 @ app.post("/getgridsettings/")  # ? Returns the Full GetGridSettings Post of TCR
 async def get_gridSettingsPost(grid: GetGridSettings):
     grid = grid.grid
-    response = get_user_settings.getGridSettings(grid)
+    response = tcr.getGridSettings(grid)
     return response
 
 
 
-@ app.post("/schedule/")
-async def get_schedule(schedule: Schedule):
-    scheduleClass = driverScheduleClass(schedule.start, schedule.end)
-    request = getGridData(scheduleClass.gridID, scheduleClass.filterConditions)
-    if schedule.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/schedule/")
+# async def get_schedule(schedule: Schedule):
+#     scheduleClass = driverScheduleClass(schedule.start, schedule.end)
+#     request = tcr.getGridData(scheduleClass.gridID, scheduleClass.filterConditions)
+#     if schedule.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
 
-@ app.post("/titems/")  # ? Returns the Items for the Provided Ticket
-async def get_items(items: TicketItems):
-    tItemsClass = ticketItemsClass(items.ticketid)
-    request = getGridData(tItemsClass.gridID, tItemsClass.filterConditions)
-    if items.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/titems/")  # ? Returns the Items for the Provided Ticket
+# async def get_items(items: TicketItems):
+#     tItemsClass = ticketItemsClass(items.ticketid)
+#     request = tcr.getGridData(tItemsClass.gridID, tItemsClass.filterConditions)
+#     if items.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
 
-@ app.post("/cjobs/")
-async def get_cjobs(cjobs: CustomerJobs):
-    cJobsClass = customerJobsClass(cjobs.customerid)
-    request = getGridData(cJobsClass.gridID, cJobsClass.filterConditions)
-    if cjobs.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/cjobs/")
+# async def get_cjobs(cjobs: CustomerJobs):
+#     cJobsClass = customerJobsClass(cjobs.customerid)
+#     request = tcr.getGridData(cJobsClass.gridID, cJobsClass.filterConditions)
+#     if cjobs.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
 
-@ app.post("/cinvoices/")
-async def get_cinvoices(cinvoices: CustomerInvoices):
-    cInvoicesClass = customerInvoicesClass(cinvoices.customerid)
-    request = getGridData(cInvoicesClass.gridID, cInvoicesClass.filterConditions)
-    if cinvoices.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/cinvoices/")
+# async def get_cinvoices(cinvoices: CustomerInvoices):
+#     cInvoicesClass = customerInvoicesClass(cinvoices.customerid)
+#     request = tcr.getGridData(cInvoicesClass.gridID, cInvoicesClass.filterConditions)
+#     if cinvoices.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
 
-@ app.post("/idetails/")
-async def get_idetails(idetails: InvoiceDetails):
-    iDetailsClass = invoiceDetailsClass(idetails.invoiceid)
-    request = getGridData(iDetailsClass.gridID, iDetailsClass.filterConditions)
-    if idetails.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/idetails/")
+# async def get_idetails(idetails: InvoiceDetails):
+#     iDetailsClass = invoiceDetailsClass(idetails.invoiceid)
+#     request = tcr.getGridData(iDetailsClass.gridID, iDetailsClass.filterConditions)
+#     if idetails.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/ccontacts/")
-async def get_ccontacts(ccontacts: CustomerContacts):
-    cContactsClass = customerContactsClass(ccontacts.customerid)
-    request = getGridData(cContactsClass.gridID, cContactsClass.filterConditions)
-    if ccontacts.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/ccontacts/")
+# async def get_ccontacts(ccontacts: CustomerContacts):
+#     cContactsClass = customerContactsClass(ccontacts.customerid)
+#     request = tcr.getGridData(cContactsClass.gridID, cContactsClass.filterConditions)
+#     if ccontacts.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
 @ app.post("/customers/")
 async def get_customers(customers: Customers):
@@ -352,112 +355,112 @@ async def get_customers(customers: Customers):
     if customers.search:
         searchFilter = cCustomersClass.search(customers.search)
         cCustomersClass.filterConditions = searchFilter
-    request = getGridData(cCustomersClass.gridID, cCustomersClass.filterConditions)
+    request = tcr.getGridData(cCustomersClass.gridID, cCustomersClass.filterConditions)
     if customers.include_count is True:
         return {"count": request[0], "data": request[1]}
     else:
         return request[1]
 
-@ app.post("/jobs/")
-async def get_jobs(jobs: Jobs):
-    jJobsClass = jobsClass()
-    if jobs.status:
-        jJobsClass.setStatusFilter(jobs.status)
-    if jobs.search:
-        searchFilter = jJobsClass.search(jobs.search)
-        jJobsClass.filterConditions = searchFilter
-    request = getGridData(jJobsClass.gridID, jJobsClass.filterConditions)
-    if jobs.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/jobs/")
+# async def get_jobs(jobs: Jobs):
+#     jJobsClass = jobsClass()
+#     if jobs.status:
+#         jJobsClass.setStatusFilter(jobs.status)
+#     if jobs.search:
+#         searchFilter = jJobsClass.search(jobs.search)
+#         jJobsClass.filterConditions = searchFilter
+#     request = tcr.getGridData(jJobsClass.gridID, jJobsClass.filterConditions)
+#     if jobs.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/jtickets/")
-async def get_jtickets(jtickets: JobTickets):
-    jTicketsClass = jobTicketsClass(jtickets.jobid)
-    request = getGridData(jTicketsClass.gridID, jTicketsClass.filterConditions)
-    if jtickets.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/jtickets/")
+# async def get_jtickets(jtickets: JobTickets):
+#     jTicketsClass = jobTicketsClass(jtickets.jobid)
+#     request = tcr.getGridData(jTicketsClass.gridID, jTicketsClass.filterConditions)
+#     if jtickets.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/jinvoices/")
-async def get_jinvoices(jinvoices: JobInvoices):
-    jInvoicesClass = jobInvoicesClass(jinvoices.jobid)
-    request = getGridData(jInvoicesClass.gridID, jInvoicesClass.filterConditions)
-    if jinvoices.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/jinvoices/")
+# async def get_jinvoices(jinvoices: JobInvoices):
+#     jInvoicesClass = jobInvoicesClass(jinvoices.jobid)
+#     request = tcr.getGridData(jInvoicesClass.gridID, jInvoicesClass.filterConditions)
+#     if jinvoices.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/tlabor/")
-async def get_tlabor(tlabor: TicketLabor):
-    tLaborClass = ticketLaborClass(tlabor.ticketid)
-    request = getGridData(tLaborClass.gridID, tLaborClass.filterConditions)
-    if tlabor.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/tlabor/")
+# async def get_tlabor(tlabor: TicketLabor):
+#     tLaborClass = ticketLaborClass(tlabor.ticketid)
+#     request = tcr.getGridData(tLaborClass.gridID, tLaborClass.filterConditions)
+#     if tlabor.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/labortickets/")
-async def get_labortickets(labortickets: LaborTickets):
-    lTicketClass = laborTicketClass()
-    request = getGridData(lTicketClass.gridID, lTicketClass.filterConditions)
-    if labortickets.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/labortickets/")
+# async def get_labortickets(labortickets: LaborTickets):
+#     lTicketClass = laborTicketClass()
+#     request = tcr.getGridData(lTicketClass.gridID, lTicketClass.filterConditions)
+#     if labortickets.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/tsigns/")
-async def get_tsigns(tsigns: TicketSigns):
-    tSignsClass = ticketSignsClass(tsigns.ticketid)
-    request = getGridData(tSignsClass.gridID, tSignsClass.filterConditions)
-    if tsigns.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/tsigns/")
+# async def get_tsigns(tsigns: TicketSigns):
+#     tSignsClass = ticketSignsClass(tsigns.ticketid)
+#     request = tcr.getGridData(tSignsClass.gridID, tSignsClass.filterConditions)
+#     if tsigns.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/trsigns/")
-async def get_trsigns(trsigns: TicketReturnSigns):
-    tRSignsClass = ticketReturnSignsClass(trsigns.ticketid)
-    request = getGridData(tRSignsClass.gridID, tRSignsClass.filterConditions)
-    if trsigns.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/trsigns/")
+# async def get_trsigns(trsigns: TicketReturnSigns):
+#     tRSignsClass = ticketReturnSignsClass(trsigns.ticketid)
+#     request = tcr.getGridData(tRSignsClass.gridID, tRSignsClass.filterConditions)
+#     if trsigns.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/lineitems/")
-async def get_lineitems(lineitems: LineItems):
-    lItemsClass = lineItemsClass()
-    if lineitems.search:
-        searchFilter = lItemsClass.search(lineitems.search)
-        lItemsClass.filterConditions = searchFilter
-    request = getGridData(lItemsClass.gridID, lItemsClass.filterConditions)
-    if lineitems.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/lineitems/")
+# async def get_lineitems(lineitems: LineItems):
+#     lItemsClass = lineItemsClass()
+#     if lineitems.search:
+#         searchFilter = lItemsClass.search(lineitems.search)
+#         lItemsClass.filterConditions = searchFilter
+#     request = tcr.getGridData(lItemsClass.gridID, lItemsClass.filterConditions)
+#     if lineitems.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/drivers/")
-async def get_drivers(drivers: Drivers):
-    dDriversClass = driversClass()
-    if drivers.search:
-        searchFilter = dDriversClass.search(drivers.search)
-        dDriversClass.filterConditions = searchFilter
-    request = getGridData(dDriversClass.gridID, dDriversClass.filterConditions)
-    if drivers.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/drivers/")
+# async def get_drivers(drivers: Drivers):
+#     dDriversClass = driversClass()
+#     if drivers.search:
+#         searchFilter = dDriversClass.search(drivers.search)
+#         dDriversClass.filterConditions = searchFilter
+#     request = tcr.getGridData(dDriversClass.gridID, dDriversClass.filterConditions)
+#     if drivers.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]
 
-@ app.post("/invoices/")
-async def get_invoices(invoices: Invoices):
-    iInvoicesClass = invoicesClass()
-    if invoices.search:
-        searchFilter = iInvoicesClass.search(invoices.search)
-        iInvoicesClass.filterConditions = searchFilter
-    request = getGridData(iInvoicesClass.gridID, iInvoicesClass.filterConditions)
-    if invoices.include_count is True:
-        return {"count": request[0], "data": request[1]}
-    else:
-        return request[1]
+# @ app.post("/invoices/")
+# async def get_invoices(invoices: Invoices):
+#     iInvoicesClass = invoicesClass()
+#     if invoices.search:
+#         searchFilter = iInvoicesClass.search(invoices.search)
+#         iInvoicesClass.filterConditions = searchFilter
+#     request = tcr.getGridData(iInvoicesClass.gridID, iInvoicesClass.filterConditions)
+#     if invoices.include_count is True:
+#         return {"count": request[0], "data": request[1]}
+#     else:
+#         return request[1]

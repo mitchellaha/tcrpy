@@ -1,6 +1,7 @@
-from tcr_interactions.get_grid import getGridDataFields, getGridQuickSearchFields
-from tcr_interactions.get_user_settings import getGridSortSettings
+# from tcr_interactions.get_grid import getGridDataFields, getGridQuickSearchFields
+# from tcr_interactions.get_user_settings import getGridSortSettings
 from tcr_interactions.post_models import ConditionsModel, FilterModel, FilterSearchConditionsModel, FilterSearchModel
+from tcr_interactions.TCR import TCRAPI
 
 
 # ? Status: A-Active, P-Pre-Pay, H-On Hold, I-Inactive
@@ -8,8 +9,8 @@ class customersClass:
     def __init__(self):
         self.gridID = 1
         self.gridName = "CUSTOMERS"
-        self.Attributes = getGridDataFields(self.gridID)
-        self.gridCustomSort = getGridSortSettings(self.gridID)
+        self.Attributes = TCRAPI.getGridDataFields(self.gridID)
+        self.gridCustomSort = TCRAPI.getGridSortSettings(self.gridID)
         self.filterConditions = FilterModel(
             Conditions=[
                 ConditionsModel(
@@ -21,7 +22,7 @@ class customersClass:
         )
 
     def search(self, SearchQuery):
-        AttributeList = getGridQuickSearchFields(self.gridID)
+        AttributeList = TCRAPI.getGridQuickSearchFields(self.gridID)
         Conditions = []
         for Attribute in AttributeList:
             Conditions.append(

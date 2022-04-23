@@ -1,19 +1,14 @@
-import os
-
 import requests
 from bs4 import BeautifulSoup
-from dotenv import load_dotenv  # for Loading the .env Secrets
 
 
 class tcrAuth:
     """
     email and password are set from env variables
     """
-    load_dotenv()
-
-    def __init__(self):
-        self.email = os.getenv("email")
-        self.password = os.getenv("password")
+    def __init__(self, email=None, password=None):
+        self.email = email
+        self.password = password
         self.cookie = None
         self.cookie_expiration = None  # todo: may eventually need to add a get new cookie function
         self.headers = None
