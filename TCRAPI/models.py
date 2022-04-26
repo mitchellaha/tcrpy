@@ -20,11 +20,11 @@ class ConditionsModel(BaseModel):
 class FilterModel(BaseModel):
     Conditions: list[ConditionsModel]
 
-class FilterSearchConditionsModel(BaseModel):  # ! Used For Customer Search
+class FilterSearchConditionsModel(BaseModel):  # ! Used For Search
     Conditions: list
     GroupOperator: int
 
-class FilterSearchModel(BaseModel):  # ! Used For Customer Search
+class FilterSearchModel(BaseModel):  # ! Used For Search
     Conditions: list
     Filter: FilterSearchConditionsModel
 

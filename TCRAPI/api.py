@@ -1,36 +1,17 @@
-from tcr_interactions.tcr_auth import tcrAuth
-from tcr_interactions.post_models import GetGridByIDModel, GetGridModel, GetUserSettingModel, SortModel, GetGridDataModel, GetGridDataModelRoot
-from dotenv import load_dotenv
-import json
-import os
 import requests
+import json
+from TCRAPI.models import *
 
-class TCRAPI:
-    def __init__(self, email=None, password=None):
-        load_dotenv()
-        self.email = email
-        if email is None:
-            self.email = os.getenv("email")
+class api:
+    baseUrl = "http://apps.tcrsoftware.com/tcr_2"
+    getGridURL = baseUrl + "/webservices/config.asmx/GetGrid"
+    getGridByIDURL = baseUrl + "/webservices/config.asmx/GetGridByID"
+    getGridDataURL = baseUrl + "/webservices/data.asmx/GetGridData"
+    getUserSettingsURL = baseUrl + "/webservices/UserSettings.asmx/GetUserSetting"
+    getSideMenusURL = baseUrl + "/webservices/config.asmx/GetSideMenus"
 
-        self.password = password
-        if password is None:
-            self.password = os.getenv("password")
-
-        self.auth = tcrAuth(email=self.email, password=self.password)
-        self.headers = self.getHeaders()
-        self.baseUrl = "http://apps.tcrsoftware.com/tcr_2"
-        self.getGridURL = self.baseUrl + "/webservices/config.asmx/GetGrid"
-        self.getGridByIDURL = self.baseUrl + "/webservices/config.asmx/GetGridByID"
-        self.getGridDataURL = self.baseUrl + "/webservices/data.asmx/GetGridData"
-        self.getUserSettingsURL = self.baseUrl + "/webservices/config.asmx/GetUserSettings"
-
-
-    def getHeaders(self):
-        tcr = self.auth
-        tcr.login()
-        self.headers = tcr.headers
-        return tcr.headers
-
+    def __init__(self, headers=None):
+        self.headers = headers
 
     def getGrid(self, gridName):
         """
@@ -178,10 +159,41 @@ class TCRAPI:
                 sort = SortModel()
                 return sort
 
+    def getSideMenus(self):
+        request = requests.post(self.getSideMenusURL, headers=self.headers).json()
+        return request["d"]
 
-    def getGridData(self, Grid, FilterConditions, StartIndex=1, RecordCount=250):
+    def getGridData(self, Grid, FilterConditions,
+                    StartIndex=1, RecordCount=250,
+                    QuickSearch=None, IncludeCount=True,
+                    ):
         getGridInfo = self.getGrid(Grid)
         gridID = getGridInfo["GridID"]
+        dataFields = []
+        quickSearchFields = []
+        
+        for dField in getGridInfo["Columns"]:
+            dataFields.append(dField["DataField"])
+            if dField["QuickSearch"] is True:
+                quickSearchFields.append(dField["DataField"])
+
+        if QuickSearch is not None:
+            searchConditions = []
+            for field in quickSearchFields:
+                searchConditions.append(
+                    ConditionsModel(
+                        Attribute=field,
+                        Values=[QuickSearch],
+                        Operator=10
+                    )
+                )
+            FilterConditions = FilterSearchModel(
+                Conditions=FilterConditions.Conditions,
+                Filter=FilterSearchConditionsModel(
+                    Conditions=searchConditions,
+                    GroupOperator=2
+                )
+            )
 
         requestData = GetGridDataModelRoot(
             query=GetGridDataModel(
@@ -189,14 +201,17 @@ class TCRAPI:
                 RecordCount=RecordCount,
                 Filter=FilterConditions,
                 StartIndex=StartIndex,
-                Attributes=self.getGridDataFields(gridID),
+                Attributes=dataFields,
                 Sort=[self.getGridSortSettings(gridID)],
                 CustomSort=None,
             )
         ).json()
-        response = requests.post(
-            self.getGridDataURL, headers=self.headers, data=requestData).json()
+
+        response = requests.post(self.getGridDataURL, headers=self.headers, data=requestData).json()
         resultjson = json.loads(response["d"]["Result"])
         count = resultjson["RecordCount"]
         data = resultjson["Data"]
-        return count, data
+        if IncludeCount is True:
+            return {"count": count, "data": data}
+        else:
+            return data

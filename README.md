@@ -6,7 +6,7 @@ TCR API middleman using FastAPI
 - [ ] Create More Unified Filter Conditons
     - [ ] Pull the needed data from the TCR_Menu
 - [ ] Add Ticket Status & Ticket Type Filter
-- [ ] Pagination Support
+- [x] Pagination Support
 - [x] Cleanup Login / CookieGetter
 - [ ] Serverside Logging
 - [ ] Add Descript Response Error Messages
@@ -72,7 +72,7 @@ TCR API middleman using FastAPI
 - [ ] Quote Extras
 
 #### Other
-- [ ] *Get Side Menuss*
+- [x] *Get Side Menuss*
 - [ ] Get Grid Columns For Advanced Search
 - [ ] Customers Page
     - [ ] Get Tickets Count
