@@ -218,6 +218,14 @@ definitions = {
             "include_count": False
         },
     },
+    "ticket_TCPs": {
+        "type": "post",
+        "url": "/ttcps/",
+        "parameters": {
+            "ticketid": "int",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -296,6 +304,9 @@ class PriceLists(GetGridBaseModel):
 
 class JobTCPs(GetGridBaseModel):
     jobid: int
+
+class TicketTCPs(GetGridBaseModel):
+    ticketid: int
 
 
 # ! Basic Info Function
@@ -611,4 +622,19 @@ async def get_jtcps(jtcps: JobTCPs):
         StartIndex=jtcps.start_index,
         RecordCount=jtcps.record_count,
         IncludeCount=jtcps.include_count)
+    return request
+
+@ app.post("/ttcps/")
+async def get_ttcps(ttcps: TicketTCPs):
+    info = ticketTCPsClass(
+        TicketID=ttcps.ticketid,
+    )
+
+    request = tcr.getGridData(
+        Grid=info.gridID,
+        FilterConditions=info.filterConditions,
+        QuickSearch=ttcps.search,
+        StartIndex=ttcps.start_index,
+        RecordCount=ttcps.record_count,
+        IncludeCount=ttcps.include_count)
     return request

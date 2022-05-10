@@ -47,7 +47,7 @@ TCR API middleman using FastAPI
     - [x] Drivers Schedule
 - [ ] *Tickets*
     - [x] Ticket Items
-    - [ ] *Ticket TCPs*
+    - [x] Ticket TCPs
     - [ ] Ticket Misc Items
     - [x] Ticket Labor
     - [x] Ticket Signs
