@@ -202,6 +202,14 @@ definitions = {
             "include_count": False
         },
     },
+    "price_lists": {
+        "type": "post",
+        "url": "/plists/",
+        "parameters": {
+            "search": "str",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -274,6 +282,9 @@ class Invoices(GetGridBaseModel):
 
 class PriceListItems(GetGridBaseModel):
     pricelistid: int
+
+class PriceLists(GetGridBaseModel):
+    pass
 
 
 # ! Basic Info Function
@@ -561,4 +572,17 @@ async def get_plistitems(plistitems: PriceListItems):
         StartIndex=plistitems.start_index,
         RecordCount=plistitems.record_count,
         IncludeCount=plistitems.include_count)
+    return request
+
+@ app.post("/pricelists/")
+async def get_pricelists(pricelists: PriceLists):
+    info = priceListsClass()
+
+    request = tcr.getGridData(
+        Grid=info.gridID,
+        FilterConditions=info.filterConditions,
+        QuickSearch=pricelists.search,
+        StartIndex=pricelists.start_index,
+        RecordCount=pricelists.record_count,
+        IncludeCount=pricelists.include_count)
     return request

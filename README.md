@@ -35,44 +35,46 @@ TCR API middleman using FastAPI
     - [x] Customer Invoices
     - [x] Customer Jobs
 - [x] Jobs
-    - [x] *Job Tickets*
-    - [x] *Job Invoices*
-    - [ ] Job TCPs
+    - [x] Job Tickets
+    - [x] Job Invoices
+    - [ ] *Job TCPs*
     - [ ] Job Photos
     - [ ] Quantity On Hand
 - [ ] Labor
-    - [x] *Labor Tickets*?
+    - [x] Labor Tickets?
         - [ ] Add a search by Certified and Dates
     - [ ] Labor Misc Time
     - [x] Drivers Schedule
-- [ ] Tickets
+- [ ] *Tickets*
     - [x] Ticket Items
     - [ ] Ticket TCPs
     - [ ] Ticket Misc Items
-    - [x] *Ticket Labor*
-    - [x] *Ticket Signs*
-    - [x] *Ticket Return Signs*
+    - [x] Ticket Labor
+    - [x] Ticket Signs
+    - [x] Ticket Return Signs
     - [ ] Ticket Kits
-- [x] *Invoices*
+- [x] Invoices
     - [x] Invoice Details
 - [ ] Quotes
     - [ ] Quote Items
     - [ ] Quote Signs
 - [ ] Item Tracking
-- [x] *Line Items*
+- [x] Line Items
     - [ ] Line Item Price List
 - [ ] Sub Items
 - [ ] Signs
-- [x] *Drivers*
+- [x] Drivers
 - [ ] Equipment
 - [ ] Trucks
 - [ ] Zones
 - [ ] Labels
-- [ ] *Price Lists*
+- [x] Price Lists
+    - [x] Price List Items
 - [ ] Quote Extras
 
 #### Other
-- [x] *Get Side Menus*
+- [x] Get Side Menus
+- [ ] *Get Search Records*
 - [ ] Get Grid Columns For Advanced Search
 - [ ] Customers Page
     - [ ] Get Tickets Count
