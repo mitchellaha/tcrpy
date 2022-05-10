@@ -3,7 +3,7 @@ TCR API middleman using FastAPI
 
 ## To-Do:
 - [x] Add Status Filter to Customers & Jobs
-- [ ] Create More Unified Filter Conditons
+- [ ] Create More Unified Filter Conditions
     - [ ] Pull the needed data from the TCR_Menu
 - [ ] Add Ticket Status & Ticket Type Filter
 - [x] Pagination Support
@@ -20,7 +20,7 @@ TCR API middleman using FastAPI
     - ```$ source venv/bin/activate```
 3. Install dependencies
     - ```$ pip install -r requirements.txt```
-4. Add Login Information to enviroment variables or .env file
+4. Add Login Information to environment variables or .env file
     - ```$ export email=<"email">```
     - ```$ export password=<"password">```
 4. Run the application
@@ -39,7 +39,7 @@ TCR API middleman using FastAPI
     - [x] *Job Invoices*
     - [ ] Job TCPs
     - [ ] Job Photos
-    - [ ] Quanitity On Hand
+    - [ ] Quantity On Hand
 - [ ] Labor
     - [x] *Labor Tickets*?
         - [ ] Add a search by Certified and Dates
@@ -52,7 +52,7 @@ TCR API middleman using FastAPI
     - [x] *Ticket Labor*
     - [x] *Ticket Signs*
     - [x] *Ticket Return Signs*
-    - [ ] Ticket Ticket Kits
+    - [ ] Ticket Kits
 - [x] *Invoices*
     - [x] Invoice Details
 - [ ] Quotes
@@ -68,11 +68,11 @@ TCR API middleman using FastAPI
 - [ ] Trucks
 - [ ] Zones
 - [ ] Labels
-- [ ] Price Lists
+- [ ] *Price Lists*
 - [ ] Quote Extras
 
 #### Other
-- [x] *Get Side Menuss*
+- [x] *Get Side Menus*
 - [ ] Get Grid Columns For Advanced Search
 - [ ] Customers Page
     - [ ] Get Tickets Count
