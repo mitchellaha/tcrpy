@@ -16,7 +16,7 @@ tcr = api(
 
 app = FastAPI(
     title="TCR-API",
-    description="An API middleware TCR"
+    description="For serving TCR data as a REST API",
 )
 
 origins = [
@@ -193,6 +193,15 @@ definitions = {
             "include_count": False
         },
     },
+    "price_list_items": {
+        "type": "post",
+        "url": "/plitems/",
+        "parameters": {
+            "PriceListID": "int",
+            "search": "str",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -263,6 +272,9 @@ class Drivers(GetGridBaseModel):
 class Invoices(GetGridBaseModel):
     pass
 
+class PriceListItems(GetGridBaseModel):
+    pricelistid: int
+
 
 # ! Basic Info Function
 @ app.get("/")
@@ -272,21 +284,21 @@ def read_root():
 
 # ! Basic Info Function
 @ app.post("/getgrid/")  # ? Returns the Full GetGrid Post of TCR
-async def get_gridPost(grid: GetGrid):
+async def get_gridpost(grid: GetGrid):
     response = tcr.getGrid(grid.grid)
     return response
 
 
 # ! Basic Info Function
 @ app.post("/getgridsettings/")  # ? Returns the Full GetGridSettings Post of TCR
-async def get_gridSettingsPost(grid: GetGridSettings):
+async def get_gridsettingspost(grid: GetGridSettings):
     response = tcr.getGridSettings(grid.grid)
     return response
 
 
 # ! Basic Info Function
 @ app.post("/getsidemenus/")  # ? Returns the Full GetSideMenus Post of TCR
-async def get_sideMenusPost():
+async def get_sidemenuspost():
     response = tcr.getSideMenus()
     return response
 
@@ -534,4 +546,19 @@ async def get_drivers(drivers: Drivers):
         StartIndex=drivers.start_index,
         RecordCount=drivers.record_count,
         IncludeCount=drivers.include_count)
+    return request
+
+@ app.post("/plistitems/")
+async def get_plistitems(plistitems: PriceListItems):
+    info = priceListItemsClass(
+        PriceListID=plistitems.pricelistid,
+        )
+
+    request = tcr.getGridData(
+        Grid=info.gridID,
+        FilterConditions=info.filterConditions,
+        QuickSearch=plistitems.search,
+        StartIndex=plistitems.start_index,
+        RecordCount=plistitems.record_count,
+        IncludeCount=plistitems.include_count)
     return request
