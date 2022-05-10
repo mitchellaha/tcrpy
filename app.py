@@ -210,6 +210,14 @@ definitions = {
             "include_count": False
         },
     },
+    "job_TCPs": {
+        "type": "post",
+        "url": "/jtcps/",
+        "parameters": {
+            "jobid": "int",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -285,6 +293,9 @@ class PriceListItems(GetGridBaseModel):
 
 class PriceLists(GetGridBaseModel):
     pass
+
+class JobTCPs(GetGridBaseModel):
+    jobid: int
 
 
 # ! Basic Info Function
@@ -585,4 +596,19 @@ async def get_pricelists(pricelists: PriceLists):
         StartIndex=pricelists.start_index,
         RecordCount=pricelists.record_count,
         IncludeCount=pricelists.include_count)
+    return request
+
+@ app.post("/jtcps/")
+async def get_jtcps(jtcps: JobTCPs):
+    info = jobTCPsClass(
+        JobID=jtcps.jobid,
+    )
+
+    request = tcr.getGridData(
+        Grid=info.gridID,
+        FilterConditions=info.filterConditions,
+        QuickSearch=jtcps.search,
+        StartIndex=jtcps.start_index,
+        RecordCount=jtcps.record_count,
+        IncludeCount=jtcps.include_count)
     return request

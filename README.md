@@ -37,7 +37,7 @@ TCR API middleman using FastAPI
 - [x] Jobs
     - [x] Job Tickets
     - [x] Job Invoices
-    - [ ] *Job TCPs*
+    - [x] Job TCPs
     - [ ] Job Photos
     - [ ] Quantity On Hand
 - [ ] Labor
@@ -47,7 +47,7 @@ TCR API middleman using FastAPI
     - [x] Drivers Schedule
 - [ ] *Tickets*
     - [x] Ticket Items
-    - [ ] Ticket TCPs
+    - [ ] *Ticket TCPs*
     - [ ] Ticket Misc Items
     - [x] Ticket Labor
     - [x] Ticket Signs
