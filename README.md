@@ -1,19 +1,9 @@
 # TCR-API
-TCR API middleman using FastAPI
+TCR API Interaction Library
 
-## To-Do:
-- [x] Add Status Filter to Customers & Jobs
-- [ ] Create More Unified Filter Conditions
-    - [ ] Pull the needed data from the TCR_Menu
-- [ ] Add Ticket Status & Ticket Type Filter
-- [x] Pagination Support
-- [x] Cleanup Login / CookieGetter
-- [ ] Serverside Logging
-- [ ] Add Descript Response Error Messages
-- [ ] Add Authentication
+# Demo Using FastAPI
 
-
-## Install
+### Install
 1. Create a virtual environment
     - ```$ python3 -m venv venv```
 2. Activate the virtual environment
@@ -25,6 +15,24 @@ TCR API middleman using FastAPI
     - ```$ export password=<"password">```
 4. Run the application
     - ```$ uvicorn app:app --reload```
+
+-------------------
+
+## To-Do:
+- [ ] Add more documentation
+- [x] Add Status Filter to Customers & Jobs
+- [ ] *Create More Unified Filter Conditions*
+    - [ ] GetSideMenus contains info for Quick Filter Check Boxes
+    - [ ] Pull the needed data from the TCR_Menu/TCRConstants
+    - [ ] Advanced Search Filters:
+        - DataTypes = "QueryFilterFieldDataType" in TCRConstants
+        - Each DataType is allowed certain "QueryParamOperator" in TCRConstants
+- [ ] Add Ticket Status & Ticket Type Filter
+- [x] Pagination Support
+- [x] Cleanup Login / CookieGetter
+- [ ] Serverside Logging
+- [ ] Add Descript Response Error Messages
+- [ ] Add Authentication
 
 
 ## Working TCR Requests
@@ -45,7 +53,7 @@ TCR API middleman using FastAPI
         - [ ] Add a search by Certified and Dates
     - [ ] Labor Misc Time
     - [x] Drivers Schedule
-- [ ] *Tickets*
+- [x] Tickets
     - [x] Ticket Items
     - [x] Ticket TCPs
     - [ ] Ticket Misc Items
@@ -75,7 +83,7 @@ TCR API middleman using FastAPI
 #### Other
 - [x] Get Side Menus
 - [ ] *Get Search Records*
-- [ ] Get Grid Columns For Advanced Search
+- [x] Get Grid Columns For Advanced Search
 - [ ] Customers Page
     - [ ] Get Tickets Count
     - [ ] Get Customer Overview

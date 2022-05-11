@@ -19,3 +19,4 @@ from TCRAPI.getgriddata.PriceListItems import priceListItemsClass
 from TCRAPI.getgriddata.PriceLists import priceListsClass
 from TCRAPI.getgriddata.JobTCPs import jobTCPsClass
 from TCRAPI.getgriddata.TicketTCPs import ticketTCPsClass
+from TCRAPI.getgriddata.Tickets import ticketsClass

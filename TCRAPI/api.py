@@ -9,6 +9,7 @@ class api:
     getGridDataURL = baseUrl + "/webservices/data.asmx/GetGridData"
     getUserSettingsURL = baseUrl + "/webservices/UserSettings.asmx/GetUserSetting"
     getSideMenusURL = baseUrl + "/webservices/config.asmx/GetSideMenus"
+    getGridColumnsForAdvSearchURL = baseUrl + "/webservices/config.asmx/GetGridColumnsForAdvSearch"
 
     def __init__(self, headers=None):
         self.headers = headers
@@ -45,10 +46,11 @@ class api:
         if isinstance(grid, str):
             grid = self.getGrid(grid)
             gridReturn = grid["GridID"]
+            return gridReturn
         if isinstance(grid, int):
             grid = self.getGridByID(grid)
             gridReturn = grid["GridName"]
-        return gridReturn
+            return gridReturn
 
     def getGridInfo(self, grid):
         """
@@ -126,10 +128,11 @@ class api:
             gridNumber = self.getGrid(grid)["d"]["GridID"]
             gridSettingFormat = f"Yagna.Grid.{gridNumber}"
             gridSettings = self.getUserSettings(gridSettingFormat)
+            return gridSettings
         if isinstance(grid, int):
             gridSettingFormat = f"Yagna.Grid.{grid}"
             gridSettings = self.getUserSettings(gridSettingFormat)
-        return gridSettings
+            return gridSettings
 
 
     def getGridSortSettings(self, grid):
@@ -139,6 +142,7 @@ class api:
         """
         response = self.getGridSettings(grid)
         if response is not None:
+            sortDirINT = 0
             if response["SortDir"] == "sort-asc":
                 sortDirINT = 0
             if response["SortDir"] == "sort-desc":
@@ -162,6 +166,12 @@ class api:
     def getSideMenus(self):
         request = requests.post(self.getSideMenusURL, headers=self.headers).json()
         return request["d"]
+
+    def getColumnsForAdvSearch(self, grid):
+        gridName = self.getGrid(grid)["GridName"]
+        payload = {"gridName": gridName}
+        response = requests.post(self.getGridColumnsForAdvSearchURL, headers=self.headers, json=payload).json()
+        return response["d"]
 
     def getGridData(self, Grid, FilterConditions,
                     StartIndex=1, RecordCount=250,

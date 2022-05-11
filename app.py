@@ -55,6 +55,13 @@ definitions = {
         'url': "/getsidemenus/",
         "parameters": None
     },
+    "get_grid_columns_for_adv_search": {
+        "type": "post",
+        "url": "/advancedsearch/",
+        "parameters": {
+            "grid": "int / str"
+        }
+    },
     "schedule": {
         "type": "post",
         "url": "/schedule/",
@@ -226,6 +233,14 @@ definitions = {
             "include_count": False
         },
     },
+    "tickets": {
+        "type": "post",
+        "url": "/tickets/",
+        "parameters": {
+            "search": "str",
+            "include_count": False
+        },
+    },
 }
 
 
@@ -237,6 +252,9 @@ class GetGridSettings(BaseModel):
 
 class GetSideMenus(BaseModel):
     pass
+
+class GridColumnsForAdvSearch(BaseModel):
+    grid: Union[int, str]
 
 class GetGridBaseModel(BaseModel):
     search: Optional[str]
@@ -308,6 +326,9 @@ class JobTCPs(GetGridBaseModel):
 class TicketTCPs(GetGridBaseModel):
     ticketid: int
 
+class Tickets(GetGridBaseModel):
+    pass
+
 
 # ! Basic Info Function
 @ app.get("/")
@@ -335,6 +356,12 @@ async def get_sidemenuspost():
     response = tcr.getSideMenus()
     return response
 
+
+# ! Basic Info Function
+@ app.post("/advancedsearch/")  # ? Returns the Full Get Grid Colums For Advanced Search Post of TCR
+async def get_advancedsearchpost(grid: GridColumnsForAdvSearch):
+    response = tcr.getColumnsForAdvSearch(grid.grid)
+    return response
 
 
 @ app.post("/customers/")
@@ -637,4 +664,17 @@ async def get_ttcps(ttcps: TicketTCPs):
         StartIndex=ttcps.start_index,
         RecordCount=ttcps.record_count,
         IncludeCount=ttcps.include_count)
+    return request
+
+@ app.post("/tickets/")
+async def get_tickets(tickets: Tickets):
+    info = ticketsClass()  # ! DIFFERENT CLASS VARIABLES **
+
+    request = tcr.getGridData(
+        Grid=info.GridID,
+        FilterConditions=info.filterConditions,
+        QuickSearch=tickets.search,
+        StartIndex=tickets.start_index,
+        RecordCount=tickets.record_count,
+        IncludeCount=tickets.include_count)
     return request
