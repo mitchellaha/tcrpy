@@ -668,10 +668,10 @@ async def get_ttcps(ttcps: TicketTCPs):
 
 @ app.post("/tickets/")
 async def get_tickets(tickets: Tickets):
-    info = ticketsClass()  # ! DIFFERENT CLASS VARIABLES **
+    info = ticketsClass()
 
     request = tcr.getGridData(
-        Grid=info.GridID,
+        Grid=info.gridID,
         FilterConditions=info.filterConditions,
         QuickSearch=tickets.search,
         StartIndex=tickets.start_index,

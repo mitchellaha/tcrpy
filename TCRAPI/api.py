@@ -52,7 +52,7 @@ class api:
             gridReturn = grid["GridName"]
             return gridReturn
 
-    def getGridInfo(self, grid):
+    def getGridInfo(self, grid):  # TODO: Consider Removal | Duplicate
         """
         Gets The Relevant GridInfo from GridName
             > GridName is required
@@ -80,7 +80,7 @@ class api:
             dataFields.append(dField["DataField"])
         return dataFields
 
-    def getGridDataFieldsInfo(self, grid):
+    def getGridDataFieldsInfo(self, grid): # TODO: Consider Removal | Duplicate
         """
         Gets The Fields with all info from the Grid Name
             > GridName is required
