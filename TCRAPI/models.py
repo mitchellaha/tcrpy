@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List
 
 from pydantic import BaseModel, conint
 
@@ -14,18 +14,18 @@ class GetGridByIDModel(BaseModel):
 # ! Get Grid Data Below
 class ConditionsModel(BaseModel):
     Attribute: str
-    Values: list
+    Values: List
     Operator: int
 
 class FilterModel(BaseModel):
-    Conditions: list[ConditionsModel]
+    Conditions: List[ConditionsModel]
 
 class FilterSearchConditionsModel(BaseModel):  # ! Used For Search
-    Conditions: list
+    Conditions: List
     GroupOperator: int
 
 class FilterSearchModel(BaseModel):  # ! Used For Search
-    Conditions: list
+    Conditions: List
     Filter: FilterSearchConditionsModel
 
 class SortModel(BaseModel):
@@ -37,8 +37,8 @@ class GetGridDataModel(BaseModel):
     RecordCount: conint(ge=50)
     Filter: Any
     StartIndex: conint(ge=1)
-    Attributes: list[str]
-    Sort: list[SortModel]
+    Attributes: List[str]
+    Sort: List[SortModel]
     CustomSort: Any
 
 class GetGridDataModelRoot(BaseModel):
