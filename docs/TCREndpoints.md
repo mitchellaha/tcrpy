@@ -2,7 +2,7 @@
 
 > See [GetGridData](docs/references.md) for .getGridData() post information.
 
-## Completed 
+## /GetGridData 
 - [x] Customers
     - [x] Customer Contacts
     - [x] Customer Invoices
@@ -44,3 +44,17 @@
 - [x] Price Lists
     - [x] Price List Items
 - [ ] Quote Extras
+
+## Other
+- [x] Get Side Menus
+- [ ] *Get Search Records*
+- [x] Get Grid Columns For Advanced Search
+- [ ] Customers Page
+    - [ ] Get Tickets Count
+    - [ ] Get Customer Overview
+    - [ ] Get Billing History
+    - [ ] Get Top 5 Equipment
+- [ ] Get Audit Data
+    - [ ] Customers
+    - [ ] Jobs
+    - [ ] Tickets

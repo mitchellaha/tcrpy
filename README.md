@@ -12,6 +12,8 @@ TCR API Interaction Library
 
 - **[FastAPI](docs/FastAPI.md)**
 
+- **[ChangeLog](docs/changelog.md)**
+
 
 
 ## Install
@@ -33,44 +35,42 @@ The easiest way to install the latest version from PyPI is by using [pip](https:
 4. Install dependencies
     - ```$ pip install -r requirements.txt```
 
-### Build From Source ( *Advanced* )
+### From Source ( *Advanced* )
 
 1. Clone the repository to an empty directory
     - ```$ git clone https://github.com/mitchellaha/TCRAPI.git .```
 2. Verify SetupTools is Updated
     - ```$ pip install --upgrade setuptools```
-3. Install dependencies
+3. Install the project
+    - ```$ python setup.py install```
+
 
 -------------------
 
-# To-Do:
+
+## To-Do:
+- [ ] **[All TCR API Endpoints](docs/TCREndpoints.md)**
 - [ ] Add more documentation
-- [x] Add Status Filter to Customers & Jobs
+    - [ ] Explain Correlation & Uses of different TCR Rest endpoints
+- [ ] Complete Overhaul of TCRAPI/getgriddata/ grid classes
+    - [ ] Create Base Class For All Grid Classes
+    - [ ] Change Naming Scheme
 - [ ] *Create More Unified Filter Conditions*
+    - [x] ~~Add Status Filter to Customers & Jobs~~
     - [ ] GetSideMenus contains info for Quick Filter Check Boxes
+        - [ ] Add Ticket Status & Ticket Type Filter
     - [ ] Pull the needed data from the TCR_Menu/TCRConstants
     - [ ] Advanced Search Filters:
+        - [ ] Python Class Enums with TCRConstants
         - DataTypes = "QueryFilterFieldDataType" in TCRConstants
         - Each DataType is allowed certain "QueryParamOperator" in TCRConstants
-- [ ] Add Ticket Status & Ticket Type Filter
 - [x] Pagination Support
 - [x] Cleanup Login / CookieGetter
-- [ ] Serverside Logging
-- [ ] Add Descript Response Error Messages
-- [ ] Add Authentication
 
-- [ ] **[All GetGridData](docs/quickstart.md)**
 
-#### Other
-- [x] Get Side Menus
-- [ ] *Get Search Records*
-- [x] Get Grid Columns For Advanced Search
-- [ ] Customers Page
-    - [ ] Get Tickets Count
-    - [ ] Get Customer Overview
-    - [ ] Get Billing History
-    - [ ] Get Top 5 Equipment
-- [ ] Get Audit Data
-    - [ ] Customers
-    - [ ] Jobs
-    - [ ] Tickets
+- [ ] **[FastAPI](docs/FastAPI.md)**
+    - [ ] Add Documentation
+        - [ ] Add PostMan Collection
+    - [ ] Add Authentication
+    - [ ] Serverside Logging
+    - [ ] Add Descript Error Messages
