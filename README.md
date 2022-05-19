@@ -1,24 +1,49 @@
-# TCR-API
+# TCRAPI
+[![PyPI Version](https://img.shields.io/pypi/v/TCRAPI)](https://pypi.org/project/TCRAPI/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/TCRAPI)](https://pypi.org/project/TCRAPI/)
+
 TCR API Interaction Library
 
-# Demo Using FastAPI
+## Usage
 
-### Install
-1. Create a virtual environment
+- **[QuickStart](docs/quickstart.md)**
+
+- **[References](docs/references.md)**
+
+- **[FastAPI](docs/FastAPI.md)**
+
+
+
+## Install
+
+### via pip ( recommended )
+
+The easiest way to install the latest version from PyPI is by using [pip](https://pip.pypa.io/):
+
+```$ pip install TCRAPI```
+
+### via Git Clone *with extras* 
+
+1. Clone the repository to an empty directory
+    - ```$ git clone https://github.com/mitchellaha/TCRAPI.git .```
+2. Create a virtual environment
     - ```$ python3 -m venv venv```
-2. Activate the virtual environment
+3. Activate the virtual environment
     - ```$ source venv/bin/activate```
-3. Install dependencies
+4. Install dependencies
     - ```$ pip install -r requirements.txt```
-4. Add Login Information to environment variables or .env file
-    - ```$ export email=<"email">```
-    - ```$ export password=<"password">```
-4. Run the application
-    - ```$ uvicorn app:app --reload```
+
+### Build From Source ( *Advanced* )
+
+1. Clone the repository to an empty directory
+    - ```$ git clone https://github.com/mitchellaha/TCRAPI.git .```
+2. Verify SetupTools is Updated
+    - ```$ pip install --upgrade setuptools```
+3. Install dependencies
 
 -------------------
 
-## To-Do:
+# To-Do:
 - [ ] Add more documentation
 - [x] Add Status Filter to Customers & Jobs
 - [ ] *Create More Unified Filter Conditions*
@@ -34,51 +59,7 @@ TCR API Interaction Library
 - [ ] Add Descript Response Error Messages
 - [ ] Add Authentication
 
-
-## Working TCR Requests
-
-#### Get Grid Data
-- [x] Customers
-    - [x] Customer Contacts
-    - [x] Customer Invoices
-    - [x] Customer Jobs
-- [x] Jobs
-    - [x] Job Tickets
-    - [x] Job Invoices
-    - [x] Job TCPs
-    - [ ] Job Photos
-    - [ ] Quantity On Hand
-- [ ] Labor
-    - [x] Labor Tickets?
-        - [ ] Add a search by Certified and Dates
-    - [ ] Labor Misc Time
-    - [x] Drivers Schedule
-- [x] Tickets
-    - [x] Ticket Items
-    - [x] Ticket TCPs
-    - [ ] Ticket Misc Items
-    - [x] Ticket Labor
-    - [x] Ticket Signs
-    - [x] Ticket Return Signs
-    - [ ] Ticket Kits
-- [x] Invoices
-    - [x] Invoice Details
-- [ ] Quotes
-    - [ ] Quote Items
-    - [ ] Quote Signs
-- [ ] Item Tracking
-- [x] Line Items
-    - [ ] Line Item Price List
-- [ ] Sub Items
-- [ ] Signs
-- [x] Drivers
-- [ ] Equipment
-- [ ] Trucks
-- [ ] Zones
-- [ ] Labels
-- [x] Price Lists
-    - [x] Price List Items
-- [ ] Quote Extras
+- [ ] **[All GetGridData](docs/quickstart.md)**
 
 #### Other
 - [x] Get Side Menus
