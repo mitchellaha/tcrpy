@@ -18,7 +18,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    python_requires=">=3.9",
+    python_requires=">=3.6",
     install_requires=[
         'beautifulsoup4==4.11.1',
         'pydantic==1.9.0',
