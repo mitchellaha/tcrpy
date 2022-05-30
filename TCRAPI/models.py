@@ -45,6 +45,10 @@ class GetGridDataModelRoot(BaseModel):
     query: GetGridDataModel
 
 
+class getTicketModel(BaseModel):
+    ticketID: str
+
+
 # ! Get User Settings Below
 class GetUserSettingModel(BaseModel):
     settingName: str

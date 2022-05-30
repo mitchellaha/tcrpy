@@ -241,6 +241,18 @@ definitions = {
             "include_count": False
         },
     },
+    "ticket": {
+        "type": "post",
+        "url": "/ticket/",
+        "parameters": {
+            "ticketid": "int"
+        },
+    },
+    "get_company": {
+        "type": "post",
+        "url": "/getcompany/",
+        "parameters": None
+    },
 }
 
 
@@ -248,7 +260,7 @@ class GetGrid(BaseModel):
     grid: int
 
 class GetGridSettings(BaseModel):
-    grid: int
+    grid: Union[int, str]
 
 class GetSideMenus(BaseModel):
     pass
@@ -328,6 +340,9 @@ class TicketTCPs(GetGridBaseModel):
 
 class Tickets(GetGridBaseModel):
     pass
+
+class Ticket(GetGridBaseModel):
+    ticketid: int
 
 
 # ! Basic Info Function
@@ -678,3 +693,14 @@ async def get_tickets(tickets: Tickets):
         RecordCount=tickets.record_count,
         IncludeCount=tickets.include_count)
     return request
+
+@ app.post("/ticket/")
+async def get_ticket(ticket: Ticket):
+    request = tcr.getTicket(ticket.ticketid)
+    return request
+
+@ app.post("/company/")
+async def get_company():
+    request = tcr.getCompany()
+    return request
+

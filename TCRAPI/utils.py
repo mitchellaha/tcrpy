@@ -1,6 +1,25 @@
 import datetime
 import math
+from TCRAPI.models import *
 
+
+def getGridDataQuickSearch(SearchQuery, GridFilterConditions, QuickSearchFieldsList):
+    def createConditionsModelForSearch(field, value):
+        return ConditionsModel(
+            Attribute=field,
+            Values=[value],
+            Operator=10
+        )
+
+    searchConditions = [createConditionsModelForSearch(field, value) for field in QuickSearchFieldsList for value in SearchQuery]
+
+    return FilterSearchModel(
+        Conditions=GridFilterConditions,
+        Filter=FilterSearchConditionsModel(
+            Conditions=searchConditions,
+            GroupOperator=2
+        )
+    )
 
 def findPages(recordCount, pageSize):
     """

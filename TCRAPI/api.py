@@ -1,106 +1,105 @@
 import requests
 import json
 from TCRAPI.models import *
+from TCRAPI.enums import *
+from TCRAPI.utils import getGridDataQuickSearch
 
 class api:
-    baseUrl = "http://apps.tcrsoftware.com/tcr_2"
-    getGridURL = baseUrl + "/webservices/config.asmx/GetGrid"
-    getGridByIDURL = baseUrl + "/webservices/config.asmx/GetGridByID"
-    getGridDataURL = baseUrl + "/webservices/data.asmx/GetGridData"
-    getUserSettingsURL = baseUrl + "/webservices/UserSettings.asmx/GetUserSetting"
-    getSideMenusURL = baseUrl + "/webservices/config.asmx/GetSideMenus"
-    getGridColumnsForAdvSearchURL = baseUrl + "/webservices/config.asmx/GetGridColumnsForAdvSearch"
+    baseUrl = "http://apps.tcrsoftware.com/tcr_2/"
+    getCompanyURL = baseUrl + "webservices/GeneralAjaxService.asmx/GetCompany"
+    getGridURL = baseUrl + "webservices/config.asmx/GetGrid"
+    getGridByIDURL = baseUrl + "webservices/config.asmx/GetGridByID"
+    getGridDataURL = baseUrl + "webservices/data.asmx/GetGridData"
+    getUserSettingsURL = baseUrl + "webservices/UserSettings.asmx/GetUserSetting"
+    getSideMenusURL = baseUrl + "webservices/config.asmx/GetSideMenus"
+    getGridColumnsForAdvSearchURL = baseUrl + "webservices/config.asmx/GetGridColumnsForAdvSearch"
+    getTicketURL = baseUrl + "webservices/Tickets.asmx/GetTicket"
+    getAuditDataURL = baseUrl + "webservices/Audit.asmx/GetAuditData"
 
     def __init__(self, headers=None):
         self.headers = headers
+        self.sideMenu = None
 
-    def getGrid(self, gridName):
-        """
-        Gets The Full JSON Response from TCR with Grid Name
-            > GridName is required
-        """
-        if isinstance(gridName, int):
-            gridName = self.gridNameID(gridName)
-        grid = GetGridModel(gridName=gridName)
-        response = requests.post(self.getGridURL, headers=self.headers, data=grid.json()).json()
-        data = response["d"]
-        return data
 
-    def getGridByID(self, gridID):
+    def getGrid(self, grid):
         """
-        Gets The Full JSON Response from TCR with Grid ID
-            > GridID is required
+        Gets The Full JSON Response from TCR with Grid Name  
+            - Uses GetGridByID url if grid is an int
+            - Uses GetGrid url if grid is a string
+        
+        Parameters:
+        ----------
+            grid : str
+
+        Returns:
+        -------
+            dict : contains the grid info
         """
-        if isinstance(gridID, str):
-            gridID = self.gridNameID(gridID)
-        grid = GetGridByIDModel(gridID=gridID)
-        response = requests.post(self.getGridByIDURL, headers=self.headers, data=grid.json()).json()
-        data = response["d"]
-        return data
+        if isinstance(grid, int):  # ? Uses "getGridByIDURL" if grid is an int
+            grid = GetGridByIDModel(gridID=grid)
+            response = requests.post(self.getGridByIDURL, headers=self.headers, data=grid.json()).json()
+            return response["d"]
+        if isinstance(grid, str):  # ? Uses "getGridURL" if grid is a str
+            grid = GetGridModel(gridName=grid)
+            response = requests.post(self.getGridURL, headers=self.headers, data=grid.json()).json()
+            return response["d"]
+        else:
+            raise ValueError("Grid must be a string or int")
+
 
     def gridNameID(self, grid):
         """
         If Given the GridName, Returns the GridID
         If Given the GridID, Returns the GridName
         """
+        gridInfo = self.getGrid(grid)
         if isinstance(grid, str):
-            grid = self.getGrid(grid)
-            gridReturn = grid["GridID"]
-            return gridReturn
+            return gridInfo["GridID"]
         if isinstance(grid, int):
-            grid = self.getGridByID(grid)
-            gridReturn = grid["GridName"]
-            return gridReturn
-
-    def getGridInfo(self, grid):  # TODO: Consider Removal | Duplicate
-        """
-        Gets The Relevant GridInfo from GridName
-            > GridName is required
-        """
-        gridInfo = {}
-        grid = self.getGrid(grid)
-        gridInfo["GridTitle"] = grid["GridTitle"]
-        gridInfo["GridName"] = grid["GridName"]
-        gridInfo["GridID"] = grid["GridID"]
-        gridInfo["PrimaryKeyField"] = grid["PrimaryKeyField"]
-        gridInfo["EditURL"] = grid["EditURL"]
-        gridInfo["FilterFields"] = grid["FilterFields"]
-        gridInfo["Columns"] = grid["Columns"]
-        return gridInfo
+            return gridInfo["GridName"]
 
 
-    def getGridDataFields(self, grid):
+    def getGridDataFields(self, grid=None, columns=None):
         """
         Gets The Required Field Attributes from the Grid Name
-            > GridName is required
-        """
-        gridData = self.getGrid(grid)
-        dataFields = []
-        for dField in gridData["Columns"]:
-            dataFields.append(dField["DataField"])
-        return dataFields
 
-    def getGridDataFieldsInfo(self, grid): # TODO: Consider Removal | Duplicate
-        """
-        Gets The Fields with all info from the Grid Name
-            > GridName is required
-        """
-        gridData = self.getGrid(grid)
-        dataFields = []
-        for dField in gridData["Columns"]:
-            dataFields.append(dField)
-        return dataFields
+        Parameters::
+        ----------
+            grid -- grid name or grid id : str or int
+            columns -- list of columns to search : list of dict
 
-    def getGridQuickSearchFields(self, grid):
+
+        Returns::
+        -------
+            list[str] | Data Fields
         """
-        Gets The QuickSearch Fields from the Grid Name
-            > GridName is required
+        if grid is not None:
+            grid = self.getGrid(grid)
+        if columns is not None:
+            grid = columns
+        else:
+            raise ValueError("Grid or Columns are required to get the Data Fields")
+        return [field["DataField"] for field in grid["Columns"]]
+
+
+    def getGridQuickSearchFields(self, grid=None, columns=None):
         """
-        gridFields = self.getGridDataFieldsInfo(grid)
-        quickSearchFields = []
-        for field in gridFields:
-            if field["QuickSearch"] is True:
-                quickSearchFields.append(field["DataField"])
+        Gets The QuickSearch Fields either grid or columns  
+
+        Parameters::
+        ----------
+            grid -- grid name or grid id : str or int  
+            columns -- list of columns to search : list of dict
+
+        Returns::
+        -------
+            list[str] | Quick Search Fields
+        """
+        if grid is not None:
+            gridColumns = self.getGrid(grid)["Columns"]
+        if columns is not None:
+            gridColumns = columns
+        quickSearchFields = [field["DataField"] for field in gridColumns if field["QuickSearch"] is True]
         return quickSearchFields
 
 
@@ -113,10 +112,9 @@ class api:
         response = requests.post(
             self.getUserSettingsURL, headers=self.headers, data=userSetting.json()).json()
         if isinstance(response["d"], str):
-            responseLoad = json.loads(response["d"])
+            return json.loads(response["d"])
         else:
-            responseLoad = response["d"]
-        return responseLoad
+            return response["d"]
 
 
     def getGridSettings(self, grid):
@@ -125,14 +123,10 @@ class api:
             > GridID or GridName is required
         """
         if isinstance(grid, str):
-            gridNumber = self.getGrid(grid)["d"]["GridID"]
-            gridSettingFormat = f"Yagna.Grid.{gridNumber}"
-            gridSettings = self.getUserSettings(gridSettingFormat)
-            return gridSettings
-        if isinstance(grid, int):
-            gridSettingFormat = f"Yagna.Grid.{grid}"
-            gridSettings = self.getUserSettings(gridSettingFormat)
-            return gridSettings
+            grid = self.gridNameID(grid)
+        gridSettingFormat = f"Yagna.Grid.{grid}"
+        gridSettings = self.getUserSettings(gridSettingFormat)
+        return gridSettings
 
 
     def getGridSortSettings(self, grid):
@@ -141,77 +135,80 @@ class api:
             > GridID or GridName is required
         """
         response = self.getGridSettings(grid)
-        if response is not None:
-            sortDirINT = 0
-            if response["SortDir"] == "sort-asc":
-                sortDirINT = 0
-            if response["SortDir"] == "sort-desc":
-                sortDirINT = 1
-            sort = SortModel(
-                Attribute=response["SortCol"],
-                Order=sortDirINT
-            )
-            return sort
-        else:  # ? If there is no sort settings find the default sort settings
+        if response is not None and response["SortCol"]:
+            return SortModel(Attribute=response["SortCol"], Order=SortDir.fromSettings(response["SortDir"]))
+        if response is None:
             getGridInfo = self.getGrid(grid)
-            if getGridInfo is not None and getGridInfo["DefaultSortColumn"] is not None:
-                sort = SortModel(
-                    Attribute=getGridInfo["DefaultSortColumn"],
-                    Order=getGridInfo["DefaultSortOrder"])
-                return sort
+            if getGridInfo["DefaultSortColumn"] is not None:
+                return SortModel(Attribute=getGridInfo["DefaultSortColumn"], Order=getGridInfo["DefaultSortOrder"])
             else:
-                sort = SortModel()
-                return sort
+                return SortModel()
+
 
     def getSideMenus(self):
+        """Gets the Side Menus from TCR & Sets instance variable sideMenu"""
         request = requests.post(self.getSideMenusURL, headers=self.headers).json()
+        self.sideMenus = request["d"]
         return request["d"]
 
+
     def getColumnsForAdvSearch(self, grid):
+        """
+        Gets the Columns for Advanced Search from TCR
+        
+        Parameters::
+        ----------
+            grid -- grid name or grid id : str or int
+
+        Returns::
+        -------
+            list[dict] | List of Dictionaries Containing Column Info
+        """
         gridName = self.getGrid(grid)["GridName"]
         payload = {"gridName": gridName}
         response = requests.post(self.getGridColumnsForAdvSearchURL, headers=self.headers, json=payload).json()
         return response["d"]
 
+
     def getGridData(self, Grid, FilterConditions,
                     StartIndex=1, RecordCount=250,
                     QuickSearch=None, IncludeCount=True,
                     ):
+        """
+        Gets The Grid Data from TCR
+
+        Parameters::
+        ----------
+            Grid : str or int
+            FilterConditions : list
+            StartIndex : int (default=1)
+            RecordCount : int (default=250)
+            QuickSearch : str (default=None)
+            IncludeCount : bool (default=True)
+
+        Returns::
+        -------
+            dict : contains the grid data and count
+        """
         getGridInfo = self.getGrid(Grid)
         gridID = getGridInfo["GridID"]
-        dataFields = []
-        quickSearchFields = []
+        attributeFields = [field["DataField"] for field in getGridInfo["Columns"] ]
         
-        for dField in getGridInfo["Columns"]:
-            dataFields.append(dField["DataField"])
-            if dField["QuickSearch"] is True:
-                quickSearchFields.append(dField["DataField"])
-
         if QuickSearch is not None:
-            searchConditions = []
-            for field in quickSearchFields:
-                searchConditions.append(
-                    ConditionsModel(
-                        Attribute=field,
-                        Values=[QuickSearch],
-                        Operator=10
-                    )
-                )
-            FilterConditions = FilterSearchModel(
-                Conditions=FilterConditions.Conditions,
-                Filter=FilterSearchConditionsModel(
-                    Conditions=searchConditions,
-                    GroupOperator=2
-                )
+            quickSearchFields = [field["DataField"] for field in getGridInfo["Columns"] if field["QuickSearch"] is True]
+            FilterConditions = getGridDataQuickSearch(
+                SearchQuery=QuickSearch,
+                GridFilterConditions=FilterConditions.Conditions,
+                QuickSearchFieldsList=quickSearchFields
             )
 
         requestData = GetGridDataModelRoot(
             query=GetGridDataModel(
-                GridID=gridID,
+                GridID=getGridInfo["GridID"],
                 RecordCount=RecordCount,
                 Filter=FilterConditions,
                 StartIndex=StartIndex,
-                Attributes=dataFields,
+                Attributes=attributeFields,
                 Sort=[self.getGridSortSettings(gridID)],
                 CustomSort=None,
             )
@@ -225,3 +222,32 @@ class api:
             return {"count": count, "data": data}
         else:
             return data
+
+    def getTicket(self, ticketID):
+        """
+        Gets the Ticket Details from TCR
+
+        Parameters::
+        ----------
+            ticketID -- Ticket ID : int
+
+        Returns::
+        -------
+            dict -- Ticket Details
+        """
+        ticketID = getTicketModel(ticketID=ticketID).json()
+        response = requests.post(self.getTicketURL, headers=self.headers, data=ticketID).json()
+        return response["d"]
+
+    def getCompany(self):
+        """
+        Gets the Company Details from TCR
+
+        Returns::
+        -------
+            dict -- Company Details
+        """
+        response = requests.post(self.getCompanyURL, headers=self.headers).json()
+        dResponse = response["d"]
+        dResponse.pop("LogoImage")
+        return dResponse

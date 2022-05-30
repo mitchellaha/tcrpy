@@ -12,7 +12,7 @@ TCR API Interaction Library
 
 - **[FastAPI](docs/FastAPI.md)**
 
-- **[ChangeLog](docs/changelog.md)**
+- **[Release ChangeLog](docs/changelog.md)**
 
 
 
