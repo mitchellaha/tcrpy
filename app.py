@@ -120,6 +120,13 @@ definitions = {
             "include_count": False
         },
     },
+    "job": {
+        "type": "post",
+        "url": "/job/",
+        "parameters": {
+            "jobid": "int"
+        },
+    },
     "jobs": {
         "type": "post",
         "url": "/jobs/",
@@ -253,6 +260,13 @@ definitions = {
         "url": "/getcompany/",
         "parameters": None
     },
+    "customer": {
+        "type": "post",
+        "url": "/customer/",
+        "parameters": {
+            "customerid": "int"
+        },
+    },
 }
 
 
@@ -343,6 +357,12 @@ class Tickets(GetGridBaseModel):
 
 class Ticket(GetGridBaseModel):
     ticketid: int
+
+class Job(GetGridBaseModel):
+    jobid: int
+
+class Customer(GetGridBaseModel):
+    customerid: int
 
 
 # ! Basic Info Function
@@ -704,3 +724,12 @@ async def get_company():
     request = tcr.getCompany()
     return request
 
+@ app.post("/job/")
+async def get_job(job: Job):
+    request = tcr.getJob(job.jobid)
+    return request
+
+@ app.post("/customer/")
+async def get_customer(customer: Customer):
+    request = tcr.getCustomer(customer.customerid)
+    return request

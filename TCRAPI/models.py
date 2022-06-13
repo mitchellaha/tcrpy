@@ -48,6 +48,12 @@ class GetGridDataModelRoot(BaseModel):
 class getTicketModel(BaseModel):
     ticketID: str
 
+class getJobModel(BaseModel):
+    JobID: str
+
+class getCustomerModel(BaseModel):
+    custID: str
+
 
 # ! Get User Settings Below
 class GetUserSettingModel(BaseModel):

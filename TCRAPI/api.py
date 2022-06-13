@@ -13,8 +13,10 @@ class api:
     getUserSettingsURL = baseUrl + "webservices/UserSettings.asmx/GetUserSetting"
     getSideMenusURL = baseUrl + "webservices/config.asmx/GetSideMenus"
     getGridColumnsForAdvSearchURL = baseUrl + "webservices/config.asmx/GetGridColumnsForAdvSearch"
-    getTicketURL = baseUrl + "webservices/Tickets.asmx/GetTicket"
     getAuditDataURL = baseUrl + "webservices/Audit.asmx/GetAuditData"
+    getTicketURL = baseUrl + "webservices/Tickets.asmx/GetTicket"
+    getJobURL = baseUrl + "webservices/Jobs.asmx/GetJobByID"
+    getCustomerURL = baseUrl + "webservices/Customers.asmx/GetCustomer"
 
     def __init__(self, headers=None):
         self.headers = headers
@@ -251,3 +253,35 @@ class api:
         dResponse = response["d"]
         dResponse.pop("LogoImage")
         return dResponse
+
+    def getJob(self, jobID):
+        """
+        Gets the Job Details from TCR
+
+        Parameters::
+        ----------
+            jobID -- Job ID : int
+
+        Returns::
+        -------
+            dict -- Job Details
+        """
+        jobID = getJobModel(JobID=jobID).json()
+        response = requests.post(self.getJobURL, headers=self.headers, data=jobID).json()
+        return response["d"]
+
+    def getCustomer(self, custID):
+        """
+        Gets the Customer Details from TCR
+
+        Parameters::
+        ----------
+            custID -- Customer ID : int
+
+        Returns::
+        -------
+            dict -- Customer Details
+        """
+        custID = getCustomerModel(custID=custID).json()
+        response = requests.post(self.getCustomerURL, headers=self.headers, data=custID).json()
+        return response["d"]
