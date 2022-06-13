@@ -5,13 +5,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="TCRAPI",
-    version="0.1.0",
+    version="0.1.1",
     author="Mitch V Aureli",
     author_email="mitch@logic3ii.com",
     description="A Python Library For Interacting With TCR",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/mitchellaha/TCR-API",
+    url="https://github.com/mitchellaha/TCRAPI",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

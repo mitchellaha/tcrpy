@@ -5,6 +5,8 @@
 ## Main
 - [x] Ticket
 - [x] Company
+- [x] Job
+- [x] Customer
 - [x] Get Side Menus
 - [ ] *Get Search Records*
 
