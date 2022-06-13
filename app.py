@@ -733,3 +733,8 @@ async def get_job(job: Job):
 async def get_customer(customer: Customer):
     request = tcr.getCustomer(customer.customerid)
     return request
+
+@ app.post("/items/")
+async def get_items():
+    request = tcr.getItems()
+    return request

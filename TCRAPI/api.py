@@ -17,6 +17,7 @@ class api:
     getTicketURL = baseUrl + "webservices/Tickets.asmx/GetTicket"
     getJobURL = baseUrl + "webservices/Jobs.asmx/GetJobByID"
     getCustomerURL = baseUrl + "webservices/Customers.asmx/GetCustomer"
+    getItemsURL = baseUrl + "webservices/GeneralAjaxService.asmx/GetItems"
 
     def __init__(self, headers=None):
         self.headers = headers
@@ -284,4 +285,15 @@ class api:
         """
         custID = getCustomerModel(custID=custID).json()
         response = requests.post(self.getCustomerURL, headers=self.headers, data=custID).json()
+        return response["d"]
+
+    def getItems(self):
+        """
+        Gets the Items from TCR
+
+        Returns::
+        -------
+            dict -- Items
+        """
+        response = requests.post(self.getItemsURL, headers=self.headers).json()
         return response["d"]
