@@ -247,24 +247,41 @@
 
 ### ASMX Locations
 
+    /webservices/data.asmx
     /webservices/GeneralAjaxService.asmx
     /webservices/DashboardService.asmx
-    /webservices/History.asmx
-    /webservices/data.asmx
+
     /webservices/config.asmx
+    /webservices/History.asmx
     /webservices/UserSettings.asmx
     /webservices/CustomerPortal.asmx
     /webservices/CustomEntity.asmx
     /webservices/LabelSettings.asmx
-    /webservices/QuoteSigns.asmx
     /webservices/Branches.asmx
-    /webservices/LaborMiscTimes.asmx
-    /webservices/Drivers.asmx
-    /webservices/WorkCodes.asmx
+
+    /webservices/Audit.asmx
+
+    /webservices/Customers.asmx
+
+    /webservices/Jobs.asmx
+
     /webservices/Tickets.asmx
     /webservices/TicketItems.asmx
     /webservices/TicketSigns.asmx
+
+    /webservices/Quotes.asmx
+    /webservices/QuoteSigns.asmx
     /webservices/QuoteItems.asmx
+
+    /webservices/LaborMiscTimes.asmx
     /webservices/Employees.asmx
+    /webservices/Drivers.asmx
+    /webservices/WorkCodes.asmx
+
+    /webservices/PriceListService.asmx
+    /webservices/TaxRateService.asmx
+
+    /webservices/Equipment.asmx
+
     - /js 
     - ?wsdl
