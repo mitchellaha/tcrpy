@@ -2,9 +2,9 @@ from TCRAPI.models import ConditionsModel, FilterModel
 
 
 class ticketsClass:
+    GRIDID = 9
+    GRIDNAME = "TICKETS"
     def __init__(self):
-        self.gridID = 9
-        self.gridName = "TICKETS"
         self.filterConditions = FilterModel(
             Conditions=[
                 ConditionsModel(

@@ -3,10 +3,10 @@ from TCRAPI.models import ConditionsModel, FilterModel
 
 
 class jobInvoicesClass:
+    GRIDID = 11
+    GRIDNAME = "JINVOICES"
     def __init__(self, JobID):
         self.JobID = JobID
-        self.gridID = 11
-        self.gridName = "JINVOICES"
         self.filterConditions = FilterModel(
             Conditions=[
                 ConditionsModel(

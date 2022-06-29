@@ -1,7 +1,7 @@
 from typing import Any, List
 
 from pydantic import BaseModel, conint
-from typing import Optional
+from typing import Optional, Union
 
 
 # ! Get Grid Below
@@ -35,7 +35,7 @@ class SortModel(BaseModel):
 class GetGridDataModel(BaseModel):
     GridID: int
     RecordCount: conint(ge=50)
-    Filter: Any
+    Filter: Union[FilterModel, None]
     StartIndex: conint(ge=1)
     Attributes: List[str]
     Sort: List[SortModel]

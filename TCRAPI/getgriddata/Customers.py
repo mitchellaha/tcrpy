@@ -3,9 +3,9 @@ from TCRAPI.models import ConditionsModel, FilterModel
 
 # ? Status: A-Active, P-Pre-Pay, H-On Hold, I-Inactive
 class customersClass:
+    GRIDID = 1
+    GRIDNAME = "CUSTOMERS"
     def __init__(self):
-        self.gridID = 1
-        self.gridName = "CUSTOMERS"
         self.filterConditions = FilterModel(
             Conditions=[
                 ConditionsModel(

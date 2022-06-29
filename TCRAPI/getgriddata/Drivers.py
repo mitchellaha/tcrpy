@@ -1,9 +1,9 @@
 from TCRAPI.models import ConditionsModel, FilterModel
 
 class driversClass:
+    GRIDID = 34
+    GRIDNAME = "DRIVERS"
     def __init__(self):
-        self.gridID = 34
-        self.gridName = "DRIVERS"
         self.filterConditions = FilterModel(
             Conditions=[
                 ConditionsModel(

@@ -2,10 +2,10 @@ from TCRAPI.models import ConditionsModel, FilterModel
 
 
 class customerContactsClass:
+    GRIDID = 139
+    GRIDNAME = "CONTACTS"
     def __init__(self, CustomerID):
         self.CustomerID = CustomerID
-        self.gridID = 139
-        self.gridName = "CONTACTS"
         self.filterConditions = FilterModel(
             Conditions=[
                 ConditionsModel(
