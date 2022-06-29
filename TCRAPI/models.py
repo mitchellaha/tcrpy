@@ -1,6 +1,7 @@
 from typing import Any, List
 
 from pydantic import BaseModel, conint
+from typing import Optional
 
 
 # ! Get Grid Below
@@ -12,6 +13,11 @@ class GetGridByIDModel(BaseModel):
 
 
 # ! Get Grid Data Below
+class FilterSearchConditionsModel(BaseModel):  # ! Used For Search
+    Conditions: List
+    GroupOperator: int
+    Filter: Optional[Any]
+
 class ConditionsModel(BaseModel):
     Attribute: str
     Values: List
@@ -19,14 +25,8 @@ class ConditionsModel(BaseModel):
 
 class FilterModel(BaseModel):
     Conditions: List[ConditionsModel]
+    Filter: Optional[FilterSearchConditionsModel]
 
-class FilterSearchConditionsModel(BaseModel):  # ! Used For Search
-    Conditions: List
-    GroupOperator: int
-
-class FilterSearchModel(BaseModel):  # ! Used For Search
-    Conditions: List
-    Filter: FilterSearchConditionsModel
 
 class SortModel(BaseModel):
     Attribute: str = None

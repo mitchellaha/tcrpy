@@ -4,6 +4,7 @@ from TCRAPI.models import *
 
 
 def getGridDataQuickSearch(SearchQuery, GridFilterConditions, QuickSearchFieldsList):
+    print(QuickSearchFieldsList)
     def createConditionsModelForSearch(field, value):
         return ConditionsModel(
             Attribute=field,
@@ -11,9 +12,9 @@ def getGridDataQuickSearch(SearchQuery, GridFilterConditions, QuickSearchFieldsL
             Operator=10
         )
 
-    searchConditions = [createConditionsModelForSearch(field, value) for field in QuickSearchFieldsList for value in SearchQuery]
+    searchConditions = [createConditionsModelForSearch(field, SearchQuery) for field in QuickSearchFieldsList]
 
-    return FilterSearchModel(
+    return FilterModel(
         Conditions=GridFilterConditions,
         Filter=FilterSearchConditionsModel(
             Conditions=searchConditions,
