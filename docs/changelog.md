@@ -1,6 +1,10 @@
 # Changelog
 
-## [0.1.1] - 2020-01-01
+## [0.1.2] - 2022-06-28
+- *Change*: GetGridData Class ID & Name are Now Constants
+- *Change*: Search Models Now Work Better and Usage is more Clear
+
+## [0.1.1] - 2022-??-??
 - **Added**: Single Customer Endpoint
 - **Added**: Single Ticket Endpoint
 - **Added**: Single Job Endpoint
