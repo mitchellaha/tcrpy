@@ -274,6 +274,8 @@
     /webservices/QuoteItems.asmx
 
     /webservices/LaborMiscTimes.asmx
+    /webservices/TicketLaborService.asmx
+    
     /webservices/Employees.asmx
     /webservices/Drivers.asmx
     /webservices/WorkCodes.asmx
