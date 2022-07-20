@@ -284,6 +284,7 @@
 
     /webservices/PriceListService.asmx
     /webservices/TaxRateService.asmx
+    /webservices/TaxGroupsService.asmx
 
     /webservices/Equipment.asmx
 
