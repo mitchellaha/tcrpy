@@ -277,6 +277,7 @@
     /webservices/Employees.asmx
     /webservices/Drivers.asmx
     /webservices/WorkCodes.asmx
+    /webservices/Zones.asmx
 
     /webservices/PriceListService.asmx
     /webservices/TaxRateService.asmx
