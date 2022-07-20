@@ -280,6 +280,7 @@
     /webservices/Drivers.asmx
     /webservices/WorkCodes.asmx
     /webservices/Zones.asmx
+    /webservices/NotificationsService.asmx
 
     /webservices/PriceListService.asmx
     /webservices/TaxRateService.asmx
