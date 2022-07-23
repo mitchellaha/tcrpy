@@ -255,7 +255,6 @@
     /webservices/History.asmx
     /webservices/UserSettings.asmx
     /webservices/CustomerPortal.asmx
-    /webservices/CustomEntity.asmx
     /webservices/LabelSettings.asmx
     /webservices/Branches.asmx
 
@@ -287,6 +286,11 @@
     /webservices/TaxGroupsService.asmx
 
     /webservices/Equipment.asmx
+    
+    /webservices/CustomEntity.asmx
+        > customEntityID = 10008
+            > Entity Custom Fields: TICKET
+            > Found: /handlers/GetCustomScript.ashx?CardName=TICKET
 
     - /js 
     - ?wsdl
