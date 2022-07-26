@@ -9,19 +9,19 @@ class GetGridData:
         self.headers = headers
 
 class api:
-    baseUrl = "http://apps.tcrsoftware.com/tcr_2/"
-    getCompanyURL = baseUrl + "webservices/GeneralAjaxService.asmx/GetCompany"
-    getGridURL = baseUrl + "webservices/config.asmx/GetGrid"
-    getGridByIDURL = baseUrl + "webservices/config.asmx/GetGridByID"
-    getGridDataURL = baseUrl + "webservices/data.asmx/GetGridData"
-    getUserSettingsURL = baseUrl + "webservices/UserSettings.asmx/GetUserSetting"
-    getSideMenusURL = baseUrl + "webservices/config.asmx/GetSideMenus"
-    getGridColumnsForAdvSearchURL = baseUrl + "webservices/config.asmx/GetGridColumnsForAdvSearch"
-    getAuditDataURL = baseUrl + "webservices/Audit.asmx/GetAuditData"
-    getTicketURL = baseUrl + "webservices/Tickets.asmx/GetTicket"
-    getJobURL = baseUrl + "webservices/Jobs.asmx/GetJobByID"
-    getCustomerURL = baseUrl + "webservices/Customers.asmx/GetCustomer"
-    getItemsURL = baseUrl + "webservices/GeneralAjaxService.asmx/GetItems"
+    baseUrl = "http://apps.tcrsoftware.com/tcr_2"
+    getGridDataURL = baseUrl + "/webservices/data.asmx/GetGridData"
+    getTicketURL = baseUrl + "/webservices/Tickets.asmx/GetTicket"
+    getJobURL = baseUrl + "/webservices/Jobs.asmx/GetJobByID"
+    getCustomerURL = baseUrl + "/webservices/Customers.asmx/GetCustomer"
+    getGridURL = baseUrl + "/webservices/config.asmx/GetGrid"
+    getGridByIDURL = baseUrl + "/webservices/config.asmx/GetGridByID"
+    getCompanyURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetCompany"
+    getUserSettingsURL = baseUrl + "/webservices/UserSettings.asmx/GetUserSetting"
+    getSideMenusURL = baseUrl + "/webservices/config.asmx/GetSideMenus"
+    getGridColumnsForAdvSearchURL = baseUrl + "/webservices/config.asmx/GetGridColumnsForAdvSearch"
+    getAuditDataURL = baseUrl + "/webservices/Audit.asmx/GetAuditData"
+    getItemsURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetItems"
 
     def __init__(self, email=None, password=None):
         self.tcr_auth = auth(email, password)
@@ -262,19 +262,6 @@ class api:
         else:
             return resultjson["Data"]
 
-    def getCompany(self):
-        """
-        Gets Your Company Details from TCR
-
-        Returns::
-        -------
-            dict -- Company Details
-        """
-        response = requests.post(self.getCompanyURL, headers=self.headers).json()
-        dResponse = response["d"]
-        dResponse.pop("LogoImage")
-        return dResponse
-
     def getTicket(self, ticketID: int):
         """
         Gets the Ticket Details from TCR
@@ -333,3 +320,16 @@ class api:
         """
         response = requests.post(self.getItemsURL, headers=self.headers).json()
         return response["d"]
+
+    def getCompany(self):
+        """
+        Gets Your Company Details from TCR
+
+        Returns::
+        -------
+            dict -- Company Details
+        """
+        response = requests.post(self.getCompanyURL, headers=self.headers).json()
+        dResponse = response["d"]
+        dResponse.pop("LogoImage")
+        return dResponse
