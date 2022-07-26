@@ -247,50 +247,286 @@
 
 ### ASMX Locations
 
-    /webservices/data.asmx
-    /webservices/GeneralAjaxService.asmx
-    /webservices/DashboardService.asmx
-
-    /webservices/config.asmx
-    /webservices/History.asmx
-    /webservices/UserSettings.asmx
-    /webservices/CustomerPortal.asmx
-    /webservices/LabelSettings.asmx
-    /webservices/Branches.asmx
 
     /webservices/Audit.asmx
+        - GetAuditData
 
     /webservices/Customers.asmx
+        - GetBillingCycles
+        - GetCustomer
+        - GetCustomerGroups 
 
     /webservices/Jobs.asmx
+        - GetActiveJobs
+        - GetContacts
+        - GetEquipmentOnSiteCount
+        - GetJob
+        - GetJobAttachmentsCount
+        - GetJobByID
+        - GetJobTypes
+        - SaveJob
+        - UpdateLocation 
 
     /webservices/Tickets.asmx
+        - DeleteTicketSignature
+        - FinalEditTickets
+        - GetRoutesByDate
+        - GetTickRouteByID
+        - GetTicket
+        - GetTicketOrderCategory
+        - GetTicketOrderTypes
+        - GetTicketTransactionsForOrderType
+        - GetTicketsByDelPUDate
+        - GetTicketsByJobForMap
+        - GetTicketsForDriverForMap
+        - GetTicketsForWeek
+        - LinkTCPToTicket
+        - MarkTicketsAsActivated
+        - RemoveRoutingTicket
+        - RemoveTCPToTicket
+        - SaveRouteSortOrder
+        - SaveRoutingTicket
+        - UpdateLocation
+        - VoidTickets 
+
     /webservices/TicketItems.asmx
+        - UpdateSaleItemsSubtotal
+
     /webservices/TicketSigns.asmx
+        - UpdateSignSubtotal
+
+    /webservices/data.asmx
+        - GetCalendarData
+        - GetGridData 
+
+    /webservices/GeneralAjaxService.asmx
+        - ApplyProfitMarginPercentToQuote
+        - CheckDuplicateCustomerJobNumber
+        - CheckDuplicateJob
+        - DeleteUnusedQuoteItems
+        - GetBranch
+        - GetBranchTaxGroupID
+        - GetCompany
+        - GetContact
+        - GetDriverTruck
+        - GetEquipment
+        - GetInvoiceItemPrice
+        - GetItems
+        - GetJobNonInvoicedTicketCount
+        - GetLineItem
+        - GetNewItemForQuote
+        - GetPriceListItem
+        - GetPriceListItemByTicket
+        - GetSubItems
+        - MarkTicketPrinted
+        - RecalculateTicket
+        - SetJobWorkClassDefault 
+
+    /webservices/DashboardService.asmx
+        - !!!! UNAVAILABLE !!!!
+        - ???? MANUALLY LOG INFO FROM DASHBOARD ????
+
+    /webservices/config.asmx
+        - GetFolderTabsByName
+        - GetGrid
+        - GetGridByID
+        - GetGridColumns
+        - GetGridColumnsForAdvSearch
+        - GetSideMenus 
+
+    /webservices/History.asmx
+        - GetHistory
+        - SaveHistory 
+
+    /webservices/UserSettings.asmx
+        - DeleteUserSetting
+        - GetUserSetting
+        - SaveUserSetting 
+
+    /webservices/CustomerPortal.asmx
+        - GetPendingRecordsCount
+
+    /webservices/LabelSettings.asmx
+        - AddEntityLabel
+        - CreateEntityLabel
+        - GetEntityLabelSettings
+        - GetEntityLabels
+        - GetLabelsForEntity
+        - GetRecordLabels
+        - RemoveEntityLabel
+        - UpdateEntityLabel 
+
+    /webservices/Branches.asmx
+        - GetBranchByID
+        - GetBranches 
 
     /webservices/Quotes.asmx
+        - QuoteCopy
+
     /webservices/QuoteSigns.asmx
+        - UpdateSignSubtotal
+
     /webservices/QuoteItems.asmx
+        - UpdateQuoteItemsSubtotal
 
     /webservices/LaborMiscTimes.asmx
+        - GetMiscTimesForLaborTimesCalendar
+        - GetTodayMiscTimesForDriver 
+
     /webservices/TicketLaborService.asmx
+        - ActivateLabor
+        - AddDriverToRouteTickets
+        - AddSchedule
+        - DeleteSchedule
+        - GetDriverScheduleForCalendar
+        - GetLaborCount
+        - GetTicketLaborForLaborTimesCalendar
+        - GetTicketLaborForWeek
+        - GetTicketsProgressPerDayForCalendar
+        - MakePrimary
+        - MoveTicketToDifferentDate
+        - MoveTicketToDifferentDateMultiple
+        - MoveTicketToDifferentDriverAndDate 
     
     /webservices/Employees.asmx
+        - AddJobRole
+        - GetDrivers
+        - GetEmployeeBranch
+        - RemoveJobRole 
+
     /webservices/Drivers.asmx
+        - GetAllDrivers
+        - GetDrivers
+        - GetDriversForBranches
+        - GetDriversForMap 
+
     /webservices/WorkCodes.asmx
+        - GetActiveWorkCodes
+
     /webservices/Zones.asmx
+        - GetZones
+
     /webservices/NotificationsService.asmx
+        - GetAllNotifications
 
     /webservices/PriceListService.asmx
+        - GetPriceLists
+
     /webservices/TaxRateService.asmx
+        - GetCountyTaxRate
+        - GetStateLists
+
     /webservices/TaxGroupsService.asmx
+        - GetTaxGroupByName
+
+    /webservices/Invoices.asmx
+        - HelloWorld
+        - MarkInvoicesExported
+        - MarkInvoicesPaid 
 
     /webservices/Equipment.asmx
+        - GetActiveEquipment
+        - GetItemTrackingEquipment 
     
     /webservices/CustomEntity.asmx
-        > customEntityID = 10008
-            > Entity Custom Fields: TICKET
-            > Found: /handlers/GetCustomScript.ashx?CardName=TICKET
+        - DeleteEntityRecord
+        - GetEntityRecord 
+        - Note :
+            > customEntityID = 10008
+                > Entity Custom Fields: TICKET
+                > Found: /handlers/GetCustomScript.ashx?CardName=TICKET
 
-    - /js 
-    - ?wsdl
+    - {url}/js 
+    - {url}?wsdl
+
+
+
+
+## Grid Types
+
+- 1 = TCRGrid
+- 2 = FindGrid
+- 3 = QuickView
+- 4 = SubTCRGrid
+
+## Tab Types
+
+- 1 = Card
+- 2 = Grid
+- 3 = URL
+
+## Entity
+
+- 1 = Customer
+- 2 = Job
+- 3 = Ticket
+- 4 = ???
+- 5 = ???
+- 6 = ???
+- 7 = ???
+- 8 = Invoice
+- 9 = Quote
+- 10 = ???
+- 11 = ???
+- 12 = Activity
+
+## Enity Type
+
+- 2 = Jobs
+- 3 = Tickets
+- 9 = Quotes
+- 11 = Prospects
+
+## Grid Filter Data Types
+
+- 1 = Text
+- 2 = Date
+- 3 = Number
+- 4 = PickList
+- 5 = Lookup
+- 6 = MultiLabels
+
+## Query Filter Field Datatype
+
+- 1 = ID 
+- 2 = Money
+- 3 = Text
+- 4 = Date
+- 5 = CheckboxRadio
+- 6 = Lookup
+- 7 = Number
+
+## Query Group Operator
+
+- 1 = And
+- 2 = Or
+
+## Query Sort
+
+- 1 = ASC
+- 2 = DESC
+
+## Query Param Operators
+
+- 1 = Equal
+- 2 = NotEqual
+- 3 = LessThan
+- 4 = LessThanOrEqual
+- 5 = GreaterThan
+- 6 = GreaterThanOrEqual
+- 7 = Between
+- 8 = StartsWith
+- 9 = EndsWith
+- 10 = Contains
+- 11 = NotContains
+- 12 = Oneof
+- 13 = NotOneof
+- 14 = IsNull
+- 15 = NotNull
+
+## Prompt Type
+
+- 1 = Alert
+- 2 = Confirm
+- 3 = Input
+- 4 = Error

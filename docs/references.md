@@ -2,6 +2,7 @@
 
 - **[GetGridData](docs/GetGridData.md)**
 
+
 # TCRAPI.*auth*(email, password)  -  Class Object
 
 - **email**: Your TCR email address : str
@@ -14,7 +15,7 @@
 
 ## Instance Methods
 
-#### *auth()*.getCookies()
+#### TCRAPI.*auth()*.getCookies()
 
 Gets Net Cookies from TCR with BeautifulSoup & Requests
 
@@ -23,7 +24,7 @@ Gets Net Cookies from TCR with BeautifulSoup & Requests
     - expiration[1] : dict
 
 
-#### *auth()*.headers()
+#### TCRAPI.*auth()*.headers()
 
 Gets new request headers for the TCRAPI.auth object.
 
@@ -48,7 +49,7 @@ Gets new request headers for the TCRAPI.auth object.
 
 ## Instance Methods
 
-#### *api()*.getGrid(gridName)
+#### TCRAPI.*api()*.getGrid(gridName)
 
 Returns Information for the specified Grid.  
 Uses the "GetGrid" API call which Only Uses the Grid Name.  
@@ -60,7 +61,7 @@ Will Convert the Grid Name to the Grid ID using the "GetGridByID" API call.
     - all grid information : dict
 
 
-#### *api()*.getGridByID(gridID)
+#### TCRAPI.*api()*.getGridByID(gridID)
 
 Returns Information for the specified Grid.
 Uses the "GetGridByID" API call which Uses the Grid ID.
@@ -72,7 +73,7 @@ Will Convert the Grid ID to the Grid Name using the "GetGrid" API call.
     - all grid information : dict
 
 
-#### *api()*.getGridByName(gridName)
+#### TCRAPI.*api()*.getGridByName(gridName)
 
 Converts The Grid Name To Grid ID and Vice Versa.
 
@@ -82,7 +83,7 @@ Converts The Grid Name To Grid ID and Vice Versa.
     - gridID : int / gridName : str
 
 
-#### *api()*.getGridInfo(grid)
+#### TCRAPI.*api()*.getGridInfo(grid)
 
 Gets a few pieces of relevant information for the specified Grid.
 
@@ -99,7 +100,7 @@ Gets a few pieces of relevant information for the specified Grid.
         - Columns : list
 
 
-#### *api()*.getGridDataFields(grid)
+#### TCRAPI.*api()*.getGridDataFields(grid)
 
 Gets The Required Field Attributes for the specified Grid.
 **ONLY RETURNS THE FIELD ATTRIBUTES**.
@@ -110,12 +111,12 @@ Gets The Required Field Attributes for the specified Grid.
     - dataFields : list
 
 
-#### *api()*.getGridDataFieldsInfo(grid, filters, page, pageSize)
+#### TCRAPI.*api()*.getGridDataFieldsInfo(grid, filters, page, pageSize)
 
 **TODO**
 
 
-#### *api()*.getGridQuickSearchFields(grid)
+#### TCRAPI.*api()*.getGridQuickSearchFields(grid)
 
 Gets The QuickSearch Fields for the specified Grid.  
 Used for .getGridDate(*QuickSearch=*)
@@ -126,7 +127,7 @@ Used for .getGridDate(*QuickSearch=*)
     - quickSearchFields : list
 
 
-#### *api()*.getUserSettings(settingName)
+#### TCRAPI.*api()*.getUserSettings(settingName)
 
 Gets The User Settings from TCR
 
@@ -136,7 +137,7 @@ Gets The User Settings from TCR
     - userSettings : dict
 
 
-#### *api()*.getGridSettings(grid)
+#### TCRAPI.*api()*.getGridSettings(grid)
 
 Gets The Grid Settings from TCR.  
 Formats the Setting Name as "Yagna.Grid.*grid*"
@@ -147,7 +148,7 @@ Formats the Setting Name as "Yagna.Grid.*grid*"
     - gridSettings : dict
 
 
-#### *api()*.getGridSortSettings(grid)
+#### TCRAPI.*api()*.getGridSortSettings(grid)
 
 Gets User Sort Settings from TCR if they exist.  
 If Not the gets the default sort settings from .getGrid()  
@@ -161,7 +162,7 @@ Used for .getGridData()
         - Order = Sort Direction : int
 
 
-#### *api()*.getSideMenus()
+#### TCRAPI.*api()*.getSideMenus()
 
 Gets the Side Menus from TCR.
 
@@ -169,7 +170,7 @@ Gets the Side Menus from TCR.
     - sideMenus : list of dict
 
 
-#### *api()*.getColumnsForAdvSearch(grid)
+#### TCRAPI.*api()*.getColumnsForAdvSearch(grid)
 
 Gets the Columns for Advanced Search from TCR.  
 Uses GetGridColumnsForAdvSearch API Call.
@@ -180,7 +181,7 @@ Uses GetGridColumnsForAdvSearch API Call.
     - columns : list of dict
 
 
-#### *api()*.getGridData(gGrid, FilterConditions, StartIndex, RecordCount, QuickSearch, IncludeCount)
+#### TCRAPI.*api()*.getGridData(gGrid, FilterConditions, StartIndex, RecordCount, QuickSearch, IncludeCount)
 
 Gets the Data for the specified Grid.  
 Uses the "GetGridData" API call.

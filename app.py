@@ -5,13 +5,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from TCRAPI.api import api
-from TCRAPI.auth import auth
 from TCRAPI.getgriddata import *
+from TCRAPI.models import *
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-tcrAuth = auth()
 tcr = api(
-    headers=tcrAuth.header,
+    email=os.getenv("email"),
+    password=os.getenv("password"),
 )
 
 app = FastAPI(
@@ -371,6 +374,14 @@ def read_root():
     return definitions
 
 
+# ! Utility Function
+@ app.get("/refreshCookie/")
+async def refreshCookie():
+    previousCookie = tcr.tcr_auth.header["Cookie"]
+    tcr.tcr_auth.set_header()
+    return {"previousCookie": previousCookie, "newCookie": tcr.tcr_auth.header["Cookie"]}
+
+
 # ! Basic Info Function
 @ app.post("/getgrid/")  # ? Returns the Full GetGrid Post of TCR
 async def get_gridpost(grid: GetGrid):
@@ -420,12 +431,17 @@ async def get_customers(customers: Customers):
 async def get_jobs(jobs: Jobs):
     info = jobsClass()
     
+    filterConditions = Filter()
     if jobs.status:
-        info.setStatusFilter(jobs.status)
+        filterConditions.add_condition(
+            "Status",
+            12,
+            jobs.status
+        )
 
     request = tcr.getGridData(
         Grid=info.GRIDID,
-        FilterConditions=info.filterConditions,
+        FilterConditions=filterConditions,
         QuickSearch=jobs.search,
         StartIndex=jobs.start_index,
         RecordCount=jobs.record_count,

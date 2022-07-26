@@ -1,42 +1,11 @@
-from TCRAPI.models import ConditionsModel, FilterModel
+from TCRAPI.models import ConditionsModel, FilterModel, Filter
 
 
 class ticketsClass:
     GRIDID = 9
     GRIDNAME = "TICKETS"
+    # filterConditions = Filter()
+    # filterConditions.AddCondition("Status", ["A", "E", "F", "I", "V"], 12)
     def __init__(self):
-        self.filterConditions = FilterModel(
-            Conditions=[
-                ConditionsModel(
-                    Attribute="Status",
-                    Values=["A", "E", "F", "I", "V"],
-                    Operator=12
-                ),
-            ]
-        )
-
-    def setStatusFilter(self, Status):
-        """
-        Sets the status filter for the tickets grid.
-            - A - Active
-            - E - Review
-            - F - Final Edit
-            - I - Invoices
-            - V - Void
-        """
-        if isinstance(Status, list):
-            self.filterConditions.Conditions = [
-                ConditionsModel(
-                    Attribute="Status",
-                    Values=Status,
-                    Operator=12
-                ),
-            ]
-        if isinstance(Status, str):
-            self.filterConditions.Conditions = [
-                ConditionsModel(
-                    Attribute="Status",
-                    Values=[Status],
-                    Operator=12
-                ),
-            ]
+        self.filterConditions = Filter()
+        self.filterConditions.add_condition("Status", ["A", "E", "F", "I", "V"], 12)
