@@ -5,56 +5,42 @@ from bs4 import BeautifulSoup
 
 
 class auth:
+    loginURL = "http://apps.tcrsoftware.com/tcr_2/login.aspx"
     def __init__(self, email=None, password=None):
         load_dotenv()
-
-        self.email = email
-        if email is None:
-            self.email = os.getenv("email")
-
-        self.password = password
-        if password is None:
-            self.password = os.getenv("password")
-
-        # self.getHeaders = self.headers()
-        self.header = self.headers()
+        self.email = email or os.getenv("email")
+        self.password = password or os.getenv("password")
+        self.header = None
         self.cookies = None
         self.expire = None
+        self.set_header()
 
 
-    def getCookies(self):
+    def get_cookies(self):
         """
         Returns TCR cookies[0] and expiration[1]
         """
         with requests.Session() as s:
-            loginURL = "http://apps.tcrsoftware.com/tcr_2/login.aspx"
-
             s.headers.update(
                 {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'}
             )
-            page = s.get(loginURL)
+            loginPageContent = s.get(self.loginURL)
+            soup = BeautifulSoup(loginPageContent.content, 'html.parser') # Rip the form data from the page with BS4.
 
-            # Rip the form data from the page with BS4.
-            soup = BeautifulSoup(page.content, 'html.parser')
-            viewState = soup.select_one("#__VIEWSTATE")["value"]
-            viewStateGenerator = soup.select_one(
-                "#__VIEWSTATEGENERATOR")["value"]
-            eventValidation = soup.select_one("#__EVENTVALIDATION")["value"]
-
-            newHeaders = {
+            loginPostHeaders = {
                 "X-MicrosoftAjax": "Delta=true",
                 "X-Requested-With": "XMLHttpRequest",
                 "Referer": "https://apps.tcrsoftware.com/tcr_2/login.aspx"
             }
 
-            requestData = {
+            loginData = {
                 "ScriptManager1": "UpdatePanel1|BtnSubmit",
                 "__LASTFOCUS": "",
                 "__EVENTTARGET": "",
                 "__EVENTARGUMENT": "",
-                "__VIEWSTATE": str(viewState),
-                "__VIEWSTATEGENERATOR": str(viewStateGenerator),
-                "__EVENTVALIDATION": str(eventValidation),
+                "__VIEWSTATE": str(soup.select_one("#__VIEWSTATE")["value"]),
+                "__VIEWSTATEGENERATOR": str(soup.select_one("#__VIEWSTATEGENERATOR")["value"]),
+                "__EVENTVALIDATION": str(soup.select_one("#__EVENTVALIDATION")["value"]),
                 "Email": str(self.email),
                 "Password": str(self.password),
                 "Remember": "on",
@@ -63,7 +49,7 @@ class auth:
                 "BtnSubmit": "Login",
             }
 
-            s.post(loginURL, data=requestData, headers=newHeaders)
+            s.post(self.loginURL, data=loginData, headers=loginPostHeaders)
 
             cookies = s.cookies.get_dict()
             expire = {}
@@ -74,12 +60,11 @@ class auth:
                 if cookie.name == "TCRAuth":
                     TCRAuthExpires = cookie.expires  # ?Todo: Convert from epoch to datetime
                     expire["TCRAuth"] = TCRAuthExpires
-
         return cookies, expire
 
 
-    def headers(self):
-        cookies, expire = self.getCookies()
+    def set_header(self):
+        cookies, expire = self.get_cookies()
         headers = {
             'DNT': '1',
             'X-Requested-With': 'XMLHttpRequest',
