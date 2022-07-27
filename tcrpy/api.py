@@ -1,8 +1,8 @@
 import requests
 import json
-from TCRAPI.models import *
-from TCRAPI.enums import *
-from TCRAPI.auth import auth
+from tcrpy.models import *
+from tcrpy.enums import *
+from tcrpy.auth import auth
 
 class GetGridData:
     def __init__(self, headers):

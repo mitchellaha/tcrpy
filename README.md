@@ -1,8 +1,8 @@
-# TCRAPI
+# tcrpy
 [![PyPI Version](https://img.shields.io/pypi/v/TCRAPI)](https://pypi.org/project/TCRAPI/)
 [![Python Versions](https://img.shields.io/pypi/pyversions/TCRAPI)](https://pypi.org/project/TCRAPI/)
 
-TCR API Interaction Library
+Python Library for Interacting with the TCR Platform API.
 
 ## Usage
 
@@ -52,10 +52,7 @@ The easiest way to install the latest version from PyPI is by using [pip](https:
 - [ ] **[All TCR API Endpoints](docs/TCREndpoints.md)**
 - [ ] Add more documentation
     - [ ] Explain Correlation & Uses of different TCR Rest endpoints
-- [ ] Complete Overhaul of TCRAPI/getgriddata/ grid classes
-    - [ ] Create Base Class For All Grid Classes
-    - [ ] Change Naming Scheme
-- [ ] *Create More Unified Filter Conditions*
+- [x] *Create More Unified Filter Conditions*
     - [x] ~~Add Status Filter to Customers & Jobs~~
     - [ ] GetSideMenus contains info for Quick Filter Check Boxes
         - [ ] Add Ticket Status & Ticket Type Filter
@@ -69,7 +66,7 @@ The easiest way to install the latest version from PyPI is by using [pip](https:
 
 
 - [ ] **[FastAPI](docs/FastAPI.md)**
-    - [ ] Add Documentation
+    - [x] Add Documentation
         - [ ] Add PostMan Collection
     - [ ] Add Authentication
     - [ ] Serverside Logging

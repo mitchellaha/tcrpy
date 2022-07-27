@@ -4,14 +4,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="TCRAPI",
+    name="tcrpy",
     version="0.2.0",
     author="Mitch V Aureli",
     author_email="mitch@logic3ii.com",
-    description="A Python Library For Interacting With TCR",
+    description="A Python Library for Interacting with the TCR Platform API.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/mitchellaha/TCRAPI",
+    url="https://github.com/mitchellaha/tcrpy",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

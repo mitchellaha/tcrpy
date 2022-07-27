@@ -4,5 +4,5 @@
 #   License: MIT
 ######
 
-from TCRAPI.auth import auth
-from TCRAPI.api import api
+from tcrpy.auth import auth
+from tcrpy.api import api

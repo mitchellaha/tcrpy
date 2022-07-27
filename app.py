@@ -1,12 +1,15 @@
+######
+# ! NEEDS TO BE REDONE SINCE VERSION 0.2.0
+######
+
 from typing import List, Optional, Union
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from TCRAPI.api import api
-from TCRAPI.getgriddata import *
-from TCRAPI.models import *
+from tcrpy.api import api
+from tcrpy.models import Filter, Sort
 
 from dotenv import load_dotenv
 import os
