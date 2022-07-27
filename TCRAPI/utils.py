@@ -1,5 +1,12 @@
 import math
+import datetime as dt
 
+def millisecond_stamp_to_datetime(milliseconds: int):  # ? As much as i would like to move this to datetime_utils, id rather handlers be independent
+    """
+    Convert milliseconds to datetime object removing the "/Date(...)/"
+    """
+    seconds = int("".join([x for x in milliseconds if x.isdigit()])) / 1000  # Remove the "/Date(...)/" and convert to seconds
+    return dt.datetime.fromtimestamp(seconds) + dt.timedelta(hours=1)  # Add 1 Hour Since TCR is off by 1 hour
 
 def page_count(recordCount, pageSize):
     """

@@ -1,0 +1,2779 @@
+[
+    {
+        "GridID": 1,
+        "GridName": "CUSTOMERS",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "CustomerID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 6
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "Address1",
+                "DataType": 3
+            },
+            {
+                "DataField": "City",
+                "DataType": 3
+            },
+            {
+                "DataField": "State",
+                "DataType": 3
+            },
+            {
+                "DataField": "ZipCode",
+                "DataType": 7
+            },
+            {
+                "DataField": "Contact",
+                "DataType": 3
+            },
+            {
+                "DataField": "Phone1",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateOpened",
+                "DataType": 4
+            },
+            {
+                "DataField": "SalespersonName",
+                "DataType": 3
+            },
+            {
+                "DataField": "PriceListDescription",
+                "DataType": 3
+            },
+            {
+                "DataField": "Address2",
+                "DataType": 3
+            },
+            {
+                "DataField": "Phone2",
+                "DataType": 3
+            },
+            {
+                "DataField": "Fax",
+                "DataType": 3
+            },
+            {
+                "DataField": "Email",
+                "DataType": 3
+            },
+            {
+                "DataField": "AcctContact",
+                "DataType": 3
+            },
+            {
+                "DataField": "AcctPhone",
+                "DataType": 3
+            },
+            {
+                "DataField": "AcctFax",
+                "DataType": 3
+            },
+            {
+                "DataField": "AcctEmail",
+                "DataType": 3
+            },
+            {
+                "DataField": "TaxExempt",
+                "DataType": 5
+            },
+            {
+                "DataField": "TaxExemptNo",
+                "DataType": 3
+            },
+            {
+                "DataField": "InsuranceCert",
+                "DataType": 5
+            },
+            {
+                "DataField": "InsurCertExpiration",
+                "DataType": 4
+            },
+            {
+                "DataField": "PORequired",
+                "DataType": 5
+            },
+            {
+                "DataField": "DepositRequired",
+                "DataType": 5
+            },
+            {
+                "DataField": "RentalMinAmt",
+                "DataType": 2
+            },
+            {
+                "DataField": "InvoiceFormat",
+                "DataType": 3
+            },
+            {
+                "DataField": "QBExportJobName",
+                "DataType": 5
+            },
+            {
+                "DataField": "InvoiceDOW",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerGroup",
+                "DataType": 3
+            },
+            {
+                "DataField": "BillingCycle",
+                "DataType": 3
+            },
+            {
+                "DataField": "ExportInvoices",
+                "DataType": 5
+            },
+            {
+                "DataField": "PreliminaryNoticeRequired",
+                "DataType": 5
+            },
+            {
+                "DataField": "InvoiceEmail",
+                "DataType": 3
+            },
+            {
+                "DataField": "BusinessTypeID",
+                "DataType": 3
+            },
+            {
+                "DataField": "IncludeTicketsWithInvoice",
+                "DataType": 5
+            },
+            {
+                "DataField": "TicketLaborMinimumCharge",
+                "DataType": 3
+            },
+            {
+                "DataField": "RequirePhotoToCompleteTicket",
+                "DataType": 5
+            },
+            {
+                "DataField": "RetainagePercent",
+                "DataType": 3
+            },
+            {
+                "DataField": "InvoiceEmailSubject",
+                "DataType": 3
+            },
+            {
+                "DataField": "Comment",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomField1",
+                "DataType": 3
+            },
+            {
+                "DataField": "AccountingTermID",
+                "DataType": 3
+            },
+            {
+                "DataField": "Statements",
+                "DataType": 5
+            },
+            {
+                "DataField": "FlatRates",
+                "DataType": 5
+            },
+            {
+                "DataField": "InvoiceEmailContactID",
+                "DataType": 3
+            },
+            {
+                "DataField": "DiscountRate",
+                "DataType": 3
+            },
+            {
+                "DataField": "PONumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateCreated",
+                "DataType": 4
+            },
+            {
+                "DataField": "CreatedBy",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateUpdated",
+                "DataType": 4
+            },
+            {
+                "DataField": "UpdatedBy",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 2,
+        "GridName": "CJOBS",
+        "FilterFields": [
+            "CustomerID",
+            "Status"
+        ],
+        "PrimaryKeyField": "JobID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 3,
+        "GridName": "CTICKETS",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 4,
+        "GridName": null,
+        "FilterFields": null,
+        "PrimaryKeyField": null,
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 5,
+        "GridName": "CINVOICES",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "InvoiceID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 6,
+        "GridName": "CQUOTES",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "QuoteID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 7,
+        "GridName": "CCONTACTS",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "ContactID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 8,
+        "GridName": "JOBS",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "JobID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 6
+            },
+            {
+                "DataField": "JobReferenceNumber",
+                "DataType": 1
+            },
+            {
+                "DataField": "JobType",
+                "DataType": 3
+            },
+            {
+                "DataField": "Name",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobAddress1",
+                "DataType": 3
+            },
+            {
+                "DataField": "CrossStreets",
+                "DataType": 3
+            },
+            {
+                "DataField": "City",
+                "DataType": 3
+            },
+            {
+                "DataField": "State",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerJobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "PONumber",
+                "DataType": 7
+            },
+            {
+                "DataField": "PriceCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "StateContract",
+                "DataType": 5
+            },
+            {
+                "DataField": "SalespersonName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ForemanName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ForemanPhone",
+                "DataType": 3
+            },
+            {
+                "DataField": "FirstTicket",
+                "DataType": 4
+            },
+            {
+                "DataField": "LastInvoiceDateAll",
+                "DataType": 4
+            },
+            {
+                "DataField": "LastTicket",
+                "DataType": 4
+            },
+            {
+                "DataField": "CloseDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "EstStartDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "EstCloseDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "ZoneName",
+                "DataType": 3
+            },
+            {
+                "DataField": "InvoiceEmail",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 9,
+        "GridName": "TICKETS",
+        "FilterFields": [
+            "Region",
+            "Status",
+            "OrderType"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "OrderCategory",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 6
+            },
+            {
+                "DataField": "JobAddress1",
+                "DataType": 3
+            },
+            {
+                "DataField": "TicketNumber",
+                "DataType": 6
+            },
+            {
+                "DataField": "OrderTypeText",
+                "DataType": 3
+            },
+            {
+                "DataField": "City",
+                "DataType": 3
+            },
+            {
+                "DataField": "TicketCaller",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateCreated",
+                "DataType": 4
+            },
+            {
+                "DataField": "TicketDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "DelPUDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "TimeNeeded",
+                "DataType": 3
+            },
+            {
+                "DataField": "PrimaryDriverIDName",
+                "DataType": 3
+            },
+            {
+                "DataField": "SpecialInstructions",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobCustomerJobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobPONumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "DispatcherName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ZoneName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobType",
+                "DataType": 3
+            },
+            {
+                "DataField": "InternalNotes",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 10,
+        "GridName": "JTICKETS",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 11,
+        "GridName": "JINVOICES",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "InvoiceID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 12,
+        "GridName": "JQTYONHAND",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 13,
+        "GridName": "TITEMS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 14,
+        "GridName": "TKITS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketKitID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 15,
+        "GridName": "TSIGNS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketSignID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 16,
+        "GridName": "TLABOR",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketLaborID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 17,
+        "GridName": "TMISCITEMS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketMiscItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 18,
+        "GridName": "FINDCUSTOMER",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "CustomerID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 19,
+        "GridName": "FINDJOB",
+        "FilterFields": [
+            "Status",
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "JobID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 20,
+        "GridName": "INVOICES",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "InvoiceID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobAddress1",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerJobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "PONumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "InvoiceNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "VoidInvoice",
+                "DataType": 5
+            },
+            {
+                "DataField": "VoidDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "InvoiceDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "InvoiceFrom",
+                "DataType": 4
+            },
+            {
+                "DataField": "InvoiceTo",
+                "DataType": 4
+            },
+            {
+                "DataField": "LaborTotal",
+                "DataType": 2
+            },
+            {
+                "DataField": "RentalTotal",
+                "DataType": 2
+            },
+            {
+                "DataField": "SaleTotal",
+                "DataType": 2
+            },
+            {
+                "DataField": "GLTax",
+                "DataType": 2
+            },
+            {
+                "DataField": "InvoiceTotal",
+                "DataType": 2
+            },
+            {
+                "DataField": "Paid",
+                "DataType": 5
+            },
+            {
+                "DataField": "EmailStatusName",
+                "DataType": 5
+            },
+            {
+                "DataField": "ExportedYN",
+                "DataType": 5
+            },
+            {
+                "DataField": "Retainage",
+                "DataType": 2
+            }
+        ]
+    },
+    {
+        "GridID": 21,
+        "GridName": "QUOTES",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "QuoteID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "QuoteCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobAddress1",
+                "DataType": 3
+            },
+            {
+                "DataField": "City",
+                "DataType": 3
+            },
+            {
+                "DataField": "QuoteDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "BidCloseDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "QuoteTotal",
+                "DataType": 2
+            },
+            {
+                "DataField": "Calledinby",
+                "DataType": 3
+            },
+            {
+                "DataField": "Phone",
+                "DataType": 3
+            },
+            {
+                "DataField": "ContractID",
+                "DataType": 3
+            },
+            {
+                "DataField": "Category",
+                "DataType": 3
+            },
+            {
+                "DataField": "CreatedBy",
+                "DataType": 3
+            },
+            {
+                "DataField": "SalespersonName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobName",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 22,
+        "GridName": "FINDKIT",
+        "FilterFields": [
+            "StripingKit"
+        ],
+        "PrimaryKeyField": "KitID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 23,
+        "GridName": "FINDITEM",
+        "FilterFields": [
+            "Tracking",
+            "EquipLabor",
+            "SaleItem",
+            "Status"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 24,
+        "GridName": "FINDSIGN",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "SignID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 25,
+        "GridName": "FINDLABORITEM",
+        "FilterFields": null,
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 26,
+        "GridName": "FINDTRUCK",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "TruckID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 27,
+        "GridName": "FINDDRIVER",
+        "FilterFields": [
+            "BranchID"
+        ],
+        "PrimaryKeyField": "DriverID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 28,
+        "GridName": "FINDMISCITEM",
+        "FilterFields": null,
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 29,
+        "GridName": "PRICELIST",
+        "FilterFields": null,
+        "PrimaryKeyField": "PriceListID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 30,
+        "GridName": "LINEITEMS",
+        "FilterFields": [
+            "StripingItem"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "ItemCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "Description",
+                "DataType": 3
+            },
+            {
+                "DataField": "TotalQty",
+                "DataType": 3
+            },
+            {
+                "DataField": "RevenueCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "InvoicePosition",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipLabor",
+                "DataType": 3
+            },
+            {
+                "DataField": "SaleItem",
+                "DataType": 5
+            },
+            {
+                "DataField": "MiscItem",
+                "DataType": 5
+            },
+            {
+                "DataField": "ContractItem",
+                "DataType": 5
+            },
+            {
+                "DataField": "Tracking",
+                "DataType": 5
+            },
+            {
+                "DataField": "EquipmentTypeCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "PrintOnInventory",
+                "DataType": 5
+            }
+        ]
+    },
+    {
+        "GridID": 31,
+        "GridName": "KITS",
+        "FilterFields": null,
+        "PrimaryKeyField": "KitID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 32,
+        "GridName": "SIGNS",
+        "FilterFields": [
+            "Signs"
+        ],
+        "PrimaryKeyField": "SignID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 33,
+        "GridName": null,
+        "FilterFields": null,
+        "PrimaryKeyField": null,
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 34,
+        "GridName": "DRIVERS",
+        "FilterFields": null,
+        "PrimaryKeyField": "DriverID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 35,
+        "GridName": "DISPATCHERS",
+        "FilterFields": null,
+        "PrimaryKeyField": "DispatcherID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 36,
+        "GridName": "EQUIPMENT",
+        "FilterFields": null,
+        "PrimaryKeyField": "EquipmentID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "Status",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipmentTypeName",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipmentCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipmentName",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "VIN",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipmentYear",
+                "DataType": 3
+            },
+            {
+                "DataField": "PlateNo",
+                "DataType": 3
+            },
+            {
+                "DataField": "Cost",
+                "DataType": 2
+            },
+            {
+                "DataField": "DateInService",
+                "DataType": 4
+            },
+            {
+                "DataField": "DateOutofService",
+                "DataType": 4
+            }
+        ]
+    },
+    {
+        "GridID": 37,
+        "GridName": "SALESINVENTORY",
+        "FilterFields": [
+            ""
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 38,
+        "GridName": "SALESCAT",
+        "FilterFields": null,
+        "PrimaryKeyField": "SalesCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 39,
+        "GridName": "BRANCHES",
+        "FilterFields": null,
+        "PrimaryKeyField": "BranchID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 40,
+        "GridName": "ZONES",
+        "FilterFields": null,
+        "PrimaryKeyField": "ZoneID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 41,
+        "GridName": "JCARRYOVER",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "InvoiceStatusID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 42,
+        "GridName": "PRICELISTITEMS",
+        "FilterFields": [
+            "PriceListID"
+        ],
+        "PrimaryKeyField": "PriceListItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 43,
+        "GridName": "ITEMTRACKING",
+        "FilterFields": null,
+        "PrimaryKeyField": "ItemTrackingID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "ItemCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "Description",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipmentCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "TicketNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "TicketDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "ReturnTicketNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "ReturnTicketDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "ReplaceEquipmentCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "ReplacementReason",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 44,
+        "GridName": "KITITEMS",
+        "FilterFields": [
+            "KitID"
+        ],
+        "PrimaryKeyField": "KitItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 45,
+        "GridName": "KITSIGNS",
+        "FilterFields": [
+            "KitID"
+        ],
+        "PrimaryKeyField": "KitSignID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 46,
+        "GridName": "QUOTEITEMS",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "QuoteItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 47,
+        "GridName": "TRETURNITEMS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 48,
+        "GridName": "TRETURNSIGNS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketSignID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 49,
+        "GridName": "JPRICELISTITEMS",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "PriceListItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 50,
+        "GridName": "FINDSALEITEM",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 51,
+        "GridName": "TSALEITEMS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketMiscItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 52,
+        "GridName": "LABORTICKETS",
+        "FilterFields": null,
+        "PrimaryKeyField": "TicketLaborID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "TicketNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "TruckCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "DriverName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ItemCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "LaborDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "ClockIn",
+                "DataType": 3
+            },
+            {
+                "DataField": "TimeOut",
+                "DataType": 3
+            },
+            {
+                "DataField": "TimeIn",
+                "DataType": 3
+            },
+            {
+                "DataField": "WorkClassCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "DriveTime",
+                "DataType": 3
+            },
+            {
+                "DataField": "Charge",
+                "DataType": 5
+            },
+            {
+                "DataField": "Actual",
+                "DataType": 5
+            },
+            {
+                "DataField": "CertifiedTime",
+                "DataType": 5
+            },
+            {
+                "DataField": "OTOption",
+                "DataType": 5
+            },
+            {
+                "DataField": "DTOption",
+                "DataType": 5
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 53,
+        "GridName": "LABORMISCTIME",
+        "FilterFields": null,
+        "PrimaryKeyField": "LaborMiscTimeID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "DriverName",
+                "DataType": 3
+            },
+            {
+                "DataField": "LaborDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "WorkCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "WorkDescription",
+                "DataType": 3
+            },
+            {
+                "DataField": "TimeOut",
+                "DataType": 3
+            },
+            {
+                "DataField": "TimeIn",
+                "DataType": 3
+            },
+            {
+                "DataField": "TotalTime",
+                "DataType": 3
+            },
+            {
+                "DataField": "Comments",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "StartLatitude",
+                "DataType": 1
+            },
+            {
+                "DataField": "StartLongitude",
+                "DataType": 1
+            },
+            {
+                "DataField": "EndLatitude",
+                "DataType": 1
+            },
+            {
+                "DataField": "EndLongitude",
+                "DataType": 1
+            }
+        ]
+    },
+    {
+        "GridID": 54,
+        "GridName": "DRIVERSCHEDULE",
+        "FilterFields": [
+            "StartDate",
+            "EndDate",
+            "BranchID",
+            "RecordType",
+            "OrderType"
+        ],
+        "PrimaryKeyField": "ScheduleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 55,
+        "GridName": "JITEMTRACKING",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "ItemTrackingID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 56,
+        "GridName": "FINDTICKET",
+        "FilterFields": [
+            "JobID",
+            "OrderCategory",
+            "TicketDate",
+            "Status",
+            "BranchID"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 57,
+        "GridName": "LOSTINVENTORY",
+        "FilterFields": null,
+        "PrimaryKeyField": "LostInventoryID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "DateEntered",
+                "DataType": 4
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobAddress1",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "Quantity",
+                "DataType": 3
+            },
+            {
+                "DataField": "ItemCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "Description",
+                "DataType": 3
+            },
+            {
+                "DataField": "LostFoundName",
+                "DataType": 3
+            },
+            {
+                "DataField": "Reason",
+                "DataType": 3
+            },
+            {
+                "DataField": "Billed",
+                "DataType": 5
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 58,
+        "GridName": "WORKCODES",
+        "FilterFields": null,
+        "PrimaryKeyField": "WorkCodeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 59,
+        "GridName": "FINDQUOTE",
+        "FilterFields": [
+            "CustomerID",
+            "Status"
+        ],
+        "PrimaryKeyField": "QuoteID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 60,
+        "GridName": "USERS",
+        "FilterFields": null,
+        "PrimaryKeyField": "UserID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 61,
+        "GridName": "FINDJOBTOINVOICE",
+        "FilterFields": null,
+        "PrimaryKeyField": "JobID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 62,
+        "GridName": "USERROLES",
+        "FilterFields": [
+            "UserID"
+        ],
+        "PrimaryKeyField": "UserRoleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 63,
+        "GridName": "COMPANY",
+        "FilterFields": null,
+        "PrimaryKeyField": "CompanyID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 64,
+        "GridName": "TAXGROUPS",
+        "FilterFields": null,
+        "PrimaryKeyField": "TaxGroupID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 65,
+        "GridName": null,
+        "FilterFields": null,
+        "PrimaryKeyField": null,
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 66,
+        "GridName": "FINDTAXRATE",
+        "FilterFields": null,
+        "PrimaryKeyField": "TaxRateID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 67,
+        "GridName": "FINDROLE",
+        "FilterFields": null,
+        "PrimaryKeyField": "RoleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 68,
+        "GridName": "ACCOUNTINGCHART",
+        "FilterFields": null,
+        "PrimaryKeyField": "AccountingChartID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 69,
+        "GridName": "FINDINVOICE",
+        "FilterFields": [
+            "Status",
+            "JobID",
+            "VoidInvoice",
+            ""
+        ],
+        "PrimaryKeyField": "InvoiceID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 70,
+        "GridName": "FINDINVOICEFORVOID",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "InvoiceID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 71,
+        "GridName": "FINDACCOUNT",
+        "FilterFields": [
+            "BranchID"
+        ],
+        "PrimaryKeyField": "AccountingChartID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 72,
+        "GridName": "QUOTEEXTRASSETUP",
+        "FilterFields": null,
+        "PrimaryKeyField": "QuoteExtraSetupID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 73,
+        "GridName": "FINDPRICELISTITEM",
+        "FilterFields": [
+            "PriceListID",
+            "EquipLabor",
+            ""
+        ],
+        "PrimaryKeyField": "PriceListItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 74,
+        "GridName": "FINDFOREMAN",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "ContactID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 75,
+        "GridName": "JTCP",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "TCPID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 76,
+        "GridName": "FINDPROJECTMANAGER",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "ContactID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 77,
+        "GridName": "SUBITEMS",
+        "FilterFields": null,
+        "PrimaryKeyField": "SubItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 78,
+        "GridName": "FINDSUBITEM",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "SubItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 79,
+        "GridName": "CATTACHMENTS",
+        "FilterFields": [
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "CustomerAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 80,
+        "GridName": "JATTACHMENTS",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 81,
+        "GridName": "FINDSALESPERSON",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "EmployeeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 82,
+        "GridName": "PORTALJOBS",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "PortalJobID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 83,
+        "GridName": "PORTALTICKETS",
+        "FilterFields": [
+            "Status",
+            "JobRecordState",
+            ""
+        ],
+        "PrimaryKeyField": "PortalTicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 84,
+        "GridName": "PORTALUSERS",
+        "FilterFields": null,
+        "PrimaryKeyField": "PortalUserID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 85,
+        "GridName": "PORTALJOBTICKETS",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "PortalTicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 86,
+        "GridName": "PORTALTICKETITEMS",
+        "FilterFields": [
+            "PortalTicketID"
+        ],
+        "PrimaryKeyField": "PortalTicketItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 87,
+        "GridName": "EQUIPMENTTYPES",
+        "FilterFields": null,
+        "PrimaryKeyField": "EquipmentTypeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 88,
+        "GridName": "TRUCKS",
+        "FilterFields": null,
+        "PrimaryKeyField": "TruckID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 89,
+        "GridName": "QUOTESIGNS",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "QuoteSignID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 90,
+        "GridName": "LOGINSCHEDULES",
+        "FilterFields": null,
+        "PrimaryKeyField": "LoginScheduleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 91,
+        "GridName": "EMPLOYEES",
+        "FilterFields": null,
+        "PrimaryKeyField": "EmployeeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 92,
+        "GridName": "FINDJOBROLE",
+        "FilterFields": null,
+        "PrimaryKeyField": "JobRoleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 93,
+        "GridName": "EMPLOYEEROLES",
+        "FilterFields": [
+            "EmployeeID"
+        ],
+        "PrimaryKeyField": "EmployeeJobRoleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 94,
+        "GridName": "EMPLOYEEDATES",
+        "FilterFields": [
+            "EmployeeID"
+        ],
+        "PrimaryKeyField": "EmployeeDateID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 95,
+        "GridName": "MAINTENANCECAT",
+        "FilterFields": null,
+        "PrimaryKeyField": "MaintenanceCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 96,
+        "GridName": "MAINTENANCE",
+        "FilterFields": null,
+        "PrimaryKeyField": "EquipmentMaintenanceID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "ServiceDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "EquipmentCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "EquipmentName",
+                "DataType": 3
+            },
+            {
+                "DataField": "PriorityText",
+                "DataType": 3
+            },
+            {
+                "DataField": "Mileage",
+                "DataType": 3
+            },
+            {
+                "DataField": "ServiceDescription",
+                "DataType": 3
+            },
+            {
+                "DataField": "Facility",
+                "DataType": 3
+            },
+            {
+                "DataField": "Cost",
+                "DataType": 2
+            },
+            {
+                "DataField": "Description",
+                "DataType": 3
+            },
+            {
+                "DataField": "AssignedToName",
+                "DataType": 3
+            },
+            {
+                "DataField": "DueDate",
+                "DataType": 4
+            }
+        ]
+    },
+    {
+        "GridID": 97,
+        "GridName": "FINDMAINTENANCECAT",
+        "FilterFields": [
+            "EquipmentTypeID"
+        ],
+        "PrimaryKeyField": "MaintenanceCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 98,
+        "GridName": "TSTRIPINGITEMS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 99,
+        "GridName": "FINDSTRIPINGITEM",
+        "FilterFields": null,
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 100,
+        "GridName": "STRIPINGITEMS",
+        "FilterFields": [
+            "StripingItem"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 101,
+        "GridName": "UNITS",
+        "FilterFields": null,
+        "PrimaryKeyField": "UnitOfMeasureID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 102,
+        "GridName": "FINDALLITEMS",
+        "FilterFields": [
+            "Tracking",
+            "EquipLabor",
+            "SaleItem",
+            "ItemCode"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 103,
+        "GridName": "QUOTEITEMSNOCOST",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "QuoteItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 104,
+        "GridName": "FINDCONTACT",
+        "FilterFields": [
+            "Status",
+            "JobTitle",
+            "CustomerID"
+        ],
+        "PrimaryKeyField": "ContactID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 105,
+        "GridName": "FINDSPECIALINSTRUCTION",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 106,
+        "GridName": "NOTES",
+        "FilterFields": [
+            "EntityID",
+            "RelatedRecordID"
+        ],
+        "PrimaryKeyField": "NoteID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 107,
+        "GridName": "FINDITEMTRANSFER",
+        "FilterFields": null,
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 108,
+        "GridName": "EQUIPMENTPURCHASES",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "EquipmentPurchaseID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 109,
+        "GridName": "FINDSALEQUOTEITEM",
+        "FilterFields": null,
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 110,
+        "GridName": "FINDPORTALROLE",
+        "FilterFields": null,
+        "PrimaryKeyField": "PortalRoleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 111,
+        "GridName": "PORTALATTACHMENTS",
+        "FilterFields": [
+            "RelatedRecordType",
+            "RelatedRecordID"
+        ],
+        "PrimaryKeyField": "PortalAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 112,
+        "GridName": "FINDEQUIPMENT",
+        "FilterFields": null,
+        "PrimaryKeyField": "EquipmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 113,
+        "GridName": "WORKCLASSES",
+        "FilterFields": null,
+        "PrimaryKeyField": "WorkClassID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 114,
+        "GridName": "JOBWORKCLASSES",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobWorkClassID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 115,
+        "GridName": "ACCOUNTINGTERMS",
+        "FilterFields": null,
+        "PrimaryKeyField": "AccountingTermID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 116,
+        "GridName": "TSALEITEMSDISPATCHER",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketMiscItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 117,
+        "GridName": null,
+        "FilterFields": null,
+        "PrimaryKeyField": null,
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 118,
+        "GridName": "TRETURNMISCITEMS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketMiscItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 119,
+        "GridName": "FINDPRICELISTORMISCITEM",
+        "FilterFields": [
+            "PriceListID",
+            "EquipLabor",
+            ""
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 120,
+        "GridName": "COMPANYATTACHMENTS",
+        "FilterFields": [
+            "CompanyID"
+        ],
+        "PrimaryKeyField": "CompanyAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 121,
+        "GridName": "JOBSREFERENCED",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 122,
+        "GridName": "FINDSUPERVISOR",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "EmployeeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 123,
+        "GridName": "LINEITEMSUBITEMS",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "SubItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 124,
+        "GridName": "DWMCATEGORIES",
+        "FilterFields": null,
+        "PrimaryKeyField": "DWMCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 125,
+        "GridName": "JOBCONTRACTS",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobContractID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 126,
+        "GridName": "TICKETTCPS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketTCPID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 127,
+        "GridName": "TCPS",
+        "FilterFields": [
+            "Complete",
+            "Status"
+        ],
+        "PrimaryKeyField": "TCPID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "TicketNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "TCPNumber",
+                "DataType": 3
+            },
+            {
+                "DataField": "Location",
+                "DataType": 3
+            },
+            {
+                "DataField": "TCPStartDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "TCPExpiration",
+                "DataType": 4
+            },
+            {
+                "DataField": "Duration",
+                "DataType": 3
+            },
+            {
+                "DataField": "SetupDescription",
+                "DataType": 3
+            },
+            {
+                "DataField": "WorkDescription",
+                "DataType": 3
+            },
+            {
+                "DataField": "Progress",
+                "DataType": 3
+            },
+            {
+                "DataField": "Complete",
+                "DataType": 5
+            }
+        ]
+    },
+    {
+        "GridID": 128,
+        "GridName": "FINDJOBTCP",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "TCPID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 129,
+        "GridName": "PROSPECTS",
+        "FilterFields": [
+            "Status",
+            "SalesStage"
+        ],
+        "PrimaryKeyField": "ProspectID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "StatusName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ProspectCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "ProspectName",
+                "DataType": 3
+            },
+            {
+                "DataField": "Address1",
+                "DataType": 3
+            },
+            {
+                "DataField": "City",
+                "DataType": 3
+            },
+            {
+                "DataField": "State",
+                "DataType": 3
+            },
+            {
+                "DataField": "ZipCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "Contact",
+                "DataType": 3
+            },
+            {
+                "DataField": "Phone1",
+                "DataType": 3
+            },
+            {
+                "DataField": "SalesStageName",
+                "DataType": 3
+            },
+            {
+                "DataField": "Priority",
+                "DataType": 5
+            },
+            {
+                "DataField": "Ranking",
+                "DataType": 3
+            },
+            {
+                "DataField": "LeadSource",
+                "DataType": 3
+            },
+            {
+                "DataField": "CSRName",
+                "DataType": 3
+            },
+            {
+                "DataField": "LastCallDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "LastAppointmentDate",
+                "DataType": 4
+            }
+        ]
+    },
+    {
+        "GridID": 130,
+        "GridName": "PROSPECTATTACHMENTS",
+        "FilterFields": [
+            "ProspectID"
+        ],
+        "PrimaryKeyField": "ProspectAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 131,
+        "GridName": "FINDPROSPECT",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "ProspectID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 132,
+        "GridName": "ACTIVITYACTIONS",
+        "FilterFields": null,
+        "PrimaryKeyField": "ActivityActionID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 133,
+        "GridName": "NEWACTIVITIES",
+        "FilterFields": [
+            "CreatedBy",
+            "AssignedTo",
+            "Status",
+            "DateCreated"
+        ],
+        "PrimaryKeyField": "ActivityStatus",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "DepartmentName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ActionName",
+                "DataType": 3
+            },
+            {
+                "DataField": "AssignedToName",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateDue",
+                "DataType": 4
+            },
+            {
+                "DataField": "RelatedName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ContactName",
+                "DataType": 3
+            },
+            {
+                "DataField": "Note",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 134,
+        "GridName": "ACTIVITIES",
+        "FilterFields": [
+            "AssignedTo",
+            "Status",
+            "ActivityType",
+            "DateDue"
+        ],
+        "PrimaryKeyField": "ActivityID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "DepartmentName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ActionName",
+                "DataType": 3
+            },
+            {
+                "DataField": "AssignedToName",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateDue",
+                "DataType": 4
+            },
+            {
+                "DataField": "RelatedName",
+                "DataType": 3
+            },
+            {
+                "DataField": "ContactName",
+                "DataType": 3
+            },
+            {
+                "DataField": "Note",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 135,
+        "GridName": "BUSINESSTYPES",
+        "FilterFields": null,
+        "PrimaryKeyField": "BusinessTypeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 136,
+        "GridName": "RELATEDACTIVITIES",
+        "FilterFields": [
+            "EntityID",
+            "RelatedRecordID",
+            "ActivityType",
+            "Status",
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "ActivityID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 137,
+        "GridName": "FINDACTIVEPROSPECT",
+        "FilterFields": null,
+        "PrimaryKeyField": "ProspectID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 138,
+        "GridName": "QUOTEACTIVITIES",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "ActivityStatus",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 139,
+        "GridName": "CONTACTS",
+        "FilterFields": [
+            "EntityID",
+            "RelatedRecordID"
+        ],
+        "PrimaryKeyField": "ContactID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 140,
+        "GridName": "REMINDERS",
+        "FilterFields": [
+            "{{username}}"
+        ],
+        "PrimaryKeyField": "RecID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 141,
+        "GridName": "CALENDARJOBS",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "JobID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 142,
+        "GridName": "CALENDARTICKETS",
+        "FilterFields": [
+            "Region",
+            "Status",
+            "OrderType"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 143,
+        "GridName": "INVOICEDETAILS",
+        "FilterFields": [
+            "InvoiceID"
+        ],
+        "PrimaryKeyField": "InvoiceDetailID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 144,
+        "GridName": "DEPARTMENTS",
+        "FilterFields": [
+            "DepartmentID"
+        ],
+        "PrimaryKeyField": "DepartmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 145,
+        "GridName": "LABELS",
+        "FilterFields": [
+            "LabelID"
+        ],
+        "PrimaryKeyField": "LabelID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 146,
+        "GridName": "ATTACHMENTS",
+        "FilterFields": [
+            "RegardingEntityID",
+            "RegardingRecordID"
+        ],
+        "PrimaryKeyField": "AttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 147,
+        "GridName": "QTCPS",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "TCPID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 148,
+        "GridName": "JQUOTES",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobQuoteID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 149,
+        "GridName": "STATES",
+        "FilterFields": [
+            "StateID"
+        ],
+        "PrimaryKeyField": "StateID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 150,
+        "GridName": "JOBSKILLS",
+        "FilterFields": null,
+        "PrimaryKeyField": "JobSkillID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 151,
+        "GridName": "USERLOGINACTIVITY",
+        "FilterFields": [
+            "UserID"
+        ],
+        "PrimaryKeyField": "UserID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 152,
+        "GridName": "TATTACHMENTS",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 153,
+        "GridName": "LINEITEMPRICELISTS",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "PriceListItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 154,
+        "GridName": "DASHBOARD_PROSPECTS",
+        "FilterFields": [
+            "Status",
+            "SalesStage"
+        ],
+        "PrimaryKeyField": "ProspectID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 155,
+        "GridName": "DASHBOARD_QUOTES",
+        "FilterFields": [
+            "Region",
+            "Status"
+        ],
+        "PrimaryKeyField": "QuoteID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "CustomerCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "CustomerName",
+                "DataType": 3
+            },
+            {
+                "DataField": "BranchName",
+                "DataType": 3
+            },
+            {
+                "DataField": "QuoteCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "JobAddress1",
+                "DataType": 3
+            },
+            {
+                "DataField": "City",
+                "DataType": 3
+            },
+            {
+                "DataField": "QuoteDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "BidCloseDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "QuoteTotal",
+                "DataType": 2
+            },
+            {
+                "DataField": "Calledinby",
+                "DataType": 3
+            },
+            {
+                "DataField": "Phone",
+                "DataType": 3
+            },
+            {
+                "DataField": "ContractID",
+                "DataType": 3
+            },
+            {
+                "DataField": "Category",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 156,
+        "GridName": "CALENDAR_TLABOR",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketLaborID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 157,
+        "GridName": "FINDPRICELISTSWITHOUTLINEITEM",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "PriceListID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 158,
+        "GridName": "EMAILMESSAGES",
+        "FilterFields": [
+            "EmailMessageID"
+        ],
+        "PrimaryKeyField": "EmailMessageID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "ToAddress",
+                "DataType": 3
+            },
+            {
+                "DataField": "FromAddress",
+                "DataType": 3
+            },
+            {
+                "DataField": "Subject",
+                "DataType": 3
+            },
+            {
+                "DataField": "CcAddress",
+                "DataType": 3
+            },
+            {
+                "DataField": "DateCreated",
+                "DataType": 3
+            },
+            {
+                "DataField": "CreatedBy",
+                "DataType": 3
+            },
+            {
+                "DataField": "EmailStatus",
+                "DataType": 3
+            },
+            {
+                "DataField": "ErrorMessage",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 159,
+        "GridName": "FINDEMPLOYEE",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "EmployeeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 160,
+        "GridName": "INVOICEEMAIL",
+        "FilterFields": [
+            "InvoiceID"
+        ],
+        "PrimaryKeyField": "EmailMessageID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 161,
+        "GridName": "INVOICETICKET",
+        "FilterFields": [
+            "TicketID"
+        ],
+        "PrimaryKeyField": "TicketID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 162,
+        "GridName": "JDWMCATEGORIES",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobDWMCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 163,
+        "GridName": "QDWMCATEGORIES",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "QuoteDWMCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 164,
+        "GridName": "FINDDWMCATEGORY",
+        "FilterFields": null,
+        "PrimaryKeyField": "DWMCategoryID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 165,
+        "GridName": "JOBTYPES",
+        "FilterFields": null,
+        "PrimaryKeyField": "JobTypeID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 166,
+        "GridName": "QUOTEITEMSDWM",
+        "FilterFields": [
+            "QuoteID"
+        ],
+        "PrimaryKeyField": "QuoteItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 167,
+        "GridName": "JOBPONUMBERS",
+        "FilterFields": [
+            "JobID"
+        ],
+        "PrimaryKeyField": "JobPONumberID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 168,
+        "GridName": "FINDSALEITEMFORPRICELIST",
+        "FilterFields": [
+            "Status"
+        ],
+        "PrimaryKeyField": "ItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 169,
+        "GridName": "CITIES",
+        "FilterFields": [
+            "CityID"
+        ],
+        "PrimaryKeyField": "CityID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 170,
+        "GridName": "LINEITEMBRANCHES",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "LineItemBranchID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 171,
+        "GridName": "ROLES",
+        "FilterFields": null,
+        "PrimaryKeyField": "RoleID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 172,
+        "GridName": "LINEITEMSUGGESTEDITEMS",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "SuggestedItemID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 173,
+        "GridName": "ENTITYAUTOINCREMENTS",
+        "FilterFields": null,
+        "PrimaryKeyField": "EntityAutoIncrementID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 174,
+        "GridName": "MOBILEACCESSSETTING",
+        "FilterFields": null,
+        "PrimaryKeyField": "MobileAccessSettingID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 175,
+        "GridName": "JOBPAUSEBILLINGS",
+        "FilterFields": null,
+        "PrimaryKeyField": "JobPauseBillingID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 176,
+        "GridName": "ITEMATTACHMENTS",
+        "FilterFields": [
+            "ItemID"
+        ],
+        "PrimaryKeyField": "LineItemAttachmentID",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 177,
+        "GridName": "OPTIONSETS",
+        "FilterFields": null,
+        "PrimaryKeyField": "Field",
+        "AllowAdvancedSearching": false
+    },
+    {
+        "GridID": 178,
+        "GridName": "MILEAGE",
+        "FilterFields": null,
+        "PrimaryKeyField": "MileageID",
+        "AllowAdvancedSearching": true,
+        "AdvancedSearchColumns": [
+            {
+                "DataField": "DriverName",
+                "DataType": 3
+            },
+            {
+                "DataField": "TruckCode",
+                "DataType": 3
+            },
+            {
+                "DataField": "MileageDate",
+                "DataType": 4
+            },
+            {
+                "DataField": "StartMileage",
+                "DataType": 3
+            },
+            {
+                "DataField": "EndMileage",
+                "DataType": 3
+            }
+        ]
+    },
+    {
+        "GridID": 179,
+        "GridName": "BILLINGCYCLES",
+        "FilterFields": null,
+        "PrimaryKeyField": "BillingCycleID",
+        "AllowAdvancedSearching": false
+    }
+]

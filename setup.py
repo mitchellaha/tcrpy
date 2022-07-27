@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="TCRAPI",
-    version="0.1.2",
+    version="0.2.0",
     author="Mitch V Aureli",
     author_email="mitch@logic3ii.com",
     description="A Python Library For Interacting With TCR",

@@ -1,15 +1,7 @@
 from typing import Any, List
 
 from pydantic import BaseModel, conint
-from typing import Optional
 
-
-# ! Get Grid Below
-class GetGridModel(BaseModel):
-    gridName: str
-
-class GetGridByIDModel(BaseModel):
-    gridID: int
 
 class GetGridDataModel(BaseModel):
     GridID: int
@@ -28,11 +20,11 @@ class Filter:
     """
     Used to create filter conditions for the getGrid API Call.
     """
-    def __init__(self, attribute: str = None, operator: int = None, values: list = None, **kwargs):
+    def __init__(self, Attribute: str = None, Operator: int = None, Values: list = None, **kwargs):
         self.Conditions = []
 
-        if attribute is not None and operator is not None and values is not None:
-            self.add_condition(attribute, operator, values)
+        if Attribute is not None and Operator is not None and Values is not None:
+            self.add_condition(Attribute, Operator, Values)
 
         if "Conditions" in kwargs.keys():
             self.Conditions = kwargs["Conditions"]
@@ -42,7 +34,7 @@ class Filter:
             self.GroupOperator = kwargs["GroupOperator"]
 
 
-    def add_condition(self, attribute: str, operator: int, values: list):
+    def add_condition(self, Attribute: str, Operator: int, Values: list):
         """
         Adds a condition to the filter.
         
@@ -59,9 +51,9 @@ class Filter:
                 ex. <SEE OPERATOR DOCUMENTATION>
         """
         self.Conditions.append({
-            "Attribute": attribute,
-            "Operator": operator,
-            "Values": values
+            "Attribute": Attribute,
+            "Operator": Operator,
+            "Values": Values
         })
         return self
 
@@ -82,7 +74,7 @@ class Filter:
             raise TypeError("Filter must be of type Filter or dict.")
         return self
 
-    def set_group_operator(self, operator: int):
+    def set_group_operator(self, Operator: int):
         """
         Adds a group operator to the filter.
         Group Operators are Only Used When Adding Quick Search Filters.
@@ -92,7 +84,7 @@ class Filter:
         operator: int
             The operator to use.
         """
-        self.GroupOperator = operator
+        self.GroupOperator = Operator
         return self
 
     def add_quick_search_filter(self, SearchQuery, ListOfAttributes, GroupOperator = 2):
@@ -161,11 +153,13 @@ class Sort:  # TODO: Does this Need to be Redone to add multiple sorts??
     Example:
     --------
         >>> gridSort = Sort(Attribute="OrderType", Order=1)
-        >>> gridSort.dict()
-        {
-            "Attribute": "OrderType",
-            "Order": 1
-        }
+        >>> gridSort.list()
+        [
+            {
+                "Attribute": "OrderType",
+                "Order": 1
+            }
+        ]
     """
     def __init__(self, Attribute: str, Order: int):
         self.Attribute = Attribute
@@ -188,30 +182,3 @@ class Sort:  # TODO: Does this Need to be Redone to add multiple sorts??
 
     def __str__(self):
         return self.__repr__()
-
-
-# ! RE-DONE
-# ! RE-DONE # CLEANUP GETGRIDDATA FOLDER > MAYBE JUST MOVE TO DOCS???
-class FilterSearchConditionsModel(BaseModel):  # ! RE-DONE
-    Conditions: List
-    GroupOperator: int
-    Filter: Optional[Any]
-
-class ConditionsModel(BaseModel):  # ! RE-DONE
-    Attribute: str
-    Values: List
-    Operator: int
-
-class FilterModel(BaseModel):  # ! RE-DONE
-    Conditions: List[ConditionsModel]
-    Filter: Optional[FilterSearchConditionsModel]
-
-
-class SortModel(BaseModel):  # ! RE-DONE SORT MODEL
-    Attribute: str = None
-    Order: int = 0
-# ! RE-DONE
-# ! RE-DONE
-
-
-

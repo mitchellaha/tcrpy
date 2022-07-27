@@ -2,14 +2,17 @@
 
 > See [GetGridData](docs/references.md) for .getGridData() post information.
 
+See [GridInfo.json](docs/GridInfo.json) for more Grid Information.
+
 ## Main
 - [x] Ticket
 - [x] Company
 - [x] Job
 - [x] Customer
 - [x] Get Side Menus
-- [ ] *Get Search Records*
-
+- [ ] *Get Search Records* 
+    <!-- - http://apps.tcrsoftware.com/tcr_2/default.aspx/GetGSearchRecords -->
+<!-- 
 ## /GetGridData 
 - [x] Customers
     - [x] Customer Contacts
@@ -63,7 +66,7 @@
 - [ ] Get Audit Data
     - [ ] Customers
     - [ ] Jobs
-    - [ ] Tickets
+    - [ ] Tickets -->
 
 -------
 

@@ -1,7 +1,5 @@
 # References
 
-- **[GetGridData](docs/GetGridData.md)**
-
 
 # TCRAPI.*auth*(email, password)  -  Class Object
 
@@ -15,7 +13,7 @@
 
 ## Instance Methods
 
-#### TCRAPI.*auth()*.getCookies()
+#### TCRAPI.*auth()*.get_cookies()
 
 Gets Net Cookies from TCR with BeautifulSoup & Requests
 
@@ -24,7 +22,7 @@ Gets Net Cookies from TCR with BeautifulSoup & Requests
     - expiration[1] : dict
 
 
-#### TCRAPI.*auth()*.headers()
+#### TCRAPI.*auth()*.set_header()
 
 Gets new request headers for the TCRAPI.auth object.
 
@@ -43,9 +41,10 @@ Gets new request headers for the TCRAPI.auth object.
 --------------------------------
 
 
-# TCRAPI.*api*(headers)  -  Class Object
+# TCRAPI.*api*(email, password)  -  Class Object
 
-- **headers**: The headers to be used in the request : dict
+- **email**: TCR login Email
+- **password**: TCR login Password
 
 ## Instance Methods
 
