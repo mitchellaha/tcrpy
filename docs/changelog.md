@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.2] - 2022-01-27
+- **Added**: GetCustomer, GetJob, GetTicket all return dates as datetime objects
+- **Added**: datetime_to_string utility function
+
 ## [0.2.1] - 2022-01-27
 - **Added**: GetGridData now converts date strings to datetime objects
 - Fixed: GetGridSortSettings

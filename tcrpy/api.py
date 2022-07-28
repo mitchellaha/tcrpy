@@ -4,6 +4,7 @@ from tcrpy.models import *
 from tcrpy.enums import *
 from tcrpy.auth import auth
 import datetime as dt
+from tcrpy.utils import millisecond_stamp_to_datetime
 
 class GetGridData:
     def __init__(self, headers):
@@ -296,7 +297,16 @@ class api:
         """
         ticketID = {"ticketID": ticketID}
         response = requests.post(self.getTicketURL, headers=self.headers, json=ticketID).json()
-        return response["d"]
+        responseD = response["d"]
+        dateKeys = ["TicketDate", "DelPUDate", "DateCreated", "DateUpdated", "PortalDateCreated",
+                    "VoidDate", "DateSigned", "DateSigned_Adjusted", "DriverCompletedDate",
+                    "DateFinalEdited", "EstimatedStartTime", "EstimatedEndTime"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
+        return responseD
 
 
     def getJob(self, jobID: int):
@@ -313,7 +323,19 @@ class api:
         """
         jobID = {"JobID": jobID}
         response = requests.post(self.getJobURL, headers=self.headers, json=jobID).json()
-        return response["d"]
+        responseD = response["d"]
+        dateKeys = [
+            "DateOpened", "PermitExpiration", "CloseDate", "EstCloseDate", "ContractStart",
+            "ContractExpiration", "FirstBillingDate", "LastBillingDate", "DateCreated",
+            "DateUpdated", "PortalDateCreated", "PreliminaryNoticeSent", "PreliminaryNoticeReturn",
+            "EstStartDate", "FirstTicket", "LastTicket", "LastInvoiceDate"
+        ]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
+        return responseD
 
 
     def getCustomer(self, custID: int):
@@ -330,7 +352,14 @@ class api:
         """
         custID = {"custID": custID}
         response = requests.post(self.getCustomerURL, headers=self.headers, json=custID).json()
-        return response["d"]
+        dateKeys = ["DateOpened", "DateCreated", "DateUpdated", "InsurCertExpiration"]
+        responseD = response["d"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
+        return responseD
 
 
     def getItems(self):
@@ -354,6 +383,6 @@ class api:
             dict -- Company Details
         """
         response = requests.post(self.getCompanyURL, headers=self.headers).json()
-        dResponse = response["d"]
-        dResponse.pop("LogoImage")
-        return dResponse
+        responseD = response["d"]
+        responseD.pop("LogoImage")
+        return responseD
