@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.1] - 2022-01-27
+- **Added**: GetGridData now converts date strings to datetime objects
+- Fixed: GetGridSortSettings
+
 ## [0.2.0] - Complete Rewrite of Filter Handling
 - **Added**: TCRAPI.utils.millisecond_stamp_to_datetime() function
 - **Added**: GridInfo.json docs containing grid info

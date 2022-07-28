@@ -415,14 +415,10 @@ async def get_advancedsearchpost(grid: GridColumnsForAdvSearch):
 
 @ app.post("/customers/")
 async def get_customers(customers: Customers):
-    info = customersClass()
-    
-    if customers.status:
-        info.setStatusFilter(customers.status)
-
+    CUSTOMER_GRID_ID = 1
     request = tcr.getGridData(
-        Grid=info.GRIDID,
-        FilterConditions=info.filterConditions,
+        Grid=CUSTOMER_GRID_ID,
+        FilterConditions=None,
         QuickSearch=customers.search,
         StartIndex=customers.start_index,
         RecordCount=customers.record_count,
@@ -432,7 +428,6 @@ async def get_customers(customers: Customers):
 
 @ app.post("/jobs/")
 async def get_jobs(jobs: Jobs):
-    info = jobsClass()
     
     filterConditions = Filter()
     if jobs.status:
@@ -443,7 +438,7 @@ async def get_jobs(jobs: Jobs):
         )
 
     request = tcr.getGridData(
-        Grid=info.GRIDID,
+        Grid=8,
         FilterConditions=filterConditions,
         QuickSearch=jobs.search,
         StartIndex=jobs.start_index,
@@ -733,14 +728,10 @@ async def get_tickets(tickets: Tickets):
         IncludeCount=tickets.include_count)
     return request
 
-@ app.post("/ticket/")
-async def get_ticket(ticket: Ticket):
-    request = tcr.getTicket(ticket.ticketid)
-    return request
 
-@ app.post("/company/")
-async def get_company():
-    request = tcr.getCompany()
+@ app.post("/customer/")
+async def get_customer(customer: Customer):
+    request = tcr.getCustomer(customer.customerid)
     return request
 
 @ app.post("/job/")
@@ -748,12 +739,18 @@ async def get_job(job: Job):
     request = tcr.getJob(job.jobid)
     return request
 
-@ app.post("/customer/")
-async def get_customer(customer: Customer):
-    request = tcr.getCustomer(customer.customerid)
+@ app.post("/ticket/")
+async def get_ticket(ticket: Ticket):
+    request = tcr.getTicket(ticket.ticketid)
     return request
 
 @ app.post("/items/")
 async def get_items():
     request = tcr.getItems()
     return request
+
+@ app.post("/company/")
+async def get_company():
+    request = tcr.getCompany()
+    return request
+

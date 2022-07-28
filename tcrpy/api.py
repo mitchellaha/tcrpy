@@ -3,6 +3,7 @@ import json
 from tcrpy.models import *
 from tcrpy.enums import *
 from tcrpy.auth import auth
+import datetime as dt
 
 class GetGridData:
     def __init__(self, headers):
@@ -20,6 +21,7 @@ class api:
     getUserSettingsURL = baseUrl + "/webservices/UserSettings.asmx/GetUserSetting"
     getSideMenusURL = baseUrl + "/webservices/config.asmx/GetSideMenus"
     getGridColumnsForAdvSearchURL = baseUrl + "/webservices/config.asmx/GetGridColumnsForAdvSearch"
+    getGridColumnsURL = baseUrl + "/webservices/Config.asmx/GetGridColumns"
     getAuditDataURL = baseUrl + "/webservices/Audit.asmx/GetAuditData"
     getItemsURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetItems"
 
@@ -93,6 +95,15 @@ class api:
             return gridInfo["GridID"]
         if isinstance(grid, int):
             return gridInfo["GridName"]
+
+    def getGridColumns(self, grid):
+        """
+        Gets the Grid Columns from TCR
+        """
+        if isinstance(grid, str):
+            grid = self.gridNameID(grid)
+        response = requests.post(self.getGridColumnsURL, headers=self.headers, json={"gridID": grid}).json()
+        return response["d"]
 
 
     def getGridDataFields(self, grid=None, columns=None):
@@ -178,14 +189,16 @@ class api:
             > GridID or GridName is required
         """
         response = self.getGridSettings(grid)
-        if response is not None and response["SortCol"]:
-            return Sort(Attribute=response["SortCol"], Order=SortDir.fromSettings(response["SortDir"])).list()
-        elif response is None:
+        if response is None:
             getGridInfo = self.getGrid(grid)
             if getGridInfo["DefaultSortColumn"] is not None:
-                return Sort(Attribute=getGridInfo["DefaultSortColumn"], Order=SortDir.fromSettings(response["SortDir"])).list()
+                return Sort(Attribute=getGridInfo["DefaultSortColumn"], Order=getGridInfo["DefaultSortOrder"]).list()
             else:
                 return []
+        if response["SortCol"]:
+            return Sort(Attribute=response["SortCol"], Order=SortDir.fromSettings(response["SortDir"])).list()
+        else:
+            return []
 
 
     def getColumnsForAdvSearch(self, grid):
@@ -229,6 +242,7 @@ class api:
         getGridInfo = self.getGrid(Grid)
         gridID = getGridInfo["GridID"]
         attributeFields = [field["DataField"] for field in getGridInfo["Columns"] ]
+        dateField = [field["DataField"] for field in getGridInfo["Columns"] if field["DataType"] == 4]
 
         if FilterConditions is None:
             FilterConditions = Filter()
@@ -257,10 +271,16 @@ class api:
 
         response = requests.post(self.getGridDataURL, headers=self.headers, data=requestData).json()
         resultjson = json.loads(response["d"]["Result"])
+        for field in dateField:
+            for row in resultjson["Data"]:
+                if row[field] is not None:
+                    splitDot = row[field].split(".")
+                    row[field] = dt.datetime.strptime(splitDot[0], "%Y-%m-%dT%H:%M:%S")
         if IncludeCount is True:
             return {"count": resultjson["RecordCount"], "data": resultjson["Data"]}
         else:
             return resultjson["Data"]
+
 
     def getTicket(self, ticketID: int):
         """
@@ -278,6 +298,7 @@ class api:
         response = requests.post(self.getTicketURL, headers=self.headers, json=ticketID).json()
         return response["d"]
 
+
     def getJob(self, jobID: int):
         """
         Gets the Job Details from TCR
@@ -293,6 +314,7 @@ class api:
         jobID = {"JobID": jobID}
         response = requests.post(self.getJobURL, headers=self.headers, json=jobID).json()
         return response["d"]
+
 
     def getCustomer(self, custID: int):
         """
@@ -310,6 +332,7 @@ class api:
         response = requests.post(self.getCustomerURL, headers=self.headers, json=custID).json()
         return response["d"]
 
+
     def getItems(self):
         """
         Gets all the Items from TCR
@@ -320,6 +343,7 @@ class api:
         """
         response = requests.post(self.getItemsURL, headers=self.headers).json()
         return response["d"]
+
 
     def getCompany(self):
         """
