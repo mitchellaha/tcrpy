@@ -22,12 +22,12 @@ Python Library for Interacting with the TCR Platform API.
 
 The easiest way to install the latest version from PyPI is by using [pip](https://pip.pypa.io/):
 
-```$ pip install TCRAPI```
+```$ pip install tcrpy```
 
 ### via Git Clone *with extras* 
 
 1. Clone the repository to an empty directory
-    - ```$ git clone https://github.com/mitchellaha/TCRAPI.git .```
+    - ```$ git clone https://github.com/mitchellaha/tcrpy.git .```
 2. Create a virtual environment
     - ```$ python3 -m venv venv```
 3. Activate the virtual environment
@@ -38,7 +38,7 @@ The easiest way to install the latest version from PyPI is by using [pip](https:
 ### From Source ( *Advanced* )
 
 1. Clone the repository to an empty directory
-    - ```$ git clone https://github.com/mitchellaha/TCRAPI.git .```
+    - ```$ git clone https://github.com/mitchellaha/tcrpy.git .```
 2. Verify SetupTools is Updated
     - ```$ pip install --upgrade setuptools```
 3. Install the project
