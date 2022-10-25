@@ -1,6 +1,9 @@
 # Changelog
 
-## [0.2.3] - 2022-10-25
+## [0.2.4] - 2022-10-25
+- Matching PyPi Index
+
+## [0.2.X] - 2022-10-25
 - **Added** - getSubItems, getEquipment, getEmployees, getDrivers
 
 ## [0.2.2] - 2022-01-27
