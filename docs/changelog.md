@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.3] - 2022-10-25
+- **Added** - getSubItems, getEquipment, getEmployees, getDrivers
+
 ## [0.2.2] - 2022-01-27
 - **Added**: GetCustomer, GetJob, GetTicket all return dates as datetime objects
 - **Added**: datetime_to_string utility function

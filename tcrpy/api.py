@@ -25,6 +25,10 @@ class api:
     getGridColumnsURL = baseUrl + "/webservices/Config.asmx/GetGridColumns"
     getAuditDataURL = baseUrl + "/webservices/Audit.asmx/GetAuditData"
     getItemsURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetItems"
+    getDriversURL = baseUrl + "/webservices/Drivers.asmx/GetAllDrivers"
+    getEquipmentURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetEquipment"
+    getEmployeesURL = baseUrl + "/webservices/Employees.asmx/GetDrivers"
+    getSubItemsURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetSubItems"
 
     def __init__(self, email=None, password=None):
         self.tcr_auth = auth(email, password)
@@ -385,4 +389,57 @@ class api:
         response = requests.post(self.getCompanyURL, headers=self.headers).json()
         responseD = response["d"]
         responseD.pop("LogoImage")
+        return responseD
+
+    def getDrivers(self):
+        """
+        Gets All Drivers From TCR
+        
+        Returns::
+        -------
+            list - All Drivers
+        """
+        response = requests.post(self.getDriversURL, headers=self.headers).json()
+        responseD = response["d"]
+        return responseD
+
+    def getEmployees(self):
+        """
+        Gets All Employees From TCR
+        
+        Returns::
+        -------
+            list - All Employees
+        """
+        response = requests.post(self.getEmployeesURL, headers=self.headers).json()
+        responseD = response["d"]
+        return responseD
+
+    def getEquipment(self, EquipmentID):
+        """
+        Gets All Equipment From TCR
+
+        Parameters::
+        ----------
+            EquipmentID -- Equipment ID : int
+        
+        Returns::
+        -------
+            list - All Equipment
+        """
+        requestData = {"equipID": EquipmentID}
+        response = requests.post(self.getEquipmentURL, headers=self.headers, json=requestData).json()
+        responseD = response["d"]
+        return responseD
+
+    def getSubItems(self):
+        """
+        Gets All Sub Items From TCR
+        
+        Returns::
+        -------
+            list - All Sub Items
+        """
+        response = requests.post(self.getSubItemsURL, headers=self.headers).json()
+        responseD = response["d"]
         return responseD
