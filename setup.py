@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="tcrpy",
-    version="0.2.4",
+    version="0.2.5",
     author="Mitch V Aureli",
     author_email="mitch@logic3ii.com",
     description="A Python Library for Interacting with the TCR Platform API.",
