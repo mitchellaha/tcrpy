@@ -1,10 +1,15 @@
 # Changelog
 
-## [0.2.4] - 2022-10-25
-- Matching PyPi Index
+## [0.2.5] - 2022-10-25
+- *Change*: getSubItems, getEquipment, getEmployees, getDrivers dates converted to Datetime
+- Fixed: 0.2.3 & 0.2.4 Conflict
 
-## [0.2.X] - 2022-10-25
+## [0.2.4] - 2022-10-25
 - **Added** - getSubItems, getEquipment, getEmployees, getDrivers
+
+## [0.2.3] - 2022-10-25
+- **Added** - getPriceLists, getPriceListItem, getInvoiceItemPrice, getNewItemForQuote
+
 
 ## [0.2.2] - 2022-01-27
 - **Added**: GetCustomer, GetJob, GetTicket all return dates as datetime objects

@@ -25,6 +25,10 @@ class api:
     getGridColumnsURL = baseUrl + "/webservices/Config.asmx/GetGridColumns"
     getAuditDataURL = baseUrl + "/webservices/Audit.asmx/GetAuditData"
     getItemsURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetItems"
+    getPriceListsURL = baseUrl + "/webservices/PriceListService.asmx/GetPriceLists"
+    getInvoiceItemPriceURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetInvoiceItemPrice"
+    getPriceListItemURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetPriceListItem"
+    getNewItemForQuoteURL = baseUrl + "/webservices/QuoteService.asmx/GetNewItemForQuote"
     getDriversURL = baseUrl + "/webservices/Drivers.asmx/GetAllDrivers"
     getEquipmentURL = baseUrl + "/webservices/GeneralAjaxService.asmx/GetEquipment"
     getEmployeesURL = baseUrl + "/webservices/Employees.asmx/GetDrivers"
@@ -377,6 +381,86 @@ class api:
         response = requests.post(self.getItemsURL, headers=self.headers).json()
         return response["d"]
 
+    def getPriceLists(self):
+        """
+        Gets all the Price Lists from TCR
+
+        Returns::
+        -------
+            dict -- Price Lists
+        """
+        dateKeys = ["DateCreated", "DateUpdated"]
+        response = requests.post(self.getPriceListsURL, headers=self.headers).json()
+        for item in response["d"]:
+            for key in dateKeys:
+                if item[key] is not None:
+                    item[key] = millisecond_stamp_to_datetime(item[key])
+        return response["d"]
+
+    def getPriceListItem(self, itemID: int, priceID: int):
+        """
+        Gets the Price List Item Details from TCR
+
+        Parameters::
+        ----------
+            itemID -- Item ID : int
+            priceID -- Price List ID : int
+
+        Returns::
+        -------
+            dict -- Price List Item Details
+        """
+        priceListItem = {"itemID": itemID, "priceID": priceID}
+        response = requests.post(self.getPriceListItemURL, headers=self.headers, json=priceListItem).json()
+        dateKeys = ["DateCreated", "DateUpdated"]
+        responseD = response["d"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+        return responseD
+
+    def getInvoiceItemPrice(self, invoiceID, jobID, itemID):
+        """
+        Gets the Invoice Item Price from TCR
+
+        Parameters::
+        ----------
+            invoiceID -- Invoice ID : int
+            jobID -- Job ID : int
+            itemID -- Item ID : int
+
+        Returns::
+        -------
+            dict -- Invoice Item Price
+        """
+        dateKeys = ["DateCreated", "DateUpdated"]
+        postData = {"invoiceID": invoiceID, "jobID": jobID, "itemID": itemID}
+        response = requests.post(self.getInvoiceItemPriceURL, headers=self.headers, json=postData).json()
+        for key in dateKeys:
+            if response["d"][key] is not None:
+                response["d"][key] = millisecond_stamp_to_datetime(response["d"][key])
+        return response["d"]
+
+    def getNewItemForQuote(self, quoteID, itemID):
+        """
+        Gets the New Item for Quote from TCR
+
+        Parameters::
+        ----------
+            quoteID -- Quote ID : int
+            itemID -- Item ID : int
+
+        Returns::
+        -------
+            dict -- New Item for Quote
+        """
+        dateKeys = ["DateCreated", "DateUpdated"]
+        postData = {"quoteID": quoteID, "itemID": itemID}
+        response = requests.post(self.getNewItemForQuoteURL, headers=self.headers, json=postData).json()
+        for key in dateKeys:
+            if response["d"][key] is not None:
+                response["d"][key] = millisecond_stamp_to_datetime(response["d"][key])
+        return response["d"]
 
     def getCompany(self):
         """
@@ -400,7 +484,13 @@ class api:
             list - All Drivers
         """
         response = requests.post(self.getDriversURL, headers=self.headers).json()
+        dateKeys = ["LocationDate", "DateCreated", "DateUpdated"]
         responseD = response["d"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
         return responseD
 
     def getEmployees(self):
@@ -412,7 +502,13 @@ class api:
             list - All Employees
         """
         response = requests.post(self.getEmployeesURL, headers=self.headers).json()
+        dateKeys = ["DateCreated", "DateUpdated"]
         responseD = response["d"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
         return responseD
 
     def getEquipment(self, EquipmentID):
@@ -429,7 +525,13 @@ class api:
         """
         requestData = {"equipID": EquipmentID}
         response = requests.post(self.getEquipmentURL, headers=self.headers, json=requestData).json()
+        dateKeys = ["DateCreated", "DateInService", "DateUpdated", "DateOutofService"]
         responseD = response["d"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
         return responseD
 
     def getSubItems(self):
@@ -441,5 +543,11 @@ class api:
             list - All Sub Items
         """
         response = requests.post(self.getSubItemsURL, headers=self.headers).json()
+        dateKeys = ["DateCreated", "DateUpdated"]
         responseD = response["d"]
+        for key in dateKeys:
+            if responseD[key] is not None:
+                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
+            if responseD["OriginalRecordData"][key] is not None:
+                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
         return responseD
