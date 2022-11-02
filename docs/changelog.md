@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.6] - 2022-11-02
+- *Change*: getItems dates converted to Datetime
+
 ## [0.2.5] - 2022-10-25
 - *Change*: getSubItems, getEquipment, getEmployees, getDrivers dates converted to Datetime
 - Fixed: 0.2.3 & 0.2.4 Conflict

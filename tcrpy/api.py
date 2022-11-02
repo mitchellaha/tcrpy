@@ -49,7 +49,7 @@ class api:
 
     def manualGetGridData(self, PostDict, includeCount=False):
         """
-        Gets the Grid Data from TCR  
+        Gets the Grid Data from TCR
             - PostDict is required
             - includeCount is optional
 
@@ -72,7 +72,7 @@ class api:
 
     def getGrid(self, grid):
         """
-        Gets The Full JSON Response from TCR with Grid Name  
+        Gets The Full JSON Response from TCR with Grid Name
             - Uses GetGridByID url if grid is an int
             - Uses GetGrid url if grid is a string
         
@@ -151,11 +151,11 @@ class api:
 
     def getGridQuickSearchFields(self, grid=None, columns=None):
         """
-        Gets The QuickSearch Fields either grid or columns  
+        Gets The QuickSearch Fields either grid or columns
 
         Parameters::
         ----------
-            grid -- grid name or grid id : str or int  
+            grid -- grid name or grid id : str or int
             columns -- list of columns to search : list of dict
 
         Returns::
@@ -250,7 +250,7 @@ class api:
         """
         getGridInfo = self.getGrid(Grid)
         gridID = getGridInfo["GridID"]
-        attributeFields = [field["DataField"] for field in getGridInfo["Columns"] ]
+        attributeFields = [field["DataField"] for field in getGridInfo["Columns"]]
         dateField = [field["DataField"] for field in getGridInfo["Columns"] if field["DataType"] == 4]
 
         if FilterConditions is None:
@@ -379,7 +379,16 @@ class api:
             dict -- Items
         """
         response = requests.post(self.getItemsURL, headers=self.headers).json()
-        return response["d"]
+        dateKeys = ["DateCreated", "DateUpdated", "LastOrderDate"]
+        responseD = response["d"]
+        for item in responseD:
+            for key in dateKeys:
+                if item[key] is not None:
+                    item[key] = millisecond_stamp_to_datetime(item[key])
+                if item["OriginalRecordData"] is not None:
+                    if item["OriginalRecordData"][key] is not None:
+                        item["OriginalRecordData"][key] = millisecond_stamp_to_datetime(item["OriginalRecordData"][key])
+        return responseD
 
     def getPriceLists(self):
         """

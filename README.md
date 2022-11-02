@@ -1,6 +1,6 @@
 # tcrpy
-[![PyPI Version](https://img.shields.io/pypi/v/TCRAPI)](https://pypi.org/project/TCRAPI/)
-[![Python Versions](https://img.shields.io/pypi/pyversions/TCRAPI)](https://pypi.org/project/TCRAPI/)
+[![PyPI Version](https://img.shields.io/pypi/v/tcrpy)](https://pypi.org/project/tcrpy/)
+[![Python Versions](https://img.shields.io/pypi/pyversions/tcrpy)](https://pypi.org/project/tcrpy/)
 
 Python Library for Interacting with the TCR Platform API.
 
