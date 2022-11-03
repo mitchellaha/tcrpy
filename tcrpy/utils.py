@@ -5,7 +5,9 @@ def millisecond_stamp_to_datetime(milliseconds: int):  # ? As much as i would li
     """
     Convert milliseconds to datetime object removing the "/Date(...)/"
     """
-    seconds = int("".join([x for x in milliseconds if x.isdigit()])) / 1000  # Remove the "/Date(...)/" and convert to seconds
+    if "-" in milliseconds:
+        return dt.datetime.fromtimestamp(0)
+    seconds = int(int("".join([x for x in milliseconds if x.isdigit()])) / 1000)  # Remove the "/Date(...)/" and convert to seconds
     return dt.datetime.fromtimestamp(seconds) + dt.timedelta(hours=1)  # Add 1 Hour Since TCR is off by 1 hour
 
 def datetime_to_string(date: dt.datetime):

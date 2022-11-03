@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.8] - 2022-11-03
+- Fixed: Negative TimeStamps breaking datetime conversions on millisecond_stamp_to_datetime
+
 ## [0.2.7] - 2022-11-03
 - Fixed: getDrivers & getEmployees now correctly converts DateTimes
 
