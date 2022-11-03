@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.7] - 2022-11-03
+- Fixed: getDrivers & getEmployees now correctly converts DateTimes
+
 ## [0.2.6] - 2022-11-02
 - *Change*: getItems dates converted to Datetime
 

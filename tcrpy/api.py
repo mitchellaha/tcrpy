@@ -495,11 +495,13 @@ class api:
         response = requests.post(self.getDriversURL, headers=self.headers).json()
         dateKeys = ["LocationDate", "DateCreated", "DateUpdated"]
         responseD = response["d"]
-        for key in dateKeys:
-            if responseD[key] is not None:
-                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
-            if responseD["OriginalRecordData"][key] is not None:
-                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
+        for driver in responseD:
+            for key in dateKeys:
+                if driver[key] is not None:
+                    driver[key] = millisecond_stamp_to_datetime(driver[key])
+                if driver["OriginalRecordData"] is not None:
+                    if driver["OriginalRecordData"][key] is not None:
+                        driver["OriginalRecordData"][key] = millisecond_stamp_to_datetime(driver["OriginalRecordData"][key])
         return responseD
 
     def getEmployees(self):
@@ -513,11 +515,13 @@ class api:
         response = requests.post(self.getEmployeesURL, headers=self.headers).json()
         dateKeys = ["DateCreated", "DateUpdated"]
         responseD = response["d"]
-        for key in dateKeys:
-            if responseD[key] is not None:
-                responseD[key] = millisecond_stamp_to_datetime(responseD[key])
-            if responseD["OriginalRecordData"][key] is not None:
-                responseD["OriginalRecordData"][key] = millisecond_stamp_to_datetime(responseD["OriginalRecordData"][key])
+        for employee in responseD:
+            for key in dateKeys:
+                if employee[key] is not None:
+                    employee[key] = millisecond_stamp_to_datetime(employee[key])
+                if employee["OriginalRecordData"] is not None:
+                    if employee["OriginalRecordData"][key] is not None:
+                        employee["OriginalRecordData"][key] = millisecond_stamp_to_datetime(employee["OriginalRecordData"][key])
         return responseD
 
     def getEquipment(self, EquipmentID):
