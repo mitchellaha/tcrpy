@@ -460,18 +460,36 @@ See [GridInfo.json](docs/GridInfo.json) for more Grid Information.
 
 ## Entity
 
+Use With
+    - .../data.asmx/GetEntityFieldsByEntityID
+
 - 1 = Customer
 - 2 = Job
 - 3 = Ticket
 - 4 = ???
-- 5 = ???
-- 6 = ???
-- 7 = ???
+- 5 = Employee
+- 6 = Branch
+- 7 = LineItem
 - 8 = Invoice
 - 9 = Quote
 - 10 = ???
 - 11 = ???
 - 12 = Activity
+- 13 = ???
+- 14 = ???
+- 15 = TicketItem
+- ...
+- 21 = PriceList
+- ...
+- 26 = Equipment
+- ...
+- 29 = PriceListItem
+- ...
+- 40 = User
+- 41 = Company
+- 42 = TaxGroup
+- 43 = TaxRate
+- 44 = AccountingChart
 
 ## Enity Type
 
