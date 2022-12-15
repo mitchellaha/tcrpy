@@ -524,8 +524,8 @@ Use With
 
 ## Query Sort
 
-- 1 = ASC
-- 2 = DESC
+- 0 = ASC
+- 1 = DESC
 
 ## Query Param Operators
 
