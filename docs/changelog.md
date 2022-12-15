@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.9] - 2022-12-15
+- **Added** - GetGrid Data custom attributes + Sort parameter
+
 ## [0.2.8] - 2022-11-03
 - Fixed: Negative TimeStamps breaking datetime conversions on millisecond_stamp_to_datetime
 

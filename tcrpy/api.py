@@ -228,9 +228,10 @@ class api:
         return response["d"]
 
 
-    def getGridData(self, Grid, FilterConditions=None,
+    def getGridData(self, Grid, FilterConditions=Filter(),
                     StartIndex=1, RecordCount=250,
                     QuickSearch=None, IncludeCount=True,
+                    AttributeFields=None, SortParam=None
                     ):
         """
         Gets The Grid Data from TCR
@@ -238,11 +239,13 @@ class api:
         Parameters::
         ----------
             Grid : str or int
-            FilterConditions : dict
+            FilterConditions : Filter() (default=Filter())
             StartIndex : int (default=1)
             RecordCount : int (default=250)
             QuickSearch : str (default=None)
             IncludeCount : bool (default=True)
+            AttributeFields : list (default=None)
+            Sort : Sort() (default=none)
 
         Returns::
         -------
@@ -250,21 +253,21 @@ class api:
         """
         getGridInfo = self.getGrid(Grid)
         gridID = getGridInfo["GridID"]
-        attributeFields = [field["DataField"] for field in getGridInfo["Columns"]]
         dateField = [field["DataField"] for field in getGridInfo["Columns"] if field["DataType"] == 4]
+        if AttributeFields is None:
+            AttributeFields = [field["DataField"] for field in getGridInfo["Columns"]]
 
-        if FilterConditions is None:
-            FilterConditions = Filter()
-        elif isinstance(FilterConditions, dict):
-            FilterConditions = Filter(**FilterConditions)
-        
         if QuickSearch is not None:
             quickSearchFields = [field["DataField"] for field in getGridInfo["Columns"] if field["QuickSearch"] is True]
             FilterConditions.add_advanced_filter(Filter().add_quick_search_filter(QuickSearch, quickSearchFields))
 
         if isinstance(FilterConditions, Filter):
             FilterConditions = FilterConditions.dict()
-            pass
+
+        if isinstance(SortParam, Sort):
+            SortParam = SortParam.list()
+        elif SortParam is None:
+            SortParam = self.getGridSortSettings(gridID)
 
         requestData = GetGridDateRootModel(
             query=GetGridDataModel(
@@ -272,11 +275,12 @@ class api:
                 RecordCount=RecordCount,
                 Filter=FilterConditions,
                 StartIndex=StartIndex,
-                Attributes=attributeFields,
-                Sort=self.getGridSortSettings(gridID),
+                Attributes=AttributeFields,
+                Sort=SortParam,
                 CustomSort=None,
             )
         ).json()
+        print(requestData)
 
         response = requests.post(self.getGridDataURL, headers=self.headers, data=requestData).json()
         resultjson = json.loads(response["d"]["Result"])
