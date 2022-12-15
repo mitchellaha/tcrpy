@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.9.1] - 2022-12-15
+- Removed Print Statement from getgriddata
+
 ## [0.2.9] - 2022-12-15
 - **Added** - GetGrid Data custom attributes + Sort parameter
 

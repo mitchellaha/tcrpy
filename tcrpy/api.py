@@ -280,7 +280,6 @@ class api:
                 CustomSort=None,
             )
         ).json()
-        print(requestData)
 
         response = requests.post(self.getGridDataURL, headers=self.headers, data=requestData).json()
         resultjson = json.loads(response["d"]["Result"])
