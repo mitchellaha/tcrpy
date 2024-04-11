@@ -286,8 +286,22 @@ class api:
         for field in dateField:
             for row in resultjson["Data"]:
                 if row[field] is not None:
-                    splitDot = row[field].split(".")
-                    row[field] = dt.datetime.strptime(splitDot[0], "%Y-%m-%dT%H:%M:%S")
+                    # Check if the field is already a datetime object
+                    if isinstance(row[field], dt.datetime):
+                        continue  # It's already a datetime object, no action needed
+                    
+                    # Assuming row[field] is a string that needs to be parsed
+                    date_str = str(row[field])
+                    try:
+                        # Try parsing with milliseconds
+                        row[field] = dt.datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S.%f")
+                    except ValueError:
+                        # If parsing with milliseconds fails, try without milliseconds
+                        try:
+                            row[field] = dt.datetime.strptime(date_str, "%Y-%m-%dT%H:%M:%S")
+                        except ValueError:
+                            # Log or handle dates that do not match the expected format
+                            print(f"Date format not recognized: {date_str}")
         if IncludeCount is True:
             return {"count": resultjson["RecordCount"], "data": resultjson["Data"]}
         else:
